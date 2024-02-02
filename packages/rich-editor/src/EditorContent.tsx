@@ -4,7 +4,7 @@ import { useEditorContext } from "./context"
 
 export interface EditorContentProps {
   className?: string
-  style: React.CSSProperties
+  style?: React.CSSProperties
 }
 
 export const EditorContent: React.FC<EditorContentProps> = ({
