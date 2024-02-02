@@ -16,10 +16,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="stylesheet" type="text/css" href="https://gw.alipayobjects.com/render/p/yuyan_npm/@alipay_lakex-doc/1.12.0/umd/doc.css"/>
-        <link rel="stylesheet" type="text/css" href="https://unpkg.com/antd@4.24.13/dist/antd.css"/>
-      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )
