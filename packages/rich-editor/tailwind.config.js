@@ -1,8 +1,8 @@
-import type { Config } from "tailwindcss"
+import baseTailwindConfig from "@pingtou/ui/tailwind.config"
 
-const config: Config = {
-  // eslint-disable-next-line ts/no-require-imports
-  presets: [require("@pingtou/ui/tailwind.config")],
+/** @type {import('tailwindcss').Config} */
+export default {
+  presets: [baseTailwindConfig],
   darkMode: ["class", "[data-mode=\"dark\"]"],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,7 +10,4 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@pingtou/ui/**/*.js",
   ],
-  theme: {},
-  plugins: [],
 }
-export default config

@@ -21,19 +21,19 @@ export const MenuBar: React.FC = () => {
   return (
     <>
       <MoreToggle />
-      <Separator />
+      <Separator orientation="vertical" />
       <UndoButton />
       <RedoButton />
       <FormatPainterButton />
       <FormatClearButton />
-      <Separator />
+      <Separator orientation="vertical" />
       <HeadingButton />
       <FontSizeButton />
       <BoldButton />
       <ItalicButton />
       <StrikeButton />
       <UnderlineButton />
-      <Separator />
+      <Separator orientation="vertical" />
       <UnOrderListButton />
       <TaskListButton />
       <QuoteButton />
