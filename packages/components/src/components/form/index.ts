@@ -1,3 +1,5 @@
+"use client"
+
 import { useFieldArray, useWatch } from "react-hook-form"
 import _Form from "./Form"
 import Item from "./FormItem"

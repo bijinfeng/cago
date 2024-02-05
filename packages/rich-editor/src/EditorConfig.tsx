@@ -34,7 +34,6 @@ export const EditorConfig: React.FC<EditorConfigProps> = (props) => {
     return null
 
   return (
-
     <EditorContext.Provider value={{ editor }}>
       {props.children}
     </EditorContext.Provider>

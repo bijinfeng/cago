@@ -1,4 +1,4 @@
-import { Tooltip, TooltipContent, TooltipTrigger, cn } from "@pingtou/ui"
+import { Button, Tooltip, TooltipContent, TooltipTrigger, cn } from "@pingtou/ui"
 import React from "react"
 import ArrowDownIcon from "@/components/icon/ArrowDown"
 
@@ -23,19 +23,19 @@ export const ToggleButton: React.FC<ButtonProps> = (props) => {
   } = props
 
   const renderButton = () => (
-    <button
+    <Button
       {...rest}
-      type="button"
       disabled={!enabled}
+      variant="ghost"
       className={cn(
-        "h-[26px] min-w-[26px] rounded-md inline-flex items-center justify-center",
+        "h-[26px] min-w-[26px] rounded-md inline-flex items-center justify-center p-0 text-base",
         { "opacity-25": !enabled, "bg-[#e7e9e8]": actived },
         className,
       )}
     >
       {children}
       {withArrowDownIcon && <ArrowDownIcon />}
-    </button>
+    </Button>
   )
 
   if (!tooltip)

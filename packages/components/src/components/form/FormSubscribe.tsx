@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import type { DeepPartialSkipArrayKey } from "react-hook-form"
 import { useFormContext, useWatch } from "react-hook-form"

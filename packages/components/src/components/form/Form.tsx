@@ -1,3 +1,5 @@
+"use client"
+
 import { useMemoizedFn } from "ahooks"
 import { noop } from "lodash-es"
 import { useEffect, useImperativeHandle } from "react"

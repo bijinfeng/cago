@@ -1,3 +1,5 @@
+"use client"
+
 import { isNil, isUndefined } from "lodash-es"
 import type { PropsWithChildren } from "react"
 import React, { useMemo } from "react"

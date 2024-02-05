@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import type { UseFieldArrayProps } from "react-hook-form"
 import { useFieldArray, useFormContext } from "react-hook-form"
