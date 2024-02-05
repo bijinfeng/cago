@@ -1,6 +1,6 @@
 import { cookies } from "next/headers"
 import React from "react"
-import DashboardLayout from "./layout"
+import DashboardLayout from "./wrapper"
 
 function getDefaultLayout() {
   const layout = cookies().get("react-resizable-panels:layout")

@@ -3,6 +3,7 @@
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@pingtou/ui"
 import { get } from "lodash-es"
 import React from "react"
+import Sidebar from "./sidebar"
 
 interface DashboardLayoutProps {
   defaultLayout: number[]
@@ -27,7 +28,17 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ defaultLayout, defaul
   return (
     <div className="h-screen">
       <ResizablePanelGroup direction="horizontal" onLayout={onLayout}>
-        <ResizablePanel defaultSize={get(defaultLayout, 0)} collapsedSize={collapsedSize} minSize={15} maxSize={20} collapsible={true} onCollapse={() => onCollapse(true)} onExpand={() => onCollapse(false)}>One</ResizablePanel>
+        <ResizablePanel
+          defaultSize={get(defaultLayout, 0)}
+          collapsedSize={collapsedSize}
+          minSize={15}
+          maxSize={20}
+          collapsible={true}
+          onCollapse={() => onCollapse(true)}
+          onExpand={() => onCollapse(false)}
+        >
+          <Sidebar />
+        </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={get(defaultLayout, 1)} minSize={30}>Two</ResizablePanel>
       </ResizablePanelGroup>
