@@ -1,7 +1,8 @@
-import { Button } from "@pingtou/ui"
 import React from "react"
+import type { IMenuItem } from "@/components/menu"
+import Menu from "@/components/menu"
 
-const tabList: Array<{ label: string, value: string }> = [
+const tabList: Array<IMenuItem> = [
   {
     label: "全部消息",
     value: "",
@@ -40,16 +41,7 @@ interface NavProps {
 const Nav: React.FC<NavProps> = ({ activeTab, onTabChange }) => {
   return (
     <div className="space-y-2 w-[132px]">
-      {tabList.map(tab => (
-        <Button
-          key={tab.value}
-          variant={activeTab === tab.value ? "secondary" : "ghost"}
-          className="w-full justify-start px-3"
-          onClick={() => onTabChange(tab.value)}
-        >
-          {tab.label}
-        </Button>
-      ))}
+      <Menu items={tabList} activeItem={activeTab} onActiveItemChange={item => onTabChange(item.value)} />
     </div>
   )
 }

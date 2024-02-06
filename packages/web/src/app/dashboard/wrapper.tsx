@@ -3,6 +3,7 @@
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@pingtou/ui"
 import { get } from "lodash-es"
 import React from "react"
+import Content from "./content"
 import Sidebar from "./sidebar"
 
 interface DashboardLayoutProps {
@@ -40,7 +41,9 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ defaultLayout, defaul
           <Sidebar />
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={get(defaultLayout, 1)} minSize={30}>Two</ResizablePanel>
+        <ResizablePanel defaultSize={get(defaultLayout, 1)} minSize={30}>
+          <Content />
+        </ResizablePanel>
       </ResizablePanelGroup>
     </div>
   )
