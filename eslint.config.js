@@ -32,4 +32,9 @@ export default antfu({
     "packages/components/src/components/ui",
     "packages/server/types",
   ],
+}, {
+  rules: {
+    "react/display-name": "off",
+    "ts/no-use-before-define": "off",
+  },
 })
