@@ -1,8 +1,6 @@
 "use client"
 
-import type {
-  FormInstance,
-} from "@pingtou/ui"
+import type { FormInstance } from "@pingtou/ui"
 import {
   Button,
   Card,
@@ -14,6 +12,7 @@ import {
   Form,
   Input,
 } from "@pingtou/ui"
+import { signIn } from "next-auth/react"
 import Link from "next/link"
 import React, { useRef } from "react"
 import { Icons } from "@/components/icons"
@@ -33,6 +32,9 @@ const Singin: React.FC = () => {
       return
 
     const value = formRef.current!.getValues()
+    const res = await signIn("credentials", { ...value, redirect: false })
+
+    console.log(value, res)
 
     return value
   }
