@@ -1,5 +1,5 @@
 declare namespace NodeJS {
   export interface ProcessEnv {
-    readonly STRAPI_URL: string
+    readonly NEXT_PUBLIC_STRAPI_URL: string
   }
 }

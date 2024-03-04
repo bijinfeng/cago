@@ -1,9 +1,5 @@
 import type { FormInstance } from "@pingtou/ui"
-import {
-  Button,
-  Form,
-  Input,
-} from "@pingtou/ui"
+import { Button, Form, Input } from "@pingtou/ui"
 import { signIn } from "next-auth/react"
 import Link from "next/link"
 import { useRef } from "react"
@@ -32,26 +28,23 @@ export function Login() {
 
   return (
     <Form<FormValue> form={formRef}>
-      <Form.Item name="email" label="Email address" required>
+      <Form.Item name="email" label="邮箱" required>
         <Input placeholder="your@email.com" />
       </Form.Item>
       <Form.Item
         required
         name="password"
-        label="Password"
+        label="密码"
       >
         <Input placeholder="Your password" type="password" />
       </Form.Item>
 
       <div className="flex justify-between items-end">
-        <Button
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Sign in
+        <Button type="submit" onClick={handleSubmit}>
+          登录
         </Button>
         <Link className="text-xs underline py-1" href="/forget-password">
-          I forget password
+          忘记密码
         </Link>
       </div>
     </Form>

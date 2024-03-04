@@ -4,14 +4,11 @@ import {
   Form,
   Input,
 } from "@pingtou/ui"
-import { signIn } from "next-auth/react"
 import { useRef } from "react"
 
-interface FormValue {
-  email: string
-  password: string
-  confirmPassword: string
-}
+import { register } from "@/services"
+
+type FormValue = KB.RegisterUserInfo
 
 export function Register() {
   const formRef = useRef<FormInstance<FormValue>>(null)
@@ -23,7 +20,7 @@ export function Register() {
       return
 
     const value = formRef.current!.getValues()
-    const res = await signIn("credentials", { ...value, redirect: false })
+    const res = await register(value)
 
     console.log(value, res)
 
@@ -32,29 +29,18 @@ export function Register() {
 
   return (
     <Form<FormValue> form={formRef}>
+      <Form.Item required name="username" label="姓名">
+        <Input placeholder="Your name" />
+      </Form.Item>
       <Form.Item name="email" label="邮箱" required>
         <Input placeholder="your@email.com" />
       </Form.Item>
-      <Form.Item
-        required
-        name="password"
-        label="密码"
-      >
-        <Input placeholder="Your password" type="password" />
-      </Form.Item>
-      <Form.Item
-        required
-        name="confirmPassword"
-        label="确认密码"
-      >
+      <Form.Item required name="password" label="密码">
         <Input placeholder="Your password" type="password" />
       </Form.Item>
 
-      <Button
-        type="submit"
-        onClick={handleSubmit}
-      >
-        Sign in
+      <Button type="submit" onClick={handleSubmit}>
+        注册
       </Button>
     </Form>
   )

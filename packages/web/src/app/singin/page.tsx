@@ -16,12 +16,15 @@ import React from "react"
 
 import { Login } from "./login"
 import { Register } from "./register"
-import { Icons } from "@/components/icons"
 import LogoIcon from "@/assets/logo.svg"
+import { Icons } from "@/components/icons"
 
 const Singin: React.FC = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div
+      className="flex items-center justify-center min-h-screen bg-cover bg-no-repeat"
+      style={{ backgroundImage: `url(book.jpg)` }}
+    >
       <Card className="flex w-[600px] overflow-hidden">
         <div className="w-16 bg-primary">
           <Link href="/" className="flex justify-center py-4">

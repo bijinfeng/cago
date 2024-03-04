@@ -39,7 +39,7 @@ function Form<V extends FieldValues>(props: FormProps<V>) {
   return (
     <FormProvider<V> {...methods}>
       <FormContext.Provider value={{ showValidateMessage, layout, colon }}>
-        <div style={style} className={cn("space-y-8", className)}>{children}</div>
+        <div style={style} className={cn("space-y-6", className)}>{children}</div>
       </FormContext.Provider>
     </FormProvider>
   )
