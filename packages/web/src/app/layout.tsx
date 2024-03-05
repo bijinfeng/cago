@@ -1,9 +1,6 @@
 import type { Metadata } from "next"
-import { getServerSession } from "next-auth/next"
 import { Inter } from "next/font/google"
-import TooltipProvider from "@/components/config-provider"
 import Provider from "@/context/client-provider"
-import { authOptions } from "@/lib/auth"
 
 import "./globals.css"
 
@@ -15,19 +12,15 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: React.PropsWithChildren) {
-  const session = await getServerSession(authOptions)
-
   return (
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={inter.className}>
-        <TooltipProvider>
-          <Provider session={session}>
-            {children}
-          </Provider>
-        </TooltipProvider>
+        <Provider>
+          <div>{children}</div>
+        </Provider>
       </body>
     </html>
   )

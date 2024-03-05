@@ -1,22 +1,16 @@
 "use client"
 
-import { Toaster } from "@pingtou/ui"
-import type { Session } from "next-auth"
-import { SessionProvider } from "next-auth/react"
+import { Toaster, TooltipProvider } from "@pingtou/ui"
+import React from "react"
 
-interface IProviderProps {
-  session: Session | null
-}
+function Provider(props: React.PropsWithChildren) {
+  const { children } = props
 
-const Provider: React.FC<React.PropsWithChildren<IProviderProps>> = ({
-  children,
-  session,
-}) => {
   return (
-    <SessionProvider session={session}>
+    <TooltipProvider>
       {children}
       <Toaster richColors />
-    </SessionProvider>
+    </TooltipProvider>
   )
 }
 

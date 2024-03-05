@@ -1,16 +1,18 @@
 import type { FormInstance } from "@pingtou/ui"
 import { Button, Form, Input } from "@pingtou/ui"
-import { signIn } from "next-auth/react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { useRef } from "react"
+import { login } from "@/services"
 
-interface FormValue {
-  email: string
-  password: string
-}
+import { useUserStore } from "@/store/user"
+
+type FormValue = KB.LoginUserInfo
 
 export function Login() {
+  const setUser = useUserStore(state => state.setUser)
   const formRef = useRef<FormInstance<FormValue>>(null)
+  const router = useRouter()
 
   // 登录成功后导航到首页
   const handleSubmit = async () => {
@@ -19,23 +21,18 @@ export function Login() {
       return
 
     const value = formRef.current!.getValues()
-    const res = await signIn("credentials", { ...value, redirect: false })
+    const res = await login(value)
 
-    console.log(value, res)
-
-    return value
+    setUser(res)
+    router.push("/dashboard")
   }
 
   return (
     <Form<FormValue> form={formRef}>
-      <Form.Item name="email" label="邮箱" required>
+      <Form.Item name="identifier" label="邮箱" required>
         <Input placeholder="your@email.com" />
       </Form.Item>
-      <Form.Item
-        required
-        name="password"
-        label="密码"
-      >
+      <Form.Item required name="password" label="密码">
         <Input placeholder="Your password" type="password" />
       </Form.Item>
 

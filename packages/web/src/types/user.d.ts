@@ -5,6 +5,11 @@ declare namespace KB {
     password: string
   }
 
+  interface LoginUserInfo {
+    identifier: string
+    password: string
+  }
+
   interface UserInfo {
     blocked: boolean
     confirmed: boolean
@@ -14,5 +19,10 @@ declare namespace KB {
     provider: string
     updateAt: string
     username: string
+  }
+
+  interface LoginResponse {
+    jwt: string
+    user: UserInfo
   }
 }

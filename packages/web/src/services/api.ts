@@ -20,6 +20,5 @@ api.interceptors.response.use((response) => {
   if (errorMessage?.message)
     toast.error(errorMessage.message)
 
-  console.log(error)
   return Promise.reject(error)
 })

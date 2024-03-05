@@ -1,10 +1,17 @@
+import { setCookie } from "cookies-next"
 import { api } from "./api"
+import { USER_TOKEN } from "@/lib/constants"
 
-export function login() {
-  return api.get("/api/auth/login")
+export async function login(data: KB.LoginUserInfo) {
+  const res = await api.post<KB.LoginResponse>("api/auth/local", data)
+
+  setCookie(USER_TOKEN, res.data.jwt, { maxAge: 3600 * 24 * 30 })
+  return res.data.user
 }
 
 // 注册用户
-export function register(data: KB.RegisterUserInfo) {
-  return api.post<{ jwt: string, user: KB.UserInfo }>("/api/auth/local/register", data)
+export async function register(data: KB.RegisterUserInfo) {
+  const res = await api.post<KB.LoginResponse>("/api/auth/local/register", data)
+  setCookie(USER_TOKEN, res.data.jwt, { maxAge: 3600 * 24 * 30 })
+  return res.data.user
 }
