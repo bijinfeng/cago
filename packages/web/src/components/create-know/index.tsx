@@ -1,5 +1,5 @@
 import React from "react"
-import NewbookIcon from "@/assets/newbook.svg"
+import NewbookIcon from "@/assets/newbook.svg?react"
 
 const CreateKnow: React.FC = () => {
   return (

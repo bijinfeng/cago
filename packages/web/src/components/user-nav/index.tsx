@@ -12,10 +12,10 @@ import {
   DropdownMenuTrigger,
 } from "@pingtou/ui"
 import React from "react"
-import GardenIcon from "@/assets/garden.svg"
-import LineDataIcon from "@/assets/line-data.svg"
-import LogoutIcon from "@/assets/logout.svg"
-import SettingIcon from "@/assets/setting.svg"
+import GardenIcon from "@/assets/garden.svg?react"
+import LineDataIcon from "@/assets/line-data.svg?react"
+import LogoutIcon from "@/assets/logout.svg?react"
+import SettingIcon from "@/assets/setting.svg?react"
 import LanguageCheck from "@/components/language-check"
 import ThemeCheck from "@/components/theme-check"
 

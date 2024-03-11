@@ -1,8 +1,8 @@
-import Image from "next/image"
 import React from "react"
-import NoteIcon from "@/assets/note.svg"
-import StarOutlineIcon from "@/assets/star-outlined.svg"
-import TimeIcon from "@/assets/time.svg"
+import LogoIcon from "@/assets/logo.svg?react"
+import NoteIcon from "@/assets/note.svg?react"
+import StarOutlineIcon from "@/assets/star-outlined.svg?react"
+import TimeIcon from "@/assets/time.svg?react"
 import AddDoc from "@/components/add-doc"
 import GlobalSearch from "@/components/global-search"
 import type { IMenuItem } from "@/components/menu"
@@ -33,7 +33,7 @@ const Sidebar: React.FC = () => {
     <div>
       <div className="pt-[10px]">
         <div className="px-3 flex items-center space-x-1">
-          <Image src="logo.svg" alt="logo" width={28} height={28} />
+          <LogoIcon width={28} height={28} />
           <span className="flex-1" />
           <Notice />
           <UserNav />

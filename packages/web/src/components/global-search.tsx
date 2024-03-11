@@ -1,6 +1,6 @@
 import { Button, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@pingtou/ui"
 import React from "react"
-import SearchIcon from "@/assets/search.svg"
+import SearchIcon from "@/assets/search.svg?react"
 
 const GlobalSearch: React.FC = () => {
   const [open, setOpen] = React.useState(false)

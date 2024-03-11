@@ -1,5 +1,3 @@
-"use client"
-
 import {
   Button,
   Card,
@@ -11,12 +9,12 @@ import {
   TabsList,
   TabsTrigger,
 } from "@pingtou/ui"
-import Link from "next/link"
 import React from "react"
+import { Link } from "react-router-dom"
 
 import { Login } from "./login"
 import { Register } from "./register"
-import LogoIcon from "@/assets/logo.svg"
+import LogoIcon from "@/assets/logo.svg?react"
 import { Icons } from "@/components/icons"
 
 const Singin: React.FC = () => {
@@ -27,7 +25,7 @@ const Singin: React.FC = () => {
     >
       <Card className="flex w-[600px] overflow-hidden">
         <div className="w-16 bg-primary">
-          <Link href="/" className="flex justify-center py-4">
+          <Link to="/" className="flex justify-center py-4">
             <LogoIcon color="white" width="32" height="32" />
           </Link>
         </div>
@@ -62,13 +60,13 @@ const Singin: React.FC = () => {
 
             <div className="flex flex-col w-40 space-y-4">
               <Button variant="outline" asChild>
-                <Link href="">
+                <Link to="">
                   <Icons.gitHub className="mr-2 h-4 w-4" />
                   Github
                 </Link>
               </Button>
               <Button variant="outline" asChild>
-                <Link href="">
+                <Link to="">
                   <Icons.google className="mr-2 h-4 w-4" />
                   Google
                 </Link>

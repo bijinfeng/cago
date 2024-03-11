@@ -1,5 +1,5 @@
 import { Button, DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger, Tabs, TabsList, TabsTrigger } from "@pingtou/ui"
-import ArrowDownIcon from "@/assets/arrow-down.svg"
+import ArrowDownIcon from "@/assets/arrow-down.svg?react"
 
 interface IMenuItem {
   label: string

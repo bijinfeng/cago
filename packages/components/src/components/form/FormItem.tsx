@@ -1,9 +1,9 @@
 "use client"
 
-import { isNil, isUndefined } from "lodash-es"
 import type { PropsWithChildren } from "react"
 import React, { useMemo } from "react"
 import { useController, useFormContext } from "react-hook-form"
+import { isNull, isUndefined } from "underscore"
 
 import type { FormItemProps } from "./type"
 import { Label } from "@/components/ui/label"
@@ -29,7 +29,7 @@ const FormItem: React.FC<PropsWithChildren<FormItemProps>> = (props) => {
 
   // required 为 true，且 rules 为空时赋予 rules 默认值
   const lastRules = useMemo<FormItemProps["rules"]>(() => {
-    return !!required && isNil(rules) ? { required: `请填写${label}` } : rules
+    return !!required && (isUndefined(rules) || isNull(rules)) ? { required: `请填写${label}` } : rules
   }, [required, rules, label])
 
   const { control } = useFormContext()

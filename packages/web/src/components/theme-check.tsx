@@ -1,6 +1,6 @@
 import { Button, Tooltip, TooltipContent, TooltipTrigger } from "@pingtou/ui"
 import React from "react"
-import DayIcon from "@/assets/day.svg"
+import DayIcon from "@/assets/day.svg?react"
 
 const ThemeCheck: React.FC = () => {
   return (

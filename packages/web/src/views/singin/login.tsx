@@ -1,8 +1,7 @@
 import type { FormInstance } from "@pingtou/ui"
 import { Button, Form, Input } from "@pingtou/ui"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
 import { useRef } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import { login } from "@/services"
 
 import { useUserStore } from "@/store/user"
@@ -12,7 +11,7 @@ type FormValue = KB.LoginUserInfo
 export function Login() {
   const setUser = useUserStore(state => state.setUser)
   const formRef = useRef<FormInstance<FormValue>>(null)
-  const router = useRouter()
+  const navigate = useNavigate()
 
   // 登录成功后导航到首页
   const handleSubmit = async () => {
@@ -24,7 +23,7 @@ export function Login() {
     const res = await login(value)
 
     setUser(res)
-    router.push("/dashboard")
+    navigate("/dashboard")
   }
 
   return (
@@ -40,7 +39,7 @@ export function Login() {
         <Button type="submit" onClick={handleSubmit}>
           登录
         </Button>
-        <Link className="text-xs underline py-1" href="/forget-password">
+        <Link className="text-xs underline py-1" to="/forget-password">
           忘记密码
         </Link>
       </div>

@@ -1,7 +1,7 @@
 import type { FormInstance } from "@pingtou/ui"
 import { Button, Form, Input } from "@pingtou/ui"
-import { useRouter } from "next/navigation"
 import { useRef } from "react"
+import { useNavigate } from "react-router-dom"
 
 import { register } from "@/services"
 import { useUserStore } from "@/store/user"
@@ -11,7 +11,7 @@ type FormValue = KB.RegisterUserInfo
 export function Register() {
   const formRef = useRef<FormInstance<FormValue>>(null)
   const setUser = useUserStore(state => state.setUser)
-  const router = useRouter()
+  const navigate = useNavigate()
 
   // 登录成功后导航到首页
   const handleSubmit = async () => {
@@ -23,7 +23,7 @@ export function Register() {
     const res = await register(value)
 
     setUser(res)
-    router.push("/dashboard")
+    navigate("/dashboard")
   }
 
   return (

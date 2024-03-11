@@ -2,8 +2,8 @@ import { Button, Dialog, DialogContent, DialogTrigger, Separator, Tooltip, Toolt
 import React, { useState } from "react"
 import Content from "./content"
 import Nav from "./nav"
-import SettingIcon from "@/assets/setting.svg"
-import NoticeIcon from "@/assets/notice.svg"
+import SettingIcon from "@/assets/setting.svg?react"
+import NoticeIcon from "@/assets/notice.svg?react"
 
 const Notice: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("")
