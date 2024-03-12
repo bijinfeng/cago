@@ -1,4 +1,6 @@
+import { Separator } from "@pingtou/ui"
 import React from "react"
+import { Link } from "react-router-dom"
 import LogoIcon from "@/assets/logo.svg?react"
 import NoteIcon from "@/assets/note.svg?react"
 import StarOutlineIcon from "@/assets/star-outlined.svg?react"
@@ -28,12 +30,35 @@ const pageMenu: IMenuItem[] = [
   },
 ]
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isCollapsed: boolean
+}
+
+function CollapaedSidebar() {
+  return (
+    <div className="flex flex-col items-center gap-1.5">
+      <Link to="/dashboard" className="w-8 h-8 mt-3 flex items-center justify-center">
+        <LogoIcon width={24} height={24} className="text-primary" />
+      </Link>
+      <AddDoc />
+      <Notice />
+      <GlobalSearch isCollapsed />
+      <div className="px-5 w-full">
+        <Separator />
+      </div>
+      <UserNav />
+    </div>
+  )
+}
+
+function ExpandSidebar() {
   return (
     <div>
       <div className="pt-[10px]">
         <div className="px-3 flex items-center space-x-1">
-          <LogoIcon width={28} height={28} />
+          <Link to="/dashboard">
+            <LogoIcon width={24} height={24} className="text-primary" />
+          </Link>
           <span className="flex-1" />
           <Notice />
           <UserNav />
@@ -46,6 +71,10 @@ const Sidebar: React.FC = () => {
       <Menu className="px-3" items={pageMenu} />
     </div>
   )
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isCollapsed }) => {
+  return isCollapsed ? <CollapaedSidebar /> : <ExpandSidebar />
 }
 
 export default Sidebar

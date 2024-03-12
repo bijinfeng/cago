@@ -1,7 +1,8 @@
-import { Button, Dialog, DialogContent, DialogTrigger, Separator, Tooltip, TooltipContent, TooltipTrigger } from "@pingtou/ui"
+import { Dialog, DialogContent, DialogTrigger, Separator, Tooltip, TooltipContent, TooltipTrigger } from "@pingtou/ui"
 import React, { useState } from "react"
 import Content from "./content"
 import Nav from "./nav"
+import { IconButton } from "@/components/icon-button"
 import SettingIcon from "@/assets/setting.svg?react"
 import NoticeIcon from "@/assets/notice.svg?react"
 
@@ -10,18 +11,11 @@ const Notice: React.FC = () => {
 
   return (
     <Dialog>
-      <Tooltip>
-        <TooltipTrigger>
-          <DialogTrigger asChild>
-            <Button asChild variant="ghost" size="icon" className="w-[28px] h-[28px] p-[5px]">
-              <NoticeIcon />
-            </Button>
-          </DialogTrigger>
-        </TooltipTrigger>
-        <TooltipContent>
-          消息中心
-        </TooltipContent>
-      </Tooltip>
+      <DialogTrigger asChild>
+        <IconButton tooltip="消息中心" className="w-8 h-8">
+          <NoticeIcon width={18} height={18} />
+        </IconButton>
+      </DialogTrigger>
 
       <DialogContent className="max-w-[880px] p-0">
         <div className="flex max-h-[610px]">

@@ -16,13 +16,13 @@ const DashboardLayout: React.FC = () => {
         <ResizablePanel
           defaultSize={layout[0]}
           collapsedSize={collapsedSize}
-          minSize={15}
+          minSize={10}
           maxSize={20}
-          collapsible={isCollapsed}
+          collapsible={true}
           onCollapse={() => setIsCollapsed(true)}
           onExpand={() => setIsCollapsed(false)}
         >
-          <Sidebar />
+          <Sidebar isCollapsed={isCollapsed} />
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={layout[1]} minSize={30}>
@@ -33,4 +33,5 @@ const DashboardLayout: React.FC = () => {
   )
 }
 
+export * from "./protectedLoader"
 export default DashboardLayout

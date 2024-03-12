@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@pingtou/ui"
 import React from "react"
+import { Link } from "react-router-dom"
 import GardenIcon from "@/assets/garden.svg?react"
 import LineDataIcon from "@/assets/line-data.svg?react"
 import LogoutIcon from "@/assets/logout.svg?react"
@@ -39,7 +40,7 @@ const navList: Array<NavItemProps> = [
   {
     label: "账号设置",
     icon: <SettingIcon />,
-    href: "/setting",
+    href: "/setting/profile",
   },
 ]
 
@@ -70,10 +71,12 @@ const UserNav: React.FC = () => {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           {navList.map(nav => (
-            <DropdownMenuItem key={nav.label} className="flex items-center space-x-2">
-              {React.cloneElement(nav.icon, { width: 16, height: 16 })}
-              <span>{nav.label}</span>
-            </DropdownMenuItem>
+            <Link to={nav.href} key={nav.label}>
+              <DropdownMenuItem className="flex items-center space-x-2">
+                {React.cloneElement(nav.icon, { width: 16, height: 16 })}
+                <span>{nav.label}</span>
+              </DropdownMenuItem>
+            </Link>
           ))}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
