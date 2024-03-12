@@ -1,11 +1,17 @@
+import type { StoreApi, UseBoundStore } from "zustand"
 import { create } from "zustand"
 
 interface UserState {
-  user: KB.UserInfo | null
+  user: KB.UserInfo
   setUser: (user: KB.UserInfo) => void
 }
 
-export const useUserStore = create<UserState>(set => ({
-  user: null,
-  setUser: user => set({ user }),
-}))
+// eslint-disable-next-line  import/no-mutable-exports
+export let useUserStore: UseBoundStore<StoreApi<UserState>>
+
+export function initUserStore(user: KB.UserInfo) {
+  useUserStore = create<UserState>(set => ({
+    user,
+    setUser: user => set({ user }),
+  }))
+}

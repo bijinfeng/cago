@@ -19,6 +19,7 @@ import LogoutIcon from "@/assets/logout.svg?react"
 import SettingIcon from "@/assets/setting.svg?react"
 import LanguageCheck from "@/components/language-check"
 import ThemeCheck from "@/components/theme-check"
+import { useUserStore } from "@/store/user"
 
 interface NavItemProps {
   label: string
@@ -45,6 +46,8 @@ const navList: Array<NavItemProps> = [
 ]
 
 const UserNav: React.FC = () => {
+  const { user } = useUserStore()
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -62,9 +65,9 @@ const UserNav: React.FC = () => {
             <AvatarFallback>SC</AvatarFallback>
           </Avatar>
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">shadcn</p>
+            <p className="text-sm font-medium leading-none">{user.username}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              m@example.com
+              {user.email}
             </p>
           </div>
         </DropdownMenuLabel>

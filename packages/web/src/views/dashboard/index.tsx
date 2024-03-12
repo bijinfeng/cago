@@ -11,27 +11,24 @@ const DashboardLayout: React.FC = () => {
   const [isCollapsed = false, setIsCollapsed] = useLocalStorageState<boolean>(RESIZABLE_PANELS_COLLAPSED)
 
   return (
-    <div className="h-screen">
-      <ResizablePanelGroup direction="horizontal" onLayout={setLayout}>
-        <ResizablePanel
-          defaultSize={layout[0]}
-          collapsedSize={collapsedSize}
-          minSize={10}
-          maxSize={20}
-          collapsible={true}
-          onCollapse={() => setIsCollapsed(true)}
-          onExpand={() => setIsCollapsed(false)}
-        >
-          <Sidebar isCollapsed={isCollapsed} />
-        </ResizablePanel>
-        <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={layout[1]} minSize={30}>
-          <Content />
-        </ResizablePanel>
-      </ResizablePanelGroup>
-    </div>
+    <ResizablePanelGroup direction="horizontal" onLayout={setLayout}>
+      <ResizablePanel
+        defaultSize={layout[0]}
+        collapsedSize={collapsedSize}
+        minSize={10}
+        maxSize={20}
+        collapsible={true}
+        onCollapse={() => setIsCollapsed(true)}
+        onExpand={() => setIsCollapsed(false)}
+      >
+        <Sidebar isCollapsed={isCollapsed} />
+      </ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel defaultSize={layout[1]} minSize={30}>
+        <Content />
+      </ResizablePanel>
+    </ResizablePanelGroup>
   )
 }
 
-export * from "./protectedLoader"
 export default DashboardLayout

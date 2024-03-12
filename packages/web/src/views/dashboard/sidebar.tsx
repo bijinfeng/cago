@@ -35,18 +35,26 @@ interface SidebarProps {
 }
 
 function CollapaedSidebar() {
+  const renderSeparator = () => (
+    <div className="px-5 w-full">
+      <Separator />
+    </div>
+  )
+
   return (
-    <div className="flex flex-col items-center gap-1.5">
+    <div className="relative flex flex-col items-center gap-1.5 h-full">
       <Link to="/dashboard" className="w-8 h-8 mt-3 flex items-center justify-center">
         <LogoIcon width={24} height={24} className="text-primary" />
       </Link>
       <AddDoc />
       <Notice />
       <GlobalSearch isCollapsed />
-      <div className="px-5 w-full">
-        <Separator />
+      {renderSeparator()}
+      <Menu items={pageMenu} isCollapsed />
+
+      <div className="absolute bottom-0 pb-2">
+        <UserNav />
       </div>
-      <UserNav />
     </div>
   )
 }
