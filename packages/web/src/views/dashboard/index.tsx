@@ -1,7 +1,7 @@
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@pingtou/ui"
 import { useLocalStorageState } from "ahooks"
 import React from "react"
-import Content from "./content"
+import { Outlet } from "react-router-dom"
 import Sidebar from "./sidebar"
 import { RESIZABLE_PANELS_COLLAPSED, RESIZABLE_PANELS_LAYOUT } from "@/lib/constants"
 
@@ -25,7 +25,7 @@ const DashboardLayout: React.FC = () => {
       </ResizablePanel>
       <ResizableHandle withHandle />
       <ResizablePanel defaultSize={layout[1]} minSize={30}>
-        <Content />
+        <Outlet />
       </ResizablePanel>
     </ResizablePanelGroup>
   )

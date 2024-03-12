@@ -1,7 +1,7 @@
 import CreateKnow from "@/components/create-know"
 import DocList from "@/components/doc-list"
 
-function Content() {
+function DashboardHome() {
   return (
     <div className="px-9">
       <div className="mt-[26px] mb-[22px] text-lg font-medium">开始</div>
@@ -16,4 +16,4 @@ function Content() {
   )
 }
 
-export default Content
+export default DashboardHome

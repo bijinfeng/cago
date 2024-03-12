@@ -15,17 +15,17 @@ import UserNav from "@/components/user-nav"
 const pageMenu: IMenuItem[] = [
   {
     label: "开始",
-    value: "/",
+    value: "/dashboard",
     icon: <TimeIcon width={16} height={16} />,
   },
   {
-    label: "小计",
-    value: "/xxx",
+    label: "小记",
+    value: "/dashboard/notes",
     icon: <NoteIcon width={16} height={16} />,
   },
   {
     label: "收藏",
-    value: "star",
+    value: "/dashboard/collections",
     icon: <StarOutlineIcon width={16} height={16} />,
   },
 ]

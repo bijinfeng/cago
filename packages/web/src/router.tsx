@@ -3,11 +3,18 @@ import { createBrowserRouter } from "react-router-dom"
 import ProtectedLayout from "./views/layout/protected-layout"
 
 import ErrorPage from "./views/404"
+
 import Dashboard from "./views/dashboard"
+import DashboardCollections from "./views/dashboard/collections"
+import DashboardHome from "./views/dashboard/home"
+import DashboardNotes from "./views/dashboard/notes"
+
 import Docx from "./views/docx"
 import ForgetPassword from "./views/forget-password"
+
 import Setting from "./views/setting"
 import ProfileSetting from "./views/setting/profile"
+
 import Singin from "./views/singin"
 
 export const router = createBrowserRouter([
@@ -19,6 +26,20 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard />,
+        children: [
+          {
+            index: true,
+            element: <DashboardHome />,
+          },
+          {
+            path: "collections",
+            element: <DashboardCollections />,
+          },
+          {
+            path: "notes",
+            element: <DashboardNotes />,
+          },
+        ],
       },
       {
         path: "/docx",
