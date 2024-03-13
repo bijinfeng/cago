@@ -58,7 +58,7 @@ const UserNav: React.FC = () => {
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
+      <DropdownMenuContent className="w-64" align="start" forceMount>
         <DropdownMenuLabel className="font-normal flex items-center space-x-3">
           <Avatar className="h-9 w-9">
             <AvatarImage src="/avatar.png" alt="@shadcn" />
@@ -75,7 +75,7 @@ const UserNav: React.FC = () => {
         <DropdownMenuGroup>
           {navList.map(nav => (
             <Link to={nav.href} key={nav.label}>
-              <DropdownMenuItem className="flex items-center space-x-2">
+              <DropdownMenuItem className="flex items-center space-x-2 h-10">
                 {React.cloneElement(nav.icon, { width: 16, height: 16 })}
                 <span>{nav.label}</span>
               </DropdownMenuItem>
@@ -84,7 +84,7 @@ const UserNav: React.FC = () => {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <div className="flex space-x-2">
-          <DropdownMenuItem className="flex flex-1 items-center space-x-2">
+          <DropdownMenuItem className="flex flex-1 items-center space-x-2 h-10">
             <LogoutIcon width={16} height={16} />
             <span>退出登录</span>
           </DropdownMenuItem>

@@ -520,6 +520,9 @@ importers:
       dayjs:
         specifier: ^1.11.10
         version: 1.11.10
+      react-icons:
+        specifier: ^5.0.1
+        version: 5.0.1(react@18.2.0)
       react-lazy-load-image-component:
         specifier: ^1.6.0
         version: 1.6.0(react-dom@18.2.0)(react@18.2.0)
@@ -19554,6 +19557,14 @@ packages:
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /react-icons@5.0.1(react@18.2.0):
+    resolution: {integrity: sha512-WqLZJ4bLzlhmsvme6iFdgO8gfZP17rfjYEJ2m9RsZjZ+cc4k1hTzknEz63YS1MeT50kVzoa1Nz36f4BEx+Wigw==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-intl@6.4.1(react@18.2.0)(typescript@5.2.2):
