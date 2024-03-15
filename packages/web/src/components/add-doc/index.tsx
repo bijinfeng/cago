@@ -9,7 +9,7 @@ import ImportIcon from "@/assets/import.svg?react"
 import NewbookIcon from "@/assets/newbook.svg?react"
 import TemplateIcon from "@/assets/template.svg?react"
 
-const AddDoc: React.FC = () => {
+export const AddDoc: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>

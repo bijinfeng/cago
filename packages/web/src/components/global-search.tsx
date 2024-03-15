@@ -7,7 +7,7 @@ interface GlobalSearchProps {
   isCollapsed?: boolean
 }
 
-const GlobalSearch: React.FC<GlobalSearchProps> = ({ isCollapsed }) => {
+export const GlobalSearch: React.FC<GlobalSearchProps> = ({ isCollapsed }) => {
   const [open, setOpen] = React.useState(false)
 
   const renderTrigger = () => {
@@ -20,7 +20,7 @@ const GlobalSearch: React.FC<GlobalSearchProps> = ({ isCollapsed }) => {
     }
 
     return (
-      <Button variant="secondary" className="flex flex-1 justify-start items-center space-x-1 h-8 px-3" onClick={() => setOpen(true)}>
+      <Button variant="secondary" className="flex flex-1 justify-start items-center gap-3 h-8 px-2" onClick={() => setOpen(true)}>
         <SearchIcon />
         <span>搜索</span>
       </Button>

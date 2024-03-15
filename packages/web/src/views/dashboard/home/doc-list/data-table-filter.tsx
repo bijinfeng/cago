@@ -1,4 +1,5 @@
 import { Button, DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger, Tabs, TabsList, TabsTrigger } from "@pingtou/ui"
+import type { Table } from "@tanstack/react-table"
 import ArrowDownIcon from "@/assets/arrow-down.svg?react"
 
 interface IMenuItem {
@@ -70,7 +71,12 @@ const filterOptions: IFilterItem[] = [
   },
 ]
 
-function DocFilter() {
+interface IDataTableFilterProps<TData> {
+  table: Table<TData>
+}
+
+export function DataTableFilter<TData>({ table }: IDataTableFilterProps<TData>) {
+  console.log(table)
   const renderDocItemFilter = (item: IFilterItem) => {
     return (
       <DropdownMenu key={item.value}>
@@ -103,5 +109,3 @@ function DocFilter() {
     </div>
   )
 }
-
-export default DocFilter

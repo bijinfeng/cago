@@ -13,11 +13,11 @@ declare namespace KB {
   interface UserInfo {
     blocked: boolean
     confirmed: boolean
-    createAt: string
+    createdAt: string
     email: string
     id: number
     provider: string
-    updateAt: string
+    updatedAt: string
     username: string
   }
 

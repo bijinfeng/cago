@@ -7,6 +7,7 @@ import StarOutlineIcon from "@/assets/star-outlined.svg?react"
 import TimeIcon from "@/assets/time.svg?react"
 import AddDoc from "@/components/add-doc"
 import GlobalSearch from "@/components/global-search"
+import { Logo } from "@/components/logo"
 import type { IMenuItem } from "@/components/menu"
 import Menu from "@/components/menu"
 import Notice from "@/components/notice"
@@ -43,9 +44,7 @@ function CollapaedSidebar() {
 
   return (
     <div className="relative flex flex-col items-center gap-1.5 h-full">
-      <Link to="/dashboard" className="w-8 h-8 mt-3 flex items-center justify-center">
-        <LogoIcon width={24} height={24} className="text-primary" />
-      </Link>
+      <Logo size={24} className="mt-3 p-1" />
       <AddDoc />
       <Notice />
       <GlobalSearch isCollapsed />
