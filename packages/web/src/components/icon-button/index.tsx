@@ -20,7 +20,7 @@ export const IconButton: React.FC<IIconButtonProps> = (props) => {
 
   return (
     <Tooltip>
-      <TooltipTrigger>
+      <TooltipTrigger asChild>
         {renderButton()}
       </TooltipTrigger>
       <TooltipContent>

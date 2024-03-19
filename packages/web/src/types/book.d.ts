@@ -11,4 +11,12 @@ declare namespace KB {
     user: KB.UserInfo
     userId: number
   }
+
+  interface TocInfo {
+    id: string
+    level: number
+    parentId: string
+    title: string
+    type: "DOC" | "FOLDER"
+  }
 }

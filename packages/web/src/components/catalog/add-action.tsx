@@ -1,6 +1,6 @@
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@pingtou/ui"
-import { PlusIcon } from "@radix-ui/react-icons"
 import React from "react"
+import { LuPlus } from "react-icons/lu"
 import BoardTypeIcon from "@/assets/doc-type/board.svg?react"
 import DocTypeIcon from "@/assets/doc-type/default.svg?react"
 import SheetTypeIcon from "@/assets/doc-type/sheet.svg?react"
@@ -9,16 +9,12 @@ import ImportIcon from "@/assets/import.svg?react"
 import NewbookIcon from "@/assets/newbook.svg?react"
 import TemplateIcon from "@/assets/template.svg?react"
 
-interface IAddDocProps {
-  children?: React.ReactNode
-}
-
-export const AddDoc: React.FC<IAddDocProps> = () => {
+export const AddAction: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className="w-8 h-8">
-          <PlusIcon width={16} height={16} />
+        <Button variant="ghost" size="icon" className="w-6 h-6 mr-1.5 hover:bg-gray-200">
+          <LuPlus size={16} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-40" align="start">
@@ -57,5 +53,3 @@ export const AddDoc: React.FC<IAddDocProps> = () => {
     </DropdownMenu>
   )
 }
-
-export default AddDoc

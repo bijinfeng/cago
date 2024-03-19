@@ -1,11 +1,31 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator, Button, Separator } from "@pingtou/ui"
-import React from "react"
+import React, { useState } from "react"
 import { LuHome } from "react-icons/lu"
 import { BookActions } from "./book-actions"
+import { BookCata } from "./book-cata"
 import BookIcon from "@/assets/book-type/default.svg?react"
+import DirectoryPosition from "@/assets/directory-position.svg?react"
+import ExpandIcon from "@/assets/expand.svg?react"
+import FoldIcon from "@/assets/fold.svg?react"
 import { AddDoc } from "@/components/add-doc"
+import { Catalog } from "@/components/catalog"
 import { GlobalSearch } from "@/components/global-search"
+import { IconButton } from "@/components/icon-button"
 import { Logo } from "@/components/logo"
+
+function ExpandButton() {
+  const [isExpanded, setExpanded] = useState(false)
+
+  return (
+    <IconButton
+      tooltip={isExpanded ? "全部折叠" : "全部展开"}
+      className="w-5 h-5 p-0.5 text-gray-600"
+      onClick={() => setExpanded(!isExpanded)}
+    >
+      {isExpanded ? <ExpandIcon className="text-base" /> : <FoldIcon className="text-base" />}
+    </IconButton>
+  )
+}
 
 const Sidebar: React.FC = () => {
   return (
@@ -38,10 +58,17 @@ const Sidebar: React.FC = () => {
           <LuHome size={14} />
           首页
         </Button>
-        <div className="mt-2.5 flex items-center justify-center">
-
+        <div className="mt-2.5 flex items-center justify-between">
+          <BookCata />
+          <div className="flex items-center gap-2">
+            <IconButton tooltip="目录定位" className="w-5 h-5 p-0.5 text-gray-600">
+              <DirectoryPosition className="text-base" />
+            </IconButton>
+            <ExpandButton />
+          </div>
         </div>
       </div>
+      <Catalog />
     </div>
   )
 }
