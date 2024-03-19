@@ -21,3 +21,12 @@ export async function getUserInfo() {
   const res = await api.get<KB.UserInfo>("/api/users/me")
   return res.data
 }
+
+// 上传图片
+export async function uploadImage(file: File | Blob) {
+  const form = new FormData()
+  form.append("files", file)
+
+  const res = await api.post<KB.UploadFile[]>("/api/upload", form)
+  return res.data[0]
+}

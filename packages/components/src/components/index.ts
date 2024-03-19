@@ -1,3 +1,4 @@
+export { default as Cropper, type CropperFunRef } from "./cropper"
 export * from "./form"
 export * from "./ui/accordion"
 export * from "./ui/alert"

@@ -13,6 +13,7 @@ import Docx from "./views/docx"
 import ForgetPassword from "./views/forget-password"
 
 import Setting from "./views/setting"
+import NotificationsSetting from "./views/setting/notifications"
 import ProfileSetting from "./views/setting/profile"
 
 import Singin from "./views/singin"
@@ -50,9 +51,12 @@ export const router = createBrowserRouter([
         Component: Setting,
         children: [
           {
-            index: true,
             path: "profile",
             element: <ProfileSetting />,
+          },
+          {
+            path: "notifications",
+            element: <NotificationsSetting />,
           },
         ],
       },
