@@ -1,6 +1,6 @@
 import { toast } from "@pingtou/ui"
 import axios from "axios"
-import { get } from "underscore"
+import { get } from "radash"
 import { USER_TOKEN } from "@/lib/constants"
 
 export const api = axios.create({
@@ -21,10 +21,10 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use((response) => {
   return response
 }, (error) => {
-  const errorMessage = get(error, ["response", "data", "error"])
+  const errorMessage = get<string>(error, "response.data.error.message")
 
-  if (errorMessage?.message)
-    toast.error(errorMessage.message)
+  if (errorMessage)
+    toast.error(errorMessage)
 
   return Promise.reject(error)
 })
