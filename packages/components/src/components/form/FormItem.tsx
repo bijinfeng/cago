@@ -3,11 +3,10 @@
 import type { PropsWithChildren } from "react"
 import React, { useMemo } from "react"
 import { useController, useFormContext } from "react-hook-form"
-import { isNull, isUndefined } from "underscore"
 
 import type { FormItemProps } from "./type"
 import { Label } from "@/components/ui/label"
-import { cn } from "@/lib/utils"
+import { cn, isNullish } from "@/lib/utils"
 
 const FormItem: React.FC<PropsWithChildren<FormItemProps>> = (props) => {
   const {
@@ -29,7 +28,7 @@ const FormItem: React.FC<PropsWithChildren<FormItemProps>> = (props) => {
 
   // required 为 true，且 rules 为空时赋予 rules 默认值
   const lastRules = useMemo<FormItemProps["rules"]>(() => {
-    return !!required && (isUndefined(rules) || isNull(rules)) ? { required: `请填写${label}` } : rules
+    return !!required && isNullish(rules) ? { required: `请填写${label}` } : rules
   }, [required, rules, label])
 
   const { control } = useFormContext()
@@ -41,7 +40,7 @@ const FormItem: React.FC<PropsWithChildren<FormItemProps>> = (props) => {
     shouldUnregister,
   })
 
-  const isRequired = !isUndefined(required)
+  const isRequired = !isNullish(required)
     ? required
     : rules && !!rules?.required
 

@@ -4,7 +4,6 @@ import { useMemoizedFn } from "ahooks"
 import { useEffect, useImperativeHandle } from "react"
 import type { FieldValues } from "react-hook-form"
 import { FormProvider, useForm } from "react-hook-form"
-import { noop } from "underscore"
 
 import { FormContext } from "./FormContext"
 import type { FormProps } from "./type"
@@ -19,7 +18,7 @@ function Form<V extends FieldValues>(props: FormProps<V>) {
     style,
     form,
     mode = "onChange",
-    onChange = noop,
+    onChange = () => {},
     className,
     ...formProps
   } = props

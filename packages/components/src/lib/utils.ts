@@ -6,6 +6,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function isNullish(value: any): value is null | undefined {
+  return value === null || value === undefined
+}
+
 export async function isPNG(file: File) {
   // 提取前8个字节
   const arraybuffer = await file.slice(0, 8).arrayBuffer()
