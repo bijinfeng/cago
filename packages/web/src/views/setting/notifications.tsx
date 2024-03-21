@@ -38,7 +38,7 @@ const SettingItem: React.FC<{ data: KB.PreferenceSetting }> = ({ data }) => {
 
 function NotificationsSetting() {
   return (
-    <div className="max-w-[668px]">
+    <div className="max-w-[668px] mx-auto">
       <div className="pt-12 pb-7 text-xl sticky top-0 bg-white z-10">偏好设置</div>
       {PREFERENCE_SETTING.map((item, index) => (
         <React.Fragment key={index}>

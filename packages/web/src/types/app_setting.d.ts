@@ -20,4 +20,23 @@ declare namespace KB {
     title: string
     children: PreferenceSetting[]
   }
+
+  interface LoginSession {
+    accountId: number
+    browser: string
+    createAt: string
+    id: number
+    ip: string
+    isCurrent: boolean
+    location: string
+    os: string
+  }
+
+  interface LoginAuditLog {
+    id: number
+    ip: string
+    createAt: string
+    traceId: string
+    action: "login" | "logout"
+  }
 }

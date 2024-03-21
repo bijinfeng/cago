@@ -15,7 +15,7 @@ function ProfileSetting() {
   const formRef = useRef<FormInstance<FormValue>>(null)
 
   return (
-    <div className="max-w-[668px]">
+    <div className="max-w-[668px] mx-auto">
       <div className="pt-12 pb-7 text-xl sticky top-0 bg-white z-10">个人信息</div>
       <Form<FormValue> form={formRef} defaultValues={{ avatar: "http://localhost:5173/avatar.png" }}>
         <div className="grid grid-cols-2 gap-6">
