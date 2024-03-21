@@ -13,8 +13,12 @@ import Docx from "./views/docx"
 import ForgetPassword from "./views/forget-password"
 
 import Setting from "./views/setting"
+import AuthorizationsSetting from "./views/setting/authorizations"
 import NotificationsSetting from "./views/setting/notifications"
 import ProfileSetting from "./views/setting/profile"
+import SafetySetting from "./views/setting/safety"
+import StatsSetting from "./views/setting/stats"
+import TokensSetting from "./views/setting/tokens"
 
 import Singin from "./views/singin"
 
@@ -57,6 +61,22 @@ export const router = createBrowserRouter([
           {
             path: "notifications",
             element: <NotificationsSetting />,
+          },
+          {
+            path: "authorizations",
+            element: <AuthorizationsSetting />,
+          },
+          {
+            path: "safety",
+            element: <SafetySetting />,
+          },
+          {
+            path: "stats",
+            element: <StatsSetting />,
+          },
+          {
+            path: "tokens",
+            element: <TokensSetting />,
           },
         ],
       },

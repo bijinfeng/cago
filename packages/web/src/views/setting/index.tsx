@@ -1,5 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage, Button, Separator, buttonVariants, cn } from "@pingtou/ui"
-import { LuChevronLeft, LuSettings, LuUser } from "react-icons/lu"
+import { ChevronLeft, KeyRound, LayoutGrid, LineChart, Settings, ShieldCheck, User } from "lucide-react"
+import React from "react"
 import type { NavLinkProps } from "react-router-dom"
 import { NavLink, Outlet } from "react-router-dom"
 import { Logo } from "@/components/logo"
@@ -17,13 +18,61 @@ const LinkButton: React.FC<NavLinkProps> = ({ to, children }) => {
   )
 }
 
+const navs = [
+  {
+    title: "账号",
+    children: [
+      {
+        title: "个人信息",
+        icon: User,
+        path: "/setting/profile",
+      },
+      {
+        title: "偏好设置",
+        icon: Settings,
+        path: "/setting/notifications",
+      },
+      {
+        title: "安全日志",
+        icon: ShieldCheck,
+        path: "/setting/safety",
+      },
+    ],
+  },
+  {
+    title: "创作中心",
+    children: [
+      {
+        title: "数据统计",
+        icon: LineChart,
+        path: "/setting/stats",
+      },
+    ],
+  },
+  {
+    title: "开发者",
+    children: [
+      {
+        title: "Token",
+        icon: KeyRound,
+        path: "/setting/tokens",
+      },
+      {
+        title: "授权",
+        icon: LayoutGrid,
+        path: "/setting/authorizations",
+      },
+    ],
+  },
+]
+
 function Setting() {
   return (
     <div className="flex h-full">
-      <div className="w-56 py-4">
+      <div className="w-56 py-4 flex flex-col">
         <div className="mx-4 my-2">
           <Button variant="ghost" className="h-8 w-full justify-start gap-2 pl-1">
-            <LuChevronLeft size={14} className="mr-2" />
+            <ChevronLeft size={14} className="mr-2" />
             <Logo size={18} />
             返回
           </Button>
@@ -35,19 +84,21 @@ function Setting() {
           </Avatar>
           <div className="flex-1 ml-3">
             <div className="text-base font-medium truncate pt-0.5">kebai</div>
-            <div className="text-sm truncate text-secondary-foreground">bijinfeng-fyjgs</div>
+            <div className="text-sm truncate text-muted-foreground">bijinfeng-fyjgs</div>
           </div>
         </div>
-        <div className="kb-scrollbar px-4">
-          <div className="pl-4 pt-8 pb-2 text-sm text-secondary-foreground">账号</div>
-          <LinkButton to="/setting/profile">
-            <LuUser size={16} />
-            个人信息
-          </LinkButton>
-          <LinkButton to="/setting/notifications">
-            <LuSettings size={16} />
-            偏好设置
-          </LinkButton>
+        <div className="kb-scrollbar mt-8 px-4 flex-1 space-y-8">
+          {navs.map((item, index) => (
+            <div key={index}>
+              <div className="pl-4 pb-2 text-sm text-muted-foreground">{item.title}</div>
+              {item.children.map(child => (
+                <LinkButton key={child.path} to={child.path}>
+                  {React.createElement(child.icon, { size: 16 })}
+                  {child.title}
+                </LinkButton>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
       <Separator orientation="vertical" />
