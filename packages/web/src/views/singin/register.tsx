@@ -4,13 +4,11 @@ import { useRef } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { register } from "@/services"
-import { useUserStore } from "@/store/user"
 
 type FormValue = KB.RegisterUserInfo
 
 export function Register() {
   const formRef = useRef<FormInstance<FormValue>>(null)
-  const setUser = useUserStore(state => state.setUser)
   const navigate = useNavigate()
 
   // 登录成功后导航到首页
@@ -20,9 +18,8 @@ export function Register() {
       return
 
     const value = formRef.current!.getValues()
-    const res = await register(value)
+    await register(value)
 
-    setUser(res)
     navigate("/dashboard")
   }
 

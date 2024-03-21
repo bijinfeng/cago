@@ -76,5 +76,6 @@
   .kb-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: #e7e9e8 #fff;
+    overflow: auto;
   }
 }

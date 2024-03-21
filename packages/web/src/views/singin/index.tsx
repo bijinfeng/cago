@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   CardContent,
   CardHeader,
@@ -8,14 +7,16 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
+  buttonVariants,
 } from "@pingtou/ui"
 import React from "react"
 import { Link } from "react-router-dom"
 
 import { Login } from "./login"
 import { Register } from "./register"
+import GithubIcon from "@/assets/github.svg?react"
+import GoogleIcon from "@/assets/google.svg?react"
 import LogoIcon from "@/assets/logo.svg?react"
-import { Icons } from "@/components/icons"
 
 const Singin: React.FC = () => {
   return (
@@ -59,18 +60,14 @@ const Singin: React.FC = () => {
             <Separator orientation="vertical" className="mx-4 h-auto" />
 
             <div className="flex flex-col w-40 space-y-4">
-              <Button variant="outline" asChild>
-                <Link to="">
-                  <Icons.gitHub className="mr-2 h-4 w-4" />
-                  Github
-                </Link>
-              </Button>
-              <Button variant="outline" asChild>
-                <Link to="">
-                  <Icons.google className="mr-2 h-4 w-4" />
-                  Google
-                </Link>
-              </Button>
+              <Link to="" className={buttonVariants({ variant: "outline" })}>
+                <GithubIcon className="mr-2 h-4 w-4" />
+                Github
+              </Link>
+              <Link to="" className={buttonVariants({ variant: "outline" })}>
+                <GoogleIcon className="mr-2 h-4 w-4" />
+                Google
+              </Link>
             </div>
           </CardContent>
         </Tabs>

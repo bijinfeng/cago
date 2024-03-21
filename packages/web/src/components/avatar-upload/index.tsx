@@ -3,9 +3,7 @@ import { ArrowUpFromLine } from "lucide-react"
 import { forwardRef, useCallback, useRef, useState } from "react"
 import { useDropzone } from "react-dropzone"
 
-import type {
-  CropperFunRef,
-} from "@pingtou/ui"
+import type { CropperFunRef } from "@pingtou/ui"
 import {
   Avatar,
   AvatarImage,
@@ -16,6 +14,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  Separator,
 } from "@pingtou/ui"
 import { dataURItoBlob } from "@/lib/utils"
 import { uploadImage } from "@/services"
@@ -86,7 +85,7 @@ export const AvatarUpload = forwardRef<HTMLDivElement, AvatarUploadProps>(
         </div>
 
         <Dialog open={open} onOpenChange={setOpen}>
-          <DialogContent style={{ width: 520 }} className="space-y-4">
+          <DialogContent style={{ width: 520 }}>
             <DialogHeader>
               <DialogTitle>编辑头像</DialogTitle>
             </DialogHeader>
@@ -97,12 +96,15 @@ export const AvatarUpload = forwardRef<HTMLDivElement, AvatarUploadProps>(
               <Button
                 size="sm"
                 className="inline-flex items-center gap-1"
+                variant="outline"
                 {...getRootProps()}
               >
                 <ArrowUpFromLine width="14" height="14" />
                 重新选择
               </Button>
             </div>
+
+            <Separator />
 
             <DialogFooter>
               <Button

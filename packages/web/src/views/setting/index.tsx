@@ -51,8 +51,8 @@ function Setting() {
         </div>
       </div>
       <Separator orientation="vertical" />
-      <div className="flex-1">
-        <div className=" max-w-[1080px] mx-auto">
+      <div className="flex-1 kb-scrollbar">
+        <div className="pb-16 max-w-[1080px] mx-auto">
           <Outlet />
         </div>
       </div>

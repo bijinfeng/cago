@@ -4,12 +4,9 @@ import { useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { login } from "@/services"
 
-import { useUserStore } from "@/store/user"
-
 type FormValue = KB.LoginUserInfo
 
 export function Login() {
-  const setUser = useUserStore(state => state.setUser)
   const formRef = useRef<FormInstance<FormValue>>(null)
   const navigate = useNavigate()
 
@@ -20,9 +17,9 @@ export function Login() {
       return
 
     const value = formRef.current!.getValues()
-    const res = await login(value)
 
-    setUser(res)
+    await login(value)
+
     navigate("/dashboard")
   }
 
