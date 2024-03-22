@@ -1,4 +1,4 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@pingtou/ui"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, Tooltip, TooltipContent, TooltipTrigger } from "@pingtou/ui"
 import { ChevronDown } from "lucide-react"
 import { isNumber } from "radash"
 import React from "react"
@@ -87,12 +87,21 @@ const Stats: React.FC = () => {
           data={activityData}
           theme={ACTIVITY_CALENDAR_THEME}
           maxLevel={5}
+          blockMargin={5}
           hideTotalCount={true}
           blockSize={14}
           labels={{
             months: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
             legend: { less: "不活跃", more: "活跃" },
           }}
+          renderBlock={(block, activity) => (
+            <Tooltip>
+              <TooltipTrigger asChild>{block}</TooltipTrigger>
+              <TooltipContent>
+                {activity.count}
+              </TooltipContent>
+            </Tooltip>
+          )}
         />
       </div>
     </div>
