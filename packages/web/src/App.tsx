@@ -1,12 +1,16 @@
+import { Toaster, TooltipProvider } from "@pingtou/ui"
 import { RouterProvider } from "react-router-dom"
 
 import { router } from "./router"
-import Provider from "@/context/client-provider"
+import { ThemeProvider } from "@/components/theme"
 
 export default function App() {
   return (
-    <Provider>
-      <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
-    </Provider>
+    <TooltipProvider>
+      <ThemeProvider>
+        <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
+        <Toaster richColors />
+      </ThemeProvider>
+    </TooltipProvider>
   )
 }

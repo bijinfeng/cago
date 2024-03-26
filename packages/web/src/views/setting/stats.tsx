@@ -5,8 +5,11 @@ import React from "react"
 import ActivityCalendar from "react-activity-calendar"
 import { activityData } from "./mock"
 import { ACTIVITY_CALENDAR_THEME } from "@/lib/constants"
+import { useTheme } from "@/components/theme"
 
 const Stats: React.FC = () => {
+  const { themeMode } = useTheme()
+
   const renderCardOne = (name: string, count?: number) => {
     const countText = isNumber(count) ? count.toLocaleString() : "--"
     return (
@@ -86,6 +89,7 @@ const Stats: React.FC = () => {
         <ActivityCalendar
           data={activityData}
           theme={ACTIVITY_CALENDAR_THEME}
+          colorScheme={themeMode}
           maxLevel={5}
           blockMargin={5}
           hideTotalCount={true}

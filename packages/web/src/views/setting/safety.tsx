@@ -68,7 +68,7 @@ const Safety: React.FC = () => {
 
   return (
     <div className="max-w-[668px] mx-auto">
-      <div className="pt-12 pb-7 text-xl sticky top-0 bg-white z-10">安全日志</div>
+      <div className="pt-12 pb-7 text-xl sticky top-0 bg-background z-10">安全日志</div>
       <div className="text-base font-medium mb-1.5">登录设备</div>
       <div className="text-sm text-muted-foreground">删除列表中的设备后，在该设备登录语雀需要进行身份验证</div>
       <div className="mt-4 space-y-4">

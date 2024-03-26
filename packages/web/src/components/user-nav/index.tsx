@@ -18,7 +18,7 @@ import LineDataIcon from "@/assets/line-data.svg?react"
 import LogoutIcon from "@/assets/logout.svg?react"
 import SettingIcon from "@/assets/setting.svg?react"
 import LanguageCheck from "@/components/language-check"
-import ThemeCheck from "@/components/theme-check"
+import ThemeCheck from "@/components/theme/theme-check"
 import { useUserStore } from "@/store/user"
 
 interface NavItemProps {
