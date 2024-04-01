@@ -1,7 +1,7 @@
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@pingtou/ui"
 import React from "react"
 
-import Editor from "./editor"
+import Editor from "./rich-editor"
 import Sidebar from "./sidebar"
 
 const Docx: React.FC = () => {

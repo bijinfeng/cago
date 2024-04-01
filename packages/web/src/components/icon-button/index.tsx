@@ -4,13 +4,14 @@ import React from "react"
 
 interface IIconButtonProps extends ButtonProps {
   tooltip?: React.ReactNode
+  actived?: boolean
 }
 
 export const IconButton: React.FC<IIconButtonProps> = (props) => {
-  const { tooltip, children, ...rest } = props
+  const { tooltip, children, actived, ...rest } = props
 
   const renderButton = () => (
-    <Button variant="ghost" size="icon" {...rest}>
+    <Button variant={actived ? "secondary" : "ghost"} size="icon" {...rest}>
       {children}
     </Button>
   )
