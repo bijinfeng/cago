@@ -3,8 +3,6 @@ import React from "react"
 
 export const RichEditor: React.FC = () => {
   return (
-    <div>
-      <PlateEditor />
-    </div>
+    <PlateEditor />
   )
 }

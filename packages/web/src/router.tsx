@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
 
+import BlogLayout from "./views/layout/blog-layout"
 import ProtectedLayout from "./views/layout/protected-layout"
 
 import ErrorPage from "./views/404"
@@ -9,7 +10,9 @@ import DashboardCollections from "./views/dashboard/collections"
 import DashboardHome from "./views/dashboard/home"
 import DashboardNotes from "./views/dashboard/notes"
 
-import Docx from "./views/docx"
+import DocxDetail from "./views/docx/detail"
+import Docx from "./views/docx/home"
+
 import ForgetPassword from "./views/forget-password"
 
 import Setting from "./views/setting"
@@ -48,7 +51,17 @@ export const router = createBrowserRouter([
       },
       {
         path: "/docx",
-        element: <Docx />,
+        element: <BlogLayout />,
+        children: [
+          {
+            index: true,
+            element: <Docx />,
+          },
+          {
+            path: ":id",
+            element: <DocxDetail />,
+          },
+        ],
       },
       {
         path: "/setting",

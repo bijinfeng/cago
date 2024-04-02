@@ -1,6 +1,7 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator, Button, Separator } from "@pingtou/ui"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator, Separator, buttonVariants, cn } from "@pingtou/ui"
 import React, { useState } from "react"
 import { LuHome } from "react-icons/lu"
+import { Link, useLocation } from "react-router-dom"
 import { BookActions } from "./book-actions"
 import { BookCata } from "./book-cata"
 import BookIcon from "@/assets/book-type/default.svg?react"
@@ -28,8 +29,10 @@ function ExpandButton() {
 }
 
 const Sidebar: React.FC = () => {
+  const location = useLocation()
+
   return (
-    <div>
+    <>
       <div className="px-2.5 py-4">
         <Breadcrumb>
           <BreadcrumbList>
@@ -54,10 +57,13 @@ const Sidebar: React.FC = () => {
           <GlobalSearch />
           <AddDoc />
         </div>
-        <Button variant="ghost" className="flex items-center justify-start gap-3 w-full mt-2.5 h-8 px-2">
+        <Link
+          to={location.pathname}
+          className={cn(buttonVariants({ variant: "ghost" }), "flex items-center justify-start gap-3 w-full mt-2.5 h-8 px-2")}
+        >
           <LuHome size={14} />
           首页
-        </Button>
+        </Link>
         <div className="mt-2.5 flex items-center justify-between">
           <BookCata />
           <div className="flex items-center gap-2">
@@ -69,7 +75,7 @@ const Sidebar: React.FC = () => {
         </div>
       </div>
       <Catalog />
-    </div>
+    </>
   )
 }
 
