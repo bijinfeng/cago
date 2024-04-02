@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
 
-import BlogLayout from "./views/layout/blog-layout"
-import ProtectedLayout from "./views/layout/protected-layout"
+import BlogLayout from "./layout/blog-layout"
+import ProtectedLayout from "./layout/protected-layout"
 
 import ErrorPage from "./views/404"
 
