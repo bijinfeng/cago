@@ -1,4 +1,4 @@
-import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@pingtou/ui"
+import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger, cn } from "@pingtou/ui"
 import React from "react"
 import { LuPlus } from "react-icons/lu"
 import BoardTypeIcon from "@/assets/doc-type/board.svg?react"
@@ -9,11 +9,15 @@ import ImportIcon from "@/assets/import.svg?react"
 import NewbookIcon from "@/assets/newbook.svg?react"
 import TemplateIcon from "@/assets/template.svg?react"
 
-export const AddAction: React.FC = () => {
+interface IAddActionProps {
+  className?: string
+}
+
+export const AddAction: React.FC<IAddActionProps> = ({ className }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="w-6 h-6 mr-1.5 hover:bg-gray-200">
+        <Button variant="ghost" size="icon" className={cn("w-6 h-6", className)}>
           <LuPlus size={16} />
         </Button>
       </DropdownMenuTrigger>

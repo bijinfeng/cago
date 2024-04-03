@@ -20,7 +20,7 @@ function ExpandButton() {
   return (
     <IconButton
       tooltip={isExpanded ? "全部折叠" : "全部展开"}
-      className="w-5 h-5 p-0.5 text-gray-600"
+      className="w-5 h-5 p-0.5 text-muted-foreground"
       onClick={() => setExpanded(!isExpanded)}
     >
       {isExpanded ? <ExpandIcon className="text-base" /> : <FoldIcon className="text-base" />}
@@ -32,7 +32,7 @@ const Sidebar: React.FC = () => {
   const location = useLocation()
 
   return (
-    <>
+    <div className="flex flex-col h-full">
       <div className="px-2.5 py-4">
         <Breadcrumb>
           <BreadcrumbList>
@@ -67,7 +67,7 @@ const Sidebar: React.FC = () => {
         <div className="mt-2.5 flex items-center justify-between">
           <BookCata />
           <div className="flex items-center gap-2">
-            <IconButton tooltip="目录定位" className="w-5 h-5 p-0.5 text-gray-600">
+            <IconButton tooltip="目录定位" className="w-5 h-5 p-0.5 text-muted-foreground">
               <DirectoryPosition className="text-base" />
             </IconButton>
             <ExpandButton />
@@ -75,7 +75,7 @@ const Sidebar: React.FC = () => {
         </div>
       </div>
       <Catalog />
-    </>
+    </div>
   )
 }
 

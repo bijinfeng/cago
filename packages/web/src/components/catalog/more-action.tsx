@@ -22,7 +22,7 @@ export const MoreAction: React.FC<IMoreActionProps> = ({ className }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className={cn("w-6 h-6 hover:bg-gray-200", className)}>
+        <Button variant="ghost" size="icon" className={cn("w-6 h-6", className)}>
           <LuMoreVertical size={16} />
         </Button>
       </DropdownMenuTrigger>

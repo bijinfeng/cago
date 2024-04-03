@@ -1,6 +1,7 @@
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@pingtou/ui"
 import { Ellipsis } from "lucide-react"
 import React from "react"
+import { List } from "./list"
 import BookIcon from "@/assets/book-type/default.svg?react"
 import DeleteIcon from "@/assets/delete.svg?react"
 import PencilIcon from "@/assets/pencil.svg?react"
@@ -52,6 +53,10 @@ const Blog: React.FC = () => {
             </DropdownMenu>
 
           </div>
+        </div>
+
+        <div className="mt-14">
+          <List />
         </div>
       </div>
     </div>
