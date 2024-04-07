@@ -1,9 +1,10 @@
 import { cn } from "@pingtou/ui"
 import React from "react"
 import { type NodeRendererProps, Tree } from "react-arborist"
-import ArrowDownIcon from "@/assets/arrow-down.svg?react"
-import { IconButton } from "@/components/icon-button"
+import { useDragDropManager } from "react-dnd"
 import { formatDate } from "@/lib/utils"
+import { IconButton } from "@/components/icon-button"
+import ArrowDownIcon from "@/assets/arrow-down.svg?react"
 
 interface INodeData {
   id: string
@@ -62,6 +63,8 @@ function renderNode({ node, style, dragHandle }: NodeRendererProps<INodeData>) {
 }
 
 export const List: React.FC = () => {
+  const dndManager = useDragDropManager()
+
   return (
     <Tree
       initialData={data}
@@ -69,6 +72,7 @@ export const List: React.FC = () => {
       rowHeight={36}
       width="100%"
       disableDrag
+      dndManager={dndManager}
     >
       {renderNode}
     </Tree>

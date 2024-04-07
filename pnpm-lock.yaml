@@ -547,6 +547,12 @@ importers:
       react-arborist:
         specifier: ^3.4.0
         version: 3.4.0(@types/node@20.11.13)(@types/react@18.2.60)(react-dom@18.2.0)(react@18.2.0)
+      react-dnd:
+        specifier: ^16.0.1
+        version: 16.0.1(@types/node@20.11.13)(@types/react@18.2.60)(react@18.2.0)
+      react-dnd-html5-backend:
+        specifier: ^16.0.1
+        version: 16.0.1
       react-dropzone:
         specifier: ^14.2.3
         version: 14.2.3(react@18.2.0)

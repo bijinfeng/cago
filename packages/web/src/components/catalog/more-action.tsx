@@ -16,11 +16,13 @@ import RenameIcon from "@/assets/rename.svg?react"
 
 interface IMoreActionProps {
   className?: string
+  open?: boolean
+  onOpenChange?(open: boolean): void
 }
 
-export const MoreAction: React.FC<IMoreActionProps> = ({ className }) => {
+export const MoreAction: React.FC<IMoreActionProps> = ({ open, className, onOpenChange }) => {
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={onOpenChange}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className={cn("w-6 h-6", className)}>
           <LuMoreVertical size={16} />

@@ -1,4 +1,7 @@
 declare namespace KB {
+  type Theme = "light" | "dark" | "system"
+  type ThemeMode = "light" | "dark"
+
   interface AppSetting {
     version: string
   }

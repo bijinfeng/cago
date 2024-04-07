@@ -11,11 +11,13 @@ import TemplateIcon from "@/assets/template.svg?react"
 
 interface IAddActionProps {
   className?: string
+  open?: boolean
+  onOpenChange?(open: boolean): void
 }
 
-export const AddAction: React.FC<IAddActionProps> = ({ className }) => {
+export const AddAction: React.FC<IAddActionProps> = ({ className, open, onOpenChange }) => {
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={onOpenChange}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className={cn("w-6 h-6", className)}>
           <LuPlus size={16} />
