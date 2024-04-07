@@ -5,6 +5,9 @@ import { CommentsProvider } from "@udecode/plate-comments"
 import { Plate } from "@udecode/plate-common"
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph"
 import { useRef } from "react"
+import type { useDragDropManager } from "react-dnd"
+import { DndProvider } from "react-dnd"
+import { HTML5Backend } from "react-dnd-html5-backend"
 
 import { CommentsPopover } from "@/components/plate-ui/comments-popover"
 import { CursorOverlay } from "@/components/plate-ui/cursor-overlay"
@@ -18,7 +21,14 @@ import { commentsUsers, myUserId } from "@/lib/plate/comments"
 import { MENTIONABLES } from "@/lib/plate/mentionables"
 import { plugins } from "@/lib/plate/plate-plugins"
 
-export function PlateEditor() {
+interface IPlateEditorProps {
+  value?: string
+  dndManager?: ReturnType<typeof useDragDropManager>
+  onChange?: (value: string) => void
+}
+
+export const PlateEditor: React.FC<IPlateEditorProps> = (props) => {
+  const { dndManager } = props
   const containerRef = useRef(null)
 
   const initialValue = [
@@ -30,38 +40,40 @@ export function PlateEditor() {
   ]
 
   return (
-    <CommentsProvider users={commentsUsers} myUserId={myUserId}>
-      <Plate plugins={plugins} initialValue={initialValue}>
-        <div
-          ref={containerRef}
-          className={cn(
-            // Block selection
-            "[&_.slate-start-area-left]:!w-[64px] [&_.slate-start-area-right]:!w-[64px] [&_.slate-start-area-top]:!h-4",
-          )}
-        >
-          <FixedToolbar>
-            <FixedToolbarButtons />
-          </FixedToolbar>
+    <DndProvider backend={HTML5Backend} manager={dndManager}>
+      <CommentsProvider users={commentsUsers} myUserId={myUserId}>
+        <Plate plugins={plugins} initialValue={initialValue}>
+          <div
+            ref={containerRef}
+            className={cn(
+              // Block selection
+              "[&_.slate-start-area-left]:!w-[64px] [&_.slate-start-area-right]:!w-[64px] [&_.slate-start-area-top]:!h-4",
+            )}
+          >
+            <FixedToolbar>
+              <FixedToolbarButtons />
+            </FixedToolbar>
 
-          <Editor
-            className="px-[96px] py-16"
-            autoFocus
-            focusRing={false}
-            variant="ghost"
-            size="md"
-          />
+            <Editor
+              className="px-[96px] py-16"
+              autoFocus
+              focusRing={false}
+              variant="ghost"
+              size="md"
+            />
 
-          <FloatingToolbar>
-            <FloatingToolbarButtons />
-          </FloatingToolbar>
+            <FloatingToolbar>
+              <FloatingToolbarButtons />
+            </FloatingToolbar>
 
-          <MentionCombobox items={MENTIONABLES} />
+            <MentionCombobox items={MENTIONABLES} />
 
-          <CommentsPopover />
+            <CommentsPopover />
 
-          <CursorOverlay containerRef={containerRef} />
-        </div>
-      </Plate>
-    </CommentsProvider>
+            <CursorOverlay containerRef={containerRef} />
+          </div>
+        </Plate>
+      </CommentsProvider>
+    </DndProvider>
   )
 }
