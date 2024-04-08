@@ -1,4 +1,3 @@
-import React, { useEffect } from "react"
 import {
   isSelectionExpanded,
   useEditorSelector,
@@ -10,12 +9,11 @@ import {
   floatingMediaActions,
   useFloatingMediaSelectors,
 } from "@udecode/plate-media"
+import React, { useEffect } from "react"
 import { useReadOnly, useSelected } from "slate-react"
 
-import { Button, buttonVariants } from "./button"
+import { Button, Popover, PopoverAnchor, PopoverContent, Separator, buttonVariants } from "@pingtou/ui"
 import { inputVariants } from "./input"
-import { Popover, PopoverAnchor, PopoverContent } from "./popover"
-import { Separator } from "./separator"
 import { Icons } from "@/components/icons"
 
 export interface MediaPopoverProps {
@@ -83,7 +81,7 @@ export function MediaPopover({ pluginKey, children }: MediaPopoverProps) {
 
               <Separator orientation="vertical" className="my-1" />
 
-              <Button variant="ghost" size="sms" {...buttonProps}>
+              <Button variant="ghost" size="sm" {...buttonProps}>
                 <Icons.delete className="h-4 w-4" />
               </Button>
             </div>

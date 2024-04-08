@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react"
 import { cn, withRef } from "@udecode/cn"
 import type { ClassNames, PlateElementProps, TEditor } from "@udecode/plate-common"
 import type {
@@ -12,7 +11,7 @@ import {
 } from "@udecode/plate-dnd"
 import type { DropTargetMonitor } from "react-dnd"
 
-import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@pingtou/ui"
 import { Icons } from "@/components/icons"
 
 export interface DraggableProps

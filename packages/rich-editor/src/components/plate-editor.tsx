@@ -40,22 +40,23 @@ export const PlateEditor: React.FC<IPlateEditorProps> = (props) => {
   ]
 
   return (
-    <DndProvider backend={HTML5Backend} manager={dndManager}>
+    <DndProvider backend={HTML5Backend} {...(dndManager ? { manager: dndManager } : {})}>
       <CommentsProvider users={commentsUsers} myUserId={myUserId}>
         <Plate plugins={plugins} initialValue={initialValue}>
           <div
             ref={containerRef}
             className={cn(
               // Block selection
-              "[&_.slate-start-area-left]:!w-[64px] [&_.slate-start-area-right]:!w-[64px] [&_.slate-start-area-top]:!h-4",
+              // "[&_.slate-start-area-left]:!w-[64px] [&_.slate-start-area-right]:!w-[64px] [&_.slate-start-area-top]:!h-4",
             )}
           >
+
             <FixedToolbar>
               <FixedToolbarButtons />
             </FixedToolbar>
 
             <Editor
-              className="px-[96px] py-16"
+              className="px-[70px] pt-5 pb-[90px]"
               autoFocus
               focusRing={false}
               variant="ghost"

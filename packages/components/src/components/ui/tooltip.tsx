@@ -1,15 +1,14 @@
 "use client"
 
-import * as React from "react"
 import * as TooltipPrimitive from "@radix-ui/react-tooltip"
+import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
 const TooltipProvider = TooltipPrimitive.Provider
-
 const Tooltip = TooltipPrimitive.Root
-
 const TooltipTrigger = TooltipPrimitive.Trigger
+const TooltipPortal = TooltipPrimitive.Portal
 
 const TooltipContent = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitive.Content>,
@@ -27,4 +26,49 @@ const TooltipContent = React.forwardRef<
 ))
 TooltipContent.displayName = TooltipPrimitive.Content.displayName
 
-export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }
+export function withTooltip<
+  T extends React.ComponentType<any> | keyof HTMLElementTagNameMap,
+>(Component: T) {
+  return React.forwardRef<
+    React.ElementRef<T>,
+    React.ComponentPropsWithoutRef<T> & {
+      tooltip?: React.ReactNode
+      tooltipContentProps?: Omit<
+        React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>,
+        "children"
+      >
+      tooltipProps?: Omit<
+        React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Root>,
+        "children"
+      >
+    }
+  >((
+    { tooltip, tooltipContentProps, tooltipProps, ...props },
+    ref,
+  ) => {
+    const [mounted, setMounted] = React.useState(false)
+
+    React.useEffect(() => {
+      setMounted(true)
+    }, [])
+
+    const component = <Component ref={ref} {...(props as any)} />
+
+    if (tooltip && mounted) {
+      return (
+        <Tooltip {...tooltipProps}>
+          <TooltipTrigger asChild>{component}</TooltipTrigger>
+
+          <TooltipPortal>
+            <TooltipContent {...tooltipContentProps}>{tooltip}</TooltipContent>
+          </TooltipPortal>
+        </Tooltip>
+      )
+    }
+
+    return component
+  })
+}
+
+export { Tooltip, TooltipContent, TooltipPortal, TooltipProvider, TooltipTrigger }
+

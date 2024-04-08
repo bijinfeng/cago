@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react"
 import { cn } from "@udecode/cn"
 import type {
   UseVirtualFloatingOptions,
@@ -21,10 +20,9 @@ import {
   useFloatingLinkInsertState,
 } from "@udecode/plate-link"
 
-import { buttonVariants } from "./button"
+import { Separator, buttonVariants } from "@pingtou/ui"
 import { inputVariants } from "./input"
-import { popoverVariants } from "./popover"
-import { Separator } from "./separator"
+
 import { Icons } from "@/components/icons"
 
 const floatingOptions: UseVirtualFloatingOptions = {
@@ -121,7 +119,6 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
         <LinkOpenButton
           className={buttonVariants({
             variant: "ghost",
-            size: "sms",
           })}
         >
           <Icons.externalLink width={18} />
@@ -133,7 +130,6 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
           type="button"
           className={buttonVariants({
             variant: "ghost",
-            size: "sms",
           })}
           {...unlinkButtonProps}
         >
@@ -146,7 +142,7 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
     <>
       <div
         ref={insertRef}
-        className={cn(popoverVariants(), "w-auto p-1")}
+        className={cn("w-auto p-1")}
         {...insertProps}
       >
         {input}
@@ -154,7 +150,7 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
 
       <div
         ref={editRef}
-        className={cn(popoverVariants(), "w-auto p-1")}
+        className={cn("w-auto p-1")}
         {...editProps}
       >
         {editContent}

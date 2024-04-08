@@ -1,13 +1,12 @@
 "use client"
 
-import React from "react"
 import { cn } from "@udecode/cn"
 import {
   CommentEditActions,
   CommentEditTextarea,
 } from "@udecode/plate-comments"
 
-import { buttonVariants } from "./button"
+import { buttonVariants } from "@pingtou/ui"
 import { inputVariants } from "./input"
 
 export function CommentValue() {
@@ -17,13 +16,13 @@ export function CommentValue() {
 
       <div className="flex space-x-2">
         <CommentEditActions.CancelButton
-          className={buttonVariants({ variant: "outline", size: "xs" })}
+          className={buttonVariants({ variant: "outline" })}
         >
           Cancel
         </CommentEditActions.CancelButton>
 
         <CommentEditActions.SaveButton
-          className={buttonVariants({ variant: "default", size: "xs" })}
+          className={buttonVariants({ variant: "default" })}
         >
           Save
         </CommentEditActions.SaveButton>

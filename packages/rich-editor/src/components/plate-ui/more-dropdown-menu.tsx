@@ -1,4 +1,3 @@
-import React from "react"
 import type { DropdownMenuProps } from "@radix-ui/react-dropdown-menu"
 import { MARK_SUBSCRIPT, MARK_SUPERSCRIPT } from "@udecode/plate-basic-marks"
 import { focusEditor, toggleMark, useEditorRef } from "@udecode/plate-common"
@@ -8,19 +7,17 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  useOpenState,
-} from "./dropdown-menu"
+} from "@pingtou/ui"
 import { ToolbarButton } from "./toolbar"
 import { Icons } from "@/components/icons"
 
 export function MoreDropdownMenu(props: DropdownMenuProps) {
   const editor = useEditorRef()
-  const openState = useOpenState()
 
   return (
-    <DropdownMenu modal={false} {...openState} {...props}>
+    <DropdownMenu modal={false} {...props}>
       <DropdownMenuTrigger asChild>
-        <ToolbarButton pressed={openState.open} tooltip="Insert">
+        <ToolbarButton tooltip="Insert">
           <Icons.more />
         </ToolbarButton>
       </DropdownMenuTrigger>

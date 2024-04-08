@@ -1,4 +1,3 @@
-import React from "react"
 import type * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import { PopoverAnchor } from "@radix-ui/react-popover"
 import { cn, withRef } from "@udecode/cn"
@@ -25,16 +24,17 @@ import {
 } from "@udecode/plate-table"
 import { useReadOnly, useSelected } from "slate-react"
 
-import { Button } from "./button"
 import {
+  Button,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuPortal,
   DropdownMenuTrigger,
-} from "./dropdown-menu"
-import { Popover, PopoverContent, popoverVariants } from "./popover"
-import { Separator } from "./separator"
+  Popover,
+  PopoverContent,
+  Separator,
+} from "@pingtou/ui"
 import { Icons, iconVariants } from "@/components/icons"
 
 export const TableBordersDropdownMenuContent = withRef<
@@ -131,7 +131,6 @@ export const TableFloatingToolbar = withRef<typeof PopoverContent>(
       <Button
         contentEditable={false}
         variant="ghost"
-        isMenu
         onClick={() => mergeTableCells(editor)}
       >
         <Icons.combine className="mr-2 h-4 w-4" />
@@ -143,7 +142,6 @@ export const TableFloatingToolbar = withRef<typeof PopoverContent>(
       <Button
         contentEditable={false}
         variant="ghost"
-        isMenu
         onClick={() => unmergeTableCells(editor)}
       >
         <Icons.ungroup className="mr-2 h-4 w-4" />
@@ -155,7 +153,7 @@ export const TableFloatingToolbar = withRef<typeof PopoverContent>(
       <>
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" isMenu>
+            <Button variant="ghost">
               <Icons.borderAll className="mr-2 h-4 w-4" />
               Borders
             </Button>
@@ -166,7 +164,7 @@ export const TableFloatingToolbar = withRef<typeof PopoverContent>(
           </DropdownMenuPortal>
         </DropdownMenu>
 
-        <Button contentEditable={false} variant="ghost" isMenu {...buttonProps}>
+        <Button contentEditable={false} variant="ghost" {...buttonProps}>
           <Icons.delete className="mr-2 h-4 w-4" />
           Delete
         </Button>
@@ -180,7 +178,6 @@ export const TableFloatingToolbar = withRef<typeof PopoverContent>(
           <PopoverContent
             ref={ref}
             className={cn(
-              popoverVariants(),
               "flex w-[220px] flex-col gap-1 p-1",
             )}
             onOpenAutoFocus={e => e.preventDefault()}

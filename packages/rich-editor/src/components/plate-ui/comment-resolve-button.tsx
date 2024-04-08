@@ -1,13 +1,12 @@
 "use client"
 
-import React from "react"
 import { cn } from "@udecode/cn"
 import {
   CommentResolveButton as CommentResolveButtonPrimitive,
   useComment,
 } from "@udecode/plate-comments"
 
-import { buttonVariants } from "./button"
+import { buttonVariants } from "@pingtou/ui"
 import { Icons } from "@/components/icons"
 
 export function CommentResolveButton() {

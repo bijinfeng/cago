@@ -1,4 +1,3 @@
-import React from "react"
 import {
   MARK_BOLD,
   MARK_CODE,
@@ -10,7 +9,6 @@ import { useEditorReadOnly } from "@udecode/plate-common"
 
 import { InsertDropdownMenu } from "./insert-dropdown-menu"
 import { MarkToolbarButton } from "./mark-toolbar-button"
-import { ModeDropdownMenu } from "./mode-dropdown-menu"
 import { ToolbarGroup } from "./toolbar"
 import { TurnIntoDropdownMenu } from "./turn-into-dropdown-menu"
 import { Icons } from "@/components/icons"
@@ -18,54 +16,42 @@ import { Icons } from "@/components/icons"
 export function FixedToolbarButtons() {
   const readOnly = useEditorReadOnly()
 
+  if (readOnly)
+    return null
+
   return (
-    <div className="w-full overflow-hidden">
-      <div
-        className="flex flex-wrap"
-        style={{
-          transform: "translateX(calc(-1px))",
-        }}
-      >
-        {!readOnly && (
-          <>
-            <ToolbarGroup noSeparator>
-              <InsertDropdownMenu />
-              <TurnIntoDropdownMenu />
-            </ToolbarGroup>
+    <div className="flex">
 
-            <ToolbarGroup>
-              <MarkToolbarButton tooltip="Bold (⌘+B)" nodeType={MARK_BOLD}>
-                <Icons.bold />
-              </MarkToolbarButton>
-              <MarkToolbarButton tooltip="Italic (⌘+I)" nodeType={MARK_ITALIC}>
-                <Icons.italic />
-              </MarkToolbarButton>
-              <MarkToolbarButton
-                tooltip="Underline (⌘+U)"
-                nodeType={MARK_UNDERLINE}
-              >
-                <Icons.underline />
-              </MarkToolbarButton>
+      <ToolbarGroup noSeparator>
+        <InsertDropdownMenu />
+        <TurnIntoDropdownMenu />
+      </ToolbarGroup>
 
-              <MarkToolbarButton
-                tooltip="Strikethrough (⌘+⇧+M)"
-                nodeType={MARK_STRIKETHROUGH}
-              >
-                <Icons.strikethrough />
-              </MarkToolbarButton>
-              <MarkToolbarButton tooltip="Code (⌘+E)" nodeType={MARK_CODE}>
-                <Icons.code />
-              </MarkToolbarButton>
-            </ToolbarGroup>
-          </>
-        )}
+      <ToolbarGroup>
+        <MarkToolbarButton tooltip="Bold (⌘+B)" nodeType={MARK_BOLD}>
+          <Icons.bold />
+        </MarkToolbarButton>
+        <MarkToolbarButton tooltip="Italic (⌘+I)" nodeType={MARK_ITALIC}>
+          <Icons.italic />
+        </MarkToolbarButton>
+        <MarkToolbarButton
+          tooltip="Underline (⌘+U)"
+          nodeType={MARK_UNDERLINE}
+        >
+          <Icons.underline />
+        </MarkToolbarButton>
 
-        <div className="grow" />
+        <MarkToolbarButton
+          tooltip="Strikethrough (⌘+⇧+M)"
+          nodeType={MARK_STRIKETHROUGH}
+        >
+          <Icons.strikethrough />
+        </MarkToolbarButton>
+        <MarkToolbarButton tooltip="Code (⌘+E)" nodeType={MARK_CODE}>
+          <Icons.code />
+        </MarkToolbarButton>
+      </ToolbarGroup>
 
-        <ToolbarGroup noSeparator>
-          <ModeDropdownMenu />
-        </ToolbarGroup>
-      </div>
     </div>
   )
 }

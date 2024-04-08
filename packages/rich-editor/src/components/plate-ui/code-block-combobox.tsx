@@ -1,6 +1,5 @@
 "use client"
 
-import React, { useState } from "react"
 import { cn } from "@udecode/cn"
 import {
   CODE_BLOCK_LANGUAGES,
@@ -8,16 +7,9 @@ import {
   useCodeBlockCombobox,
   useCodeBlockComboboxState,
 } from "@udecode/plate-code-block"
+import { useState } from "react"
 
-import { Button } from "./button"
-import {
-  Command,
-  CommandEmpty,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "./command"
-import { Popover, PopoverContent, PopoverTrigger } from "./popover"
+import { Button, Command, CommandEmpty, CommandInput, CommandItem, CommandList, Popover, PopoverContent, PopoverTrigger } from "@pingtou/ui"
 import { Icons } from "@/components/icons"
 
 const languages: { value: string, label: string }[] = [
@@ -48,7 +40,7 @@ export function CodeBlockCombobox() {
           role="combobox"
           aria-expanded={open}
           className="h-5 justify-between px-1 text-xs"
-          size="xs"
+          size="lg"
         >
           {state.value
             ? languages.find(language => language.value === state.value)

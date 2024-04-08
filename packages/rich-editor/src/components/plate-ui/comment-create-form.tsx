@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react"
 import { cn } from "@udecode/cn"
 import {
   CommentNewSubmitButton,
@@ -8,7 +7,7 @@ import {
   useCommentsSelectors,
 } from "@udecode/plate-comments"
 
-import { buttonVariants } from "./button"
+import { buttonVariants } from "@pingtou/ui"
 import { CommentAvatar } from "./comment-avatar"
 import { inputVariants } from "./input"
 

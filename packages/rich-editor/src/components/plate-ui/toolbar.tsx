@@ -1,13 +1,12 @@
 "use client"
 
-import * as React from "react"
+import { Separator, withTooltip } from "@pingtou/ui"
 import * as ToolbarPrimitive from "@radix-ui/react-toolbar"
 import { cn, withCn, withRef, withVariants } from "@udecode/cn"
 import type { VariantProps } from "class-variance-authority"
 import { cva } from "class-variance-authority"
+import * as React from "react"
 
-import { Separator } from "./separator"
-import { withTooltip } from "./tooltip"
 import { Icons } from "@/components/icons"
 
 export const Toolbar = withCn(
