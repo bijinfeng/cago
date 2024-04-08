@@ -10,6 +10,8 @@ import DashboardCollections from "./views/dashboard/collections"
 import DashboardHome from "./views/dashboard/home"
 import DashboardNotes from "./views/dashboard/notes"
 
+import DocxSettingBasic from "./views/docx-setting/basic"
+import DocxSetting from "./views/docx-setting/index"
 import DocxDetail from "./views/docx/detail"
 import Docx from "./views/docx/home"
 
@@ -60,6 +62,16 @@ export const router = createBrowserRouter([
           {
             path: ":id",
             element: <DocxDetail />,
+          },
+        ],
+      },
+      {
+        path: "/docx-setting",
+        element: <DocxSetting />,
+        children: [
+          {
+            index: true,
+            element: <DocxSettingBasic />,
           },
         ],
       },

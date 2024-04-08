@@ -6,6 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "@pingtou/ui"
 import { DotsHorizontalIcon } from "@radix-ui/react-icons"
+import { Link } from "react-router-dom"
 import DirectoryIcon from "@/assets/directory.svg?react"
 import MoreSettingIcon from "@/assets/more-settings.svg?react"
 import PermissionIcon from "@/assets/permission.svg?react"
@@ -36,10 +37,12 @@ export function BookActions() {
           <DirectoryIcon />
           目录管理
         </DropdownMenuItem>
-        <DropdownMenuItem className="flex items-center gap-2.5">
-          <MoreSettingIcon />
-          更多设置
-        </DropdownMenuItem>
+        <Link to="/docx-setting">
+          <DropdownMenuItem className="flex items-center gap-2.5">
+            <MoreSettingIcon />
+            更多设置
+          </DropdownMenuItem>
+        </Link>
       </DropdownMenuContent>
     </DropdownMenu>
   )

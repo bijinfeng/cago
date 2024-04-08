@@ -61,7 +61,7 @@ const Sidebar: React.FC = () => {
           to={location.pathname}
           className={cn(buttonVariants({ variant: "ghost" }), "flex items-center justify-start gap-3 w-full mt-2.5 h-8 px-2")}
         >
-          <LuHome size={14} />
+          <LuHome size={16} />
           首页
         </Link>
         <div className="mt-2.5 flex items-center justify-between">
