@@ -92,7 +92,7 @@ const DocxSetting: React.FC = () => {
           </React.Fragment>
         ))}
       </div>
-      <div className="flex-1 px-9 pt-12 pb-16">
+      <div className="flex-1 px-9 pt-12 pb-16 kb-scrollbar h-full">
         <Outlet />
       </div>
     </div>

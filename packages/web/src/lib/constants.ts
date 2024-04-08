@@ -1,5 +1,24 @@
 import type { ThemeInput } from "react-activity-calendar"
 
+import BlogIcon from "@/assets/book-type/blog.svg?react"
+import CalendlyIcon from "@/assets/book-type/calendly.svg?react"
+import DocIcon from "@/assets/book-type/default.svg?react"
+import DepartmentIcon from "@/assets/book-type/department.svg?react"
+import DesignIcon from "@/assets/book-type/design.svg?react"
+import GroupIcon from "@/assets/book-type/group.svg?react"
+import ImportIcon from "@/assets/book-type/import.svg?react"
+import InterestIcon from "@/assets/book-type/interest.svg?react"
+import ManualIcon from "@/assets/book-type/manual.svg?react"
+import NotesIcon from "@/assets/book-type/notes.svg?react"
+import ProjectIcon from "@/assets/book-type/project.svg?react"
+import ReportsIcon from "@/assets/book-type/reports.svg?react"
+import ResourceIcon from "@/assets/book-type/resource.svg?react"
+import SheetIcon from "@/assets/book-type/sheet.svg?react"
+import ThreadIcon from "@/assets/book-type/thread.svg?react"
+import TopicIcon from "@/assets/book-type/topic.svg?react"
+import TravelIcon from "@/assets/book-type/travel.svg?react"
+import YuqueIcon from "@/assets/book-type/yuque.svg?react"
+
 export const USER_TOKEN = "user-token"
 export const USER_THEME = "user-theme"
 export const RESIZABLE_PANELS_LAYOUT = "react-resizable-panels:layout"
@@ -110,4 +129,25 @@ export const PREFERENCE_SETTING: KB.PreferenceGrouoSetting[] = [
 export const ACTIVITY_CALENDAR_THEME: ThemeInput = {
   light: ["#f4f5f5", "#daf6ea", "#c7f0df", "#82edc0", "#0bd07d", "#00663b"],
   dark: ["#ffffff0a", "#0e2f22", "#255641", "#18774f", "#29ad76", "#97d8bc"],
+}
+
+export const BOOK_ICON: Record<KB.BookIconType, typeof DocIcon> = {
+  default: DocIcon,
+  blog: BlogIcon,
+  calendly: CalendlyIcon,
+  department: DepartmentIcon,
+  design: DesignIcon,
+  group: GroupIcon,
+  import: ImportIcon,
+  interest: InterestIcon,
+  manual: ManualIcon,
+  notes: NotesIcon,
+  project: ProjectIcon,
+  reports: ReportsIcon,
+  resource: ResourceIcon,
+  sheet: SheetIcon,
+  thread: ThreadIcon,
+  topic: TopicIcon,
+  travel: TravelIcon,
+  yuque: YuqueIcon,
 }

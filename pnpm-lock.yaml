@@ -544,6 +544,9 @@ importers:
       react-activity-calendar:
         specifier: ^2.2.8
         version: 2.2.8(react-dom@18.2.0)(react@18.2.0)
+      react-advanced-cropper:
+        specifier: ^0.19.6
+        version: 0.19.6(react@18.2.0)
       react-arborist:
         specifier: ^3.4.0
         version: 3.4.0(@types/node@20.11.13)(@types/react@18.2.60)(react-dom@18.2.0)(react@18.2.0)

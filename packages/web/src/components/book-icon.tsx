@@ -1,12 +1,14 @@
-import DocIcon from "@/assets/doc-type/default.svg?react"
+import { BOOK_ICON } from "@/lib/constants"
 
 export interface IBookIconProps extends React.SVGProps<SVGSVGElement> {
-  book?: KB.BookInfo
+  iconType?: KB.BookIconType
+  size?: number
 }
 
-export const BookIcon: React.FC<IBookIconProps> = ({ book, ...rest }) => {
-  console.log(book)
+export const BookIcon: React.FC<IBookIconProps> = ({ iconType, size, width, height, ...rest }) => {
+  const Icon = BOOK_ICON[iconType || "default"]
+
   return (
-    <DocIcon {...rest} />
+    <Icon {...rest} width={width || size} height={height || size} />
   )
 }

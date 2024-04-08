@@ -1,4 +1,6 @@
 declare namespace KB {
+  type BookIconType = "default" | "blog" | "calendly" | "department" | "design" | "group" | "import" | "interest" | "manual" | "notes" | "project" | "reports" | "resource" | "sheet" | "thread" | "topic" | "travel" | "yuque"
+
   interface BookInfo {
     id: number
     createdAt: string
@@ -6,7 +8,7 @@ declare namespace KB {
     layout: string
     name: string
     slug: string
-    type: string
+    type: BookIconType
     updatedAt: string
     user: KB.UserInfo
     userId: number
