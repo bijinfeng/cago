@@ -47,10 +47,14 @@ export const PlateEditor: React.FC<IPlateEditorProps> = (props) => {
               <Toolbar.Redo />
               <Separator />
               <Toolbar.Heading />
+              <Toolbar.FontSize />
               <Toolbar.Bold />
               <Toolbar.Italic />
               <Toolbar.Strikethrough />
               <Toolbar.Underline />
+              <Separator />
+              <Toolbar.FontColor />
+              <Toolbar.BackgroundColor />
             </div>
 
             <Editor

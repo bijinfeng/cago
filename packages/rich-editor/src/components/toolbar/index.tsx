@@ -4,11 +4,14 @@ import {
   MARK_STRIKETHROUGH,
   MARK_UNDERLINE,
 } from "@udecode/plate-basic-marks"
+import { MARK_BG_COLOR, MARK_COLOR } from "@udecode/plate-font"
+import { ColorDropdownMenu } from "./color-dropdown-menu"
+import { FontSizeDropdownMenu } from "./font-size-dropdown-menu"
 import { HeadingDropdownMenu } from "./heading-dropdown-menu"
-import { Icons } from "@/components/common/icons"
-import { MarkToolbarButton } from "@/components/plate-ui/mark-toolbar-button"
-import { KEY_REDO } from "@/lib/plugins/redoPlugin"
 import { KEY_UNDO } from "@/lib/plugins/undoPlugin"
+import { KEY_REDO } from "@/lib/plugins/redoPlugin"
+import { MarkToolbarButton } from "@/components/plate-ui/mark-toolbar-button"
+import { Icons } from "@/components/common/icons"
 
 function Undo() {
   return (
@@ -58,6 +61,22 @@ function Strikethrough() {
   )
 }
 
+function FontColor() {
+  return (
+    <ColorDropdownMenu nodeType={MARK_COLOR} tooltip="Text Color">
+      <Icons.fontColor size={16} />
+    </ColorDropdownMenu>
+  )
+}
+
+function BackgroundColor() {
+  return (
+    <ColorDropdownMenu nodeType={MARK_BG_COLOR} tooltip="Text Color">
+      <Icons.bgColor size={16} />
+    </ColorDropdownMenu>
+  )
+}
+
 export const Toolbar = {
   Undo,
   Redo,
@@ -66,4 +85,7 @@ export const Toolbar = {
   Underline,
   Strikethrough,
   Heading: HeadingDropdownMenu,
+  FontSize: FontSizeDropdownMenu,
+  FontColor,
+  BackgroundColor,
 }
