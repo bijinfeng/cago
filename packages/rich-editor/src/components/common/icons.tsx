@@ -43,6 +43,7 @@ import {
   Quote,
   RectangleHorizontal,
   RectangleVertical,
+  Redo2,
   RotateCcw,
   Search,
   Settings,
@@ -56,6 +57,7 @@ import {
   Trash,
   Twitter,
   Underline,
+  Undo2,
   Ungroup,
   WrapText,
   X,
@@ -172,8 +174,9 @@ function arrowDown(props: LucideProps) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      width={256}
-      height={256}
+      viewBox="0 0 256 256"
+      width={props.size}
+      height={props.size}
       {...props}
     >
       <script />
@@ -263,6 +266,8 @@ export const Icons = {
   underline: Underline,
   unlink: Link2Off,
   viewing: Eye,
+  undo: Undo2,
+  redo: Redo2,
 
   // www
   gitHub: (props: LucideProps) => (

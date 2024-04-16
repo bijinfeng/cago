@@ -124,6 +124,9 @@ import {
 } from "@udecode/plate-table"
 import { createTrailingBlockPlugin } from "@udecode/plate-trailing-block"
 
+import { createRedoPlugin } from "@/lib/plugins/redoPlugin"
+import { createUndoPlugin } from "@/lib/plugins/undoPlugin"
+
 import { BlockquoteElement } from "@/components/plate-ui/blockquote-element"
 import { CodeBlockElement } from "@/components/plate-ui/code-block-element"
 import { CodeLeaf } from "@/components/plate-ui/code-leaf"
@@ -170,6 +173,8 @@ const resetBlockTypesCodeBlockRule = {
 
 export const plugins = createPlugins(
   [
+    createUndoPlugin(),
+    createRedoPlugin(),
     // Nodes
     createParagraphPlugin(),
     createHeadingPlugin(),

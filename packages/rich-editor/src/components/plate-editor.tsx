@@ -2,18 +2,17 @@
 
 import { cn } from "@udecode/cn"
 import { CommentsProvider } from "@udecode/plate-comments"
-import { Plate } from "@udecode/plate-common"
-import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph"
+import { Plate, type Value } from "@udecode/plate-common"
 import { useRef } from "react"
 import type { useDragDropManager } from "react-dnd"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
 
+import { Toolbar } from "./toolbar"
+import Separator from "@/components/common/separator"
 import { CommentsPopover } from "@/components/plate-ui/comments-popover"
 import { CursorOverlay } from "@/components/plate-ui/cursor-overlay"
 import { Editor } from "@/components/plate-ui/editor"
-import { FixedToolbar } from "@/components/plate-ui/fixed-toolbar"
-import { FixedToolbarButtons } from "@/components/plate-ui/fixed-toolbar-buttons"
 import { FloatingToolbar } from "@/components/plate-ui/floating-toolbar"
 import { FloatingToolbarButtons } from "@/components/plate-ui/floating-toolbar-buttons"
 import { MentionCombobox } from "@/components/plate-ui/mention-combobox"
@@ -22,38 +21,37 @@ import { MENTIONABLES } from "@/lib/plate/mentionables"
 import { plugins } from "@/lib/plate/plate-plugins"
 
 interface IPlateEditorProps {
-  value?: string
+  value?: Value
+  initialValue?: Value
   dndManager?: ReturnType<typeof useDragDropManager>
-  onChange?: (value: string) => void
+  onChange?: (value: Value) => void
 }
 
 export const PlateEditor: React.FC<IPlateEditorProps> = (props) => {
-  const { dndManager } = props
+  const { dndManager, initialValue, value, onChange } = props
   const containerRef = useRef(null)
-
-  const initialValue = [
-    {
-      id: "1",
-      type: ELEMENT_PARAGRAPH,
-      children: [{ text: "Hello, World!" }],
-    },
-  ]
 
   return (
     <DndProvider backend={HTML5Backend} {...(dndManager ? { manager: dndManager } : {})}>
       <CommentsProvider users={commentsUsers} myUserId={myUserId}>
-        <Plate plugins={plugins} initialValue={initialValue}>
-          <div
-            ref={containerRef}
-            className={cn(
-              // Block selection
-              // "[&_.slate-start-area-left]:!w-[64px] [&_.slate-start-area-right]:!w-[64px] [&_.slate-start-area-top]:!h-4",
-            )}
-          >
+        <Plate
+          plugins={plugins}
+          initialValue={initialValue}
+          value={value}
+          onChange={onChange}
+        >
+          <div ref={containerRef} className={cn()}>
 
-            <FixedToolbar>
-              <FixedToolbarButtons />
-            </FixedToolbar>
+            <div className="flex items-center border-b h-[42px] px-2 gap-2">
+              <Toolbar.Undo />
+              <Toolbar.Redo />
+              <Separator />
+              <Toolbar.Heading />
+              <Toolbar.Bold />
+              <Toolbar.Italic />
+              <Toolbar.Strikethrough />
+              <Toolbar.Underline />
+            </div>
 
             <Editor
               className="px-[70px] pt-5 pb-[90px]"
