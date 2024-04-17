@@ -63,16 +63,16 @@ function Strikethrough() {
 
 function FontColor() {
   return (
-    <ColorDropdownMenu nodeType={MARK_COLOR} tooltip="Text Color">
-      <Icons.fontColor size={16} />
+    <ColorDropdownMenu nodeType={MARK_COLOR} tooltip="Text Color" storageKey="plate-font-color">
+      {color => <Icons.fontColor size={16} secondaryColor={color} />}
     </ColorDropdownMenu>
   )
 }
 
 function BackgroundColor() {
   return (
-    <ColorDropdownMenu nodeType={MARK_BG_COLOR} tooltip="Text Color">
-      <Icons.bgColor size={16} />
+    <ColorDropdownMenu nodeType={MARK_BG_COLOR} tooltip="Text Color" storageKey="plate-background-color">
+      {color => <Icons.bgColor size={16} secondaryColor={color} />}
     </ColorDropdownMenu>
   )
 }

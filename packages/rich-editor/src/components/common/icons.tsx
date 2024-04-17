@@ -189,7 +189,7 @@ function arrowDown(props: LucideProps) {
           <use xlinkHref="#a" />
         </mask>
         <path
-          fill="#8C8C8C"
+          fill="currentColor"
           fillRule="nonzero"
           d="M181.1 118.925 135 165.096a9.889 9.889 0 0 1-14 0l-46.1-46.17c-3.866-3.873-3.866-10.15 0-14.022a9.892 9.892 0 0 1 7-2.904h92.2c5.468 0 9.9 4.439 9.9 9.915a9.922 9.922 0 0 1-2.9 7.01Z"
           mask="url(#b)"
@@ -290,7 +290,7 @@ export const Icons = {
   moon: Moon,
   sun: SunMedium,
   twitter: Twitter,
-  fontColor: ({ size, ...props }: LucideProps) => (
+  fontColor: ({ size, secondaryColor = "currentColor", ...props }: LucideProps & { secondaryColor?: string }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size}
@@ -300,7 +300,7 @@ export const Icons = {
     >
       <g fill="none" fillRule="evenodd">
         <path
-          fill="#DF2A3F"
+          fill={secondaryColor}
           d="M50 219h156c6.075 0 11 4.925 11 11s-4.925 11-11 11H50c-6.075 0-11-4.925-11-11s4.925-11 11-11Z"
         />
         <path
@@ -316,7 +316,7 @@ export const Icons = {
       </g>
     </svg>
   ),
-  bgColor: ({ size, ...props }: LucideProps) => (
+  bgColor: ({ size, secondaryColor = "currentColor", ...props }: LucideProps & { secondaryColor?: string }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size}
@@ -337,7 +337,7 @@ export const Icons = {
           />
         </g>
         <path
-          fill="#FBDE28"
+          fill={secondaryColor}
           d="M51 218h154c6.075 0 11 4.925 11 11s-4.925 11-11 11H51c-6.075 0-11-4.925-11-11s4.925-11 11-11Z"
         />
       </g>

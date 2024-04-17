@@ -21,7 +21,7 @@ const ToolbarButtonInstance = React.forwardRef<ButtonRef, ButtonProps>((props, r
     >
       {children}
 
-      {isDropdown && <Icons.arrowDown size={16} />}
+      {isDropdown && <Icons.arrowDown size={16} className="text-muted-foreground" />}
     </Button>
   )
 })
