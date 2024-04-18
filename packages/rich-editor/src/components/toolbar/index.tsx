@@ -8,10 +8,13 @@ import { MARK_BG_COLOR, MARK_COLOR } from "@udecode/plate-font"
 import { ColorDropdownMenu } from "./color-dropdown-menu"
 import { FontSizeDropdownMenu } from "./font-size-dropdown-menu"
 import { HeadingDropdownMenu } from "./heading-dropdown-menu"
-import { KEY_UNDO } from "@/lib/plugins/undoPlugin"
-import { KEY_REDO } from "@/lib/plugins/redoPlugin"
-import { MarkToolbarButton } from "@/components/plate-ui/mark-toolbar-button"
+import { InsertDropdownMenu } from "./insert-dropdown-menu"
+import { ClearToolbarButton } from "@/components/common/clear-toolbar-button"
 import { Icons } from "@/components/common/icons"
+import { PaintToolbarButton } from "@/components/common/paint-toolbar-button"
+import { MarkToolbarButton } from "@/components/plate-ui/mark-toolbar-button"
+import { KEY_REDO } from "@/lib/plugins/redoPlugin"
+import { KEY_UNDO } from "@/lib/plugins/undoPlugin"
 
 function Undo() {
   return (
@@ -80,6 +83,7 @@ function BackgroundColor() {
 export const Toolbar = {
   Undo,
   Redo,
+  Clear: ClearToolbarButton,
   Bold,
   Italic,
   Underline,
@@ -88,4 +92,6 @@ export const Toolbar = {
   FontSize: FontSizeDropdownMenu,
   FontColor,
   BackgroundColor,
+  Paint: PaintToolbarButton,
+  Insert: InsertDropdownMenu,
 }

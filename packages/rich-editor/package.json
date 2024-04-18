@@ -64,7 +64,7 @@
     "@udecode/plate-trailing-block": "^31.0.0",
     "color": "^4.2.3",
     "date-fns": "^3.3.1",
-    "lucide-react": "^0.341.0",
+    "lucide-react": "^0.370.0",
     "radash": "^12.1.0",
     "react-color": "^2.19.3",
     "react-dnd": "^16.0.1",

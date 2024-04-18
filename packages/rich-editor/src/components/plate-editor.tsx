@@ -43,8 +43,12 @@ export const PlateEditor: React.FC<IPlateEditorProps> = (props) => {
           <div ref={containerRef} className={cn()}>
 
             <div className="flex items-center border-b h-[42px] px-2 gap-2">
+              <Toolbar.Insert />
+              <Separator />
               <Toolbar.Undo />
               <Toolbar.Redo />
+              <Toolbar.Paint />
+              <Toolbar.Clear />
               <Separator />
               <Toolbar.Heading />
               <Toolbar.FontSize />

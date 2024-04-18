@@ -1,11 +1,11 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@pingtou/ui"
+import { Popover, PopoverContent, PopoverTrigger } from "@pingtou/ui"
 import { isFunction } from "radash"
 import type { ReactNode } from "react"
 import { ColorPicker } from "@/components/common/color-picker"
 import { ToolbarButton } from "@/components/common/toolbar-button"
 import { useColorDropdownMenuState } from "@/hooks/useColorDropdownMenu"
 
-type DropdownMenuProps = React.ComponentProps<typeof DropdownMenu>
+type PopoverProps = React.ComponentProps<typeof Popover>
 
 type ColorDropdownMenuProps = {
   nodeType: string
@@ -14,7 +14,7 @@ type ColorDropdownMenuProps = {
   hasDefault?: boolean
   hasClear?: boolean
   children?: ReactNode | ((color: string) => ReactNode)
-} & Omit<DropdownMenuProps, "children">
+} & Omit<PopoverProps, "children">
 
 export function ColorDropdownMenu(props: ColorDropdownMenuProps) {
   const { nodeType, children, tooltip, storageKey, hasDefault, hasClear } = props
@@ -28,14 +28,14 @@ export function ColorDropdownMenu(props: ColorDropdownMenuProps) {
   const color = state.selectedColor || state.color
 
   return (
-    <DropdownMenu modal={false} open={state.open} onOpenChange={state.onToggle}>
-      <DropdownMenuTrigger asChild>
+    <Popover modal={false} open={state.open} onOpenChange={state.onToggle}>
+      <PopoverTrigger asChild>
         <ToolbarButton tooltip={tooltip} isDropdown pressed={state.open}>
           {isFunction(children) ? children(color) : children}
         </ToolbarButton>
-      </DropdownMenuTrigger>
+      </PopoverTrigger>
 
-      <DropdownMenuContent align="start" className="p-0">
+      <PopoverContent align="start" className="p-0">
         <ColorPicker
           value={color}
           hasDefault={hasDefault}
@@ -44,7 +44,7 @@ export function ColorDropdownMenu(props: ColorDropdownMenuProps) {
           onUpdate={state.updateColor}
           onClear={state.clearColor}
         />
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </PopoverContent>
+    </Popover>
   )
 }
