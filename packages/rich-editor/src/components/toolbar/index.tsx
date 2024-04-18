@@ -63,7 +63,7 @@ function Strikethrough() {
 
 function FontColor() {
   return (
-    <ColorDropdownMenu nodeType={MARK_COLOR} tooltip="Text Color" storageKey="plate-font-color">
+    <ColorDropdownMenu nodeType={MARK_COLOR} tooltip="Text Color" storageKey="plate-font-color" hasDefault>
       {color => <Icons.fontColor size={16} secondaryColor={color} />}
     </ColorDropdownMenu>
   )
@@ -71,7 +71,7 @@ function FontColor() {
 
 function BackgroundColor() {
   return (
-    <ColorDropdownMenu nodeType={MARK_BG_COLOR} tooltip="Text Color" storageKey="plate-background-color">
+    <ColorDropdownMenu nodeType={MARK_BG_COLOR} tooltip="Text Color" storageKey="plate-background-color" hasClear>
       {color => <Icons.bgColor size={16} secondaryColor={color} />}
     </ColorDropdownMenu>
   )

@@ -114,17 +114,27 @@ const defaultColors = [
   { title: "玫红 5", color: "rgb(92, 0, 54)" },
 ]
 
+const defaultColor = "rgb(38, 38, 38)"
+
 interface IColorLatticeProps extends React.HTMLAttributes<HTMLDivElement> {
   color: string
   checked?: boolean
   border?: boolean
+  special?: boolean
 }
 
-function ColorLattice({ color, checked, border, className, ...rest }: IColorLatticeProps) {
+function ColorLattice({ color, checked, border, className, special, ...rest }: IColorLatticeProps) {
   const isLight = Color(color).isLight()
 
   return (
-    <div className={cn("border p-0.5 border-transparent rounded-[3px] hover:border-gray-300 hover:shadow-sm cursor-pointer", className)} {...rest}>
+    <div
+      className={cn(
+        "border p-0.5 border-transparent rounded-[3px] hover:border-gray-300 hover:shadow-sm cursor-pointer",
+        special && "relative after:absolute after:top-[10px] after:left-0 after:w-[22px] after:border after:-rotate-45 after:border-red-300",
+        className,
+      )}
+      {...rest}
+    >
       <div style={{ backgroundColor: color }} className={cn("box-content w-4 h-4 border flex items-center justify-center rounded-sm", border ? "border-secondary" : "border-transparent")}>
         {checked && <Check size={12} color={isLight ? "black" : "white"} />}
       </div>
@@ -134,27 +144,45 @@ function ColorLattice({ color, checked, border, className, ...rest }: IColorLatt
 
 interface IColorPickerProps {
   value?: string
+  hasDefault?: boolean
+  hasClear?: boolean
   onChange?: (color: string) => void
   onUpdate?: (color: string) => void
+  onClear?: () => void
 }
 
 export const ColorPicker: React.FC<IColorPickerProps> = (props) => {
-  const { value, onChange, onUpdate } = props
+  const { value, hasDefault, hasClear, onChange, onUpdate, onClear } = props
   const [reusedColor, setReusedColor] = useLocalStorage<string[]>("plate-reused-colors")
 
-  const handleChange = (color: string) => {
-    onChange?.(color)
+  const handleChange = (color: string, isUpdate = false) => {
+    isUpdate ? onUpdate?.(color) : onChange?.(color)
 
     const nextReusedColor = reusedColor ? [color, ...reusedColor] : [color]
-    setReusedColor(unique(nextReusedColor))
+    setReusedColor(unique(nextReusedColor).slice(0, 6))
   }
 
   return (
     <>
-      <div className="flex items-center px-2 py-2 hover:bg-secondary cursor-pointer mb-2 mt-1">
-        <ColorLattice title="深灰 3" color="rgb(38, 38, 38)" />
-        <span className="ml-2 text-sm text-secondary-foreground">默认</span>
-      </div>
+      {hasDefault && (
+        <div
+          className="flex items-center px-2 py-2 hover:bg-secondary cursor-pointer mb-2 mt-1"
+          onClick={() => handleChange(defaultColor)}
+        >
+          <ColorLattice color={defaultColor} />
+          <span className="ml-2 text-sm text-secondary-foreground">默认</span>
+        </div>
+      )}
+      {hasClear && (
+        <div
+          className="flex items-center px-2 py-2 hover:bg-secondary cursor-pointer mb-2 mt-1"
+          onClick={onClear}
+        >
+          <ColorLattice color="transparent" special border />
+          <span className="ml-2 text-sm text-secondary-foreground">无填充色</span>
+        </div>
+      )}
+
       <div className="grid grid-cols-10 px-2 mb-1.5">
         {grayColors.map(item => (
           <ColorLattice
@@ -201,7 +229,7 @@ export const ColorPicker: React.FC<IColorPickerProps> = (props) => {
             className="!w-auto !p-0 !shadow-none !bg-transparent border-none"
             presetColors={[]}
             color={value}
-            onChangeComplete={color => onUpdate?.(color.hex)}
+            onChangeComplete={color => handleChange(color.hex, true)}
           />
         </PopoverContent>
       </Popover>

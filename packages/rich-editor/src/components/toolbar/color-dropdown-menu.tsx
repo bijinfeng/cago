@@ -1,10 +1,9 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@pingtou/ui"
-import { useColorDropdownMenu, useColorDropdownMenuState } from "@udecode/plate-font"
 import { isFunction } from "radash"
 import type { ReactNode } from "react"
-import { DEFAULT_COLORS, DEFAULT_CUSTOM_COLORS } from "@/lib/color-constants"
-import { ToolbarButton } from "@/components/common/toolbar-button"
 import { ColorPicker } from "@/components/common/color-picker"
+import { ToolbarButton } from "@/components/common/toolbar-button"
+import { useColorDropdownMenuState } from "@/hooks/useColorDropdownMenu"
 
 type DropdownMenuProps = React.ComponentProps<typeof DropdownMenu>
 
@@ -12,34 +11,38 @@ type ColorDropdownMenuProps = {
   nodeType: string
   tooltip?: string
   storageKey: string
+  hasDefault?: boolean
+  hasClear?: boolean
   children?: ReactNode | ((color: string) => ReactNode)
 } & Omit<DropdownMenuProps, "children">
 
 export function ColorDropdownMenu(props: ColorDropdownMenuProps) {
-  const { nodeType, children, tooltip } = props
+  const { nodeType, children, tooltip, storageKey, hasDefault, hasClear } = props
 
   const state = useColorDropdownMenuState({
     nodeType,
-    colors: DEFAULT_COLORS,
-    customColors: DEFAULT_CUSTOM_COLORS,
+    storageKey,
     closeOnSelect: false,
   })
 
-  const { menuProps, buttonProps } = useColorDropdownMenu(state)
+  const color = state.selectedColor || state.color
 
   return (
-    <DropdownMenu modal={false} {...menuProps}>
+    <DropdownMenu modal={false} open={state.open} onOpenChange={state.onToggle}>
       <DropdownMenuTrigger asChild>
-        <ToolbarButton tooltip={tooltip} isDropdown {...buttonProps}>
-          {isFunction(children) ? children(state.color) : children}
+        <ToolbarButton tooltip={tooltip} isDropdown pressed={state.open}>
+          {isFunction(children) ? children(color) : children}
         </ToolbarButton>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="start" className="p-0">
         <ColorPicker
-          value={state.selectedColor || state.color}
+          value={color}
+          hasDefault={hasDefault}
+          hasClear={hasClear}
           onChange={state.updateColorAndClose}
           onUpdate={state.updateColor}
+          onClear={state.clearColor}
         />
       </DropdownMenuContent>
     </DropdownMenu>
