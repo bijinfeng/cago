@@ -1,17 +1,17 @@
 import type { ButtonProps } from "@pingtou/ui"
 import { Button, Tooltip, TooltipContent, TooltipTrigger } from "@pingtou/ui"
-import React from "react"
+import React, { forwardRef } from "react"
 
 interface IIconButtonProps extends ButtonProps {
   tooltip?: React.ReactNode
   actived?: boolean
 }
 
-export const IconButton: React.FC<IIconButtonProps> = (props) => {
+export const IconButton = forwardRef<React.ComponentRef<typeof Button>, IIconButtonProps>((props, ref) => {
   const { tooltip, children, actived, ...rest } = props
 
   const renderButton = () => (
-    <Button variant={actived ? "secondary" : "ghost"} size="icon" {...rest}>
+    <Button ref={ref} variant={actived ? "secondary" : "ghost"} size="icon" {...rest}>
       {children}
     </Button>
   )
@@ -29,4 +29,4 @@ export const IconButton: React.FC<IIconButtonProps> = (props) => {
       </TooltipContent>
     </Tooltip>
   )
-}
+})
