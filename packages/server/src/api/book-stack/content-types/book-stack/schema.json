@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "book_stacks",
+  "info": {
+    "singularName": "book-stack",
+    "pluralName": "book-stacks",
+    "displayName": "Book Stack",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "is_default": {
+      "type": "boolean",
+      "default": false
+    },
+    "order": {
+      "type": "integer",
+      "required": false
+    },
+    "user_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}
