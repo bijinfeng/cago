@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "book_details",
+  "info": {
+    "singularName": "book-detail",
+    "pluralName": "book-details",
+    "displayName": "Book Detail"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "book_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::book.book"
+    },
+    "content": {
+      "type": "json"
+    },
+    "description": {
+      "type": "text"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

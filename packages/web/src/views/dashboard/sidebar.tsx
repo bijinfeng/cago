@@ -6,6 +6,7 @@ import NoteIcon from "@/assets/note.svg?react"
 import StarOutlineIcon from "@/assets/star-outlined.svg?react"
 import TimeIcon from "@/assets/time.svg?react"
 import AddDoc from "@/components/add-doc"
+import { BookAccordion } from "@/components/book-accordion"
 import GlobalSearch from "@/components/global-search"
 import { Logo } from "@/components/logo"
 import type { IMenuItem } from "@/components/menu"
@@ -76,6 +77,10 @@ function ExpandSidebar() {
         <AddDoc />
       </div>
       <Menu className="px-3" items={pageMenu} />
+
+      <div className="px-3 mt-4">
+        <BookAccordion />
+      </div>
     </div>
   )
 }

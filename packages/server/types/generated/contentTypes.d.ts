@@ -392,6 +392,43 @@ export interface ApiBookBook extends Schema.CollectionType {
   };
 }
 
+export interface ApiBookDetailBookDetail extends Schema.CollectionType {
+  collectionName: 'book_details';
+  info: {
+    singularName: 'book-detail';
+    pluralName: 'book-details';
+    displayName: 'Book Detail';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    book_id: Attribute.Relation<
+      'api::book-detail.book-detail',
+      'oneToOne',
+      'api::book.book'
+    >;
+    content: Attribute.JSON;
+    description: Attribute.Text;
+    title: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::book-detail.book-detail',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::book-detail.book-detail',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiBookStackBookStack extends Schema.CollectionType {
   collectionName: 'book_stacks';
   info: {
@@ -867,6 +904,7 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::book.book': ApiBookBook;
+      'api::book-detail.book-detail': ApiBookDetailBookDetail;
       'api::book-stack.book-stack': ApiBookStackBookStack;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;

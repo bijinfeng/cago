@@ -1,0 +1,5 @@
+/**
+ * dashboard service
+ */
+
+export default () => ({})

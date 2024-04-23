@@ -6,6 +6,7 @@ import ProtectedLayout from "./layout/protected-layout"
 import ErrorPage from "./views/404"
 
 import Dashboard from "./views/dashboard"
+import DashboardBooks from "./views/dashboard/books"
 import DashboardCollections from "./views/dashboard/collections"
 import DashboardHome from "./views/dashboard/home"
 import DashboardNotes from "./views/dashboard/notes"
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
           {
             path: "notes",
             element: <DashboardNotes />,
+          },
+          {
+            path: "books",
+            element: <DashboardBooks />,
           },
         ],
       },
