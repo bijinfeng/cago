@@ -1,44 +1,87 @@
-import { buttonVariants, cn } from "@pingtou/ui"
-import { ChevronRight, Ellipsis, GripVertical } from "lucide-react"
-import React from "react"
-import { Link } from "react-router-dom"
-import { IconButton } from "@/components/icon-button"
-import { BookIcon } from "@/components/book-icon"
-import ArrowDownIcon from "@/assets/arrow-down.svg?react"
+import { buttonVariants, cn } from '@pingtou/ui';
+import { ChevronRight, Ellipsis, GripVertical } from 'lucide-react';
+import React from 'react';
+import { IconButton } from '@/components/icon-button';
+import { BookIcon } from '@/components/book-icon';
+import ArrowDownIcon from '@/assets/arrow-down.svg?react';
+import { type NodeRendererProps, Tree } from 'react-arborist';
+import { useDragDropManager } from 'react-dnd';
 
-export const BookAccordion: React.FC = () => {
-  const [expand, setExpand] = React.useState(true)
+interface INodeData {
+  id: string;
+  name: string;
+  children?: INodeData[];
+}
 
-  const handleExpand: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.stopPropagation()
-    setExpand(!expand)
+const data: INodeData[] = [
+  {
+    id: '3',
+    name: '知识库',
+    children: [
+      { id: 'c1', name: '面试' },
+      { id: 'c2', name: 'Javascript' },
+      { id: 'c3', name: '个人博客' },
+    ],
+  },
+];
+
+function RenderNode({ node, dragHandle }: NodeRendererProps<INodeData>) {
+  if (node.isLeaf) {
+    return (
+      <div className={cn(buttonVariants({ variant: 'ghost' }), 'flex px-1 py-0 h-8 group')}>
+        <div
+          ref={dragHandle}
+          className={cn(
+            buttonVariants({ variant: 'ghost' }),
+            'w-5 h-6 p-0 cursor-pointer hover:bg-gray-200 transition-all mx-0.5 invisible group-hover:visible',
+          )}
+        >
+          <GripVertical size={16} />
+        </div>
+        <div className="flex-1 flex items-center">
+          <BookIcon size={18} />
+          <span className="ml-1.5">{node.data.name}</span>
+        </div>
+        <IconButton className={cn('w-5 h-6 hover:bg-gray-200 transition-all mx-0.5 invisible group-hover:visible')}>
+          <Ellipsis size={16} />
+        </IconButton>
+      </div>
+    );
   }
 
   return (
-    <div className="space-y-1.5">
-      <Link to="/dashboard/books" className={cn(buttonVariants({ variant: "secondary" }), "flex px-1 py-0 h-8")}>
-        <IconButton
-          className={cn("w-6 h-6 hover:bg-gray-200 transition-all")}
-          onClick={handleExpand}
-        >
-          <ArrowDownIcon width={20} height={20} className={cn({ "-rotate-90": !expand })} />
-        </IconButton>
-        <span className="flex-1 ml-1.5">知识库</span>
-        <ChevronRight size={16} className="mr-1.5" />
-      </Link>
-
-      <Link to="/" className={cn(buttonVariants({ variant: "ghost" }), "flex px-1 py-0 h-8 group")}>
-        <IconButton className={cn("w-5 h-6 hover:bg-gray-200 transition-all mx-0.5 invisible group-hover:visible")}>
-          <GripVertical size={16} />
-        </IconButton>
-        <div className="flex-1 flex items-center">
-          <BookIcon size={18} />
-          <span className="ml-1.5">面试</span>
-        </div>
-        <IconButton className={cn("w-5 h-6 hover:bg-gray-200 transition-all mx-0.5 invisible group-hover:visible")}>
-          <Ellipsis size={16} />
-        </IconButton>
-      </Link>
+    <div className={cn(buttonVariants({ variant: 'secondary' }), 'flex px-1 py-0 h-8')}>
+      <IconButton
+        className={cn('w-6 h-6 hover:bg-gray-200')}
+        onClick={(e) => {
+          e.stopPropagation();
+          node.toggle();
+        }}
+      >
+        <ArrowDownIcon width={20} height={20} className={cn('transition-all', { '-rotate-90': !node.isOpen })} />
+      </IconButton>
+      <span className="flex-1 ml-1.5">{node.data.name}</span>
+      <ChevronRight size={16} className="mr-1.5" />
     </div>
-  )
+  );
 }
+
+export const BookAccordion: React.FC = () => {
+  const dndManager = useDragDropManager();
+
+  return (
+    <div className="p-4">
+      <Tree
+        initialData={data}
+        indent={0}
+        className="kb-scrollbar"
+        rowHeight={38}
+        width="100%"
+        dndManager={dndManager}
+        rowClassName="py-[3px]"
+      >
+        {RenderNode}
+      </Tree>
+    </div>
+  );
+};
