@@ -3,7 +3,10 @@ import { cn, Tabs, TabsList, TabsTrigger, InputSearch, Button, Separator } from 
 import { Plus, LayoutGrid, AlignJustify, ChevronDown } from 'lucide-react';
 import { IconButton } from '@/components/icon-button';
 
-type BookSegmentedProps = React.HTMLAttributes<HTMLDivElement>
+import { BookList } from './list';
+import { BookGrid } from './grid';
+
+type BookSegmentedProps = React.HTMLAttributes<HTMLDivElement>;
 
 export const BookSegmented = React.forwardRef<HTMLDivElement, BookSegmentedProps>((props, ref) => {
   const { className } = props;
@@ -60,7 +63,7 @@ export const BookSegmented = React.forwardRef<HTMLDivElement, BookSegmentedProps
           </div>
         </div>
       </div>
-      <div />
+      <div className="mt-4">{layout === 'grid' ? <BookGrid /> : <BookList />}</div>
     </div>
   );
 });

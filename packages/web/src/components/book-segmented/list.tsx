@@ -1,4 +1,5 @@
-import { Table, TableBody, TableCell, TableRow } from '@pingtou/ui';
+import React from 'react';
+import { Table, TableHeader, TableHead, TableBody, TableCell, TableRow } from '@pingtou/ui';
 import {
   flexRender,
   getCoreRowModel,
@@ -9,12 +10,12 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { columns } from '@/components/table/columns';
-import { mockData } from '@/mock';
-import { DataTableFilter } from './data-table-filter';
-import { EmptyTableContent } from '@/components/table/empty-content';
 
-function DocList() {
+import { columns } from '@/components/table/columns';
+import { EmptyTableContent } from '@/components/table/empty-content';
+import { mockData } from '@/mock';
+
+export const BookList = () => {
   const table = useReactTable<KB.RecentDataItem>({
     data: mockData,
     columns,
@@ -36,14 +37,22 @@ function DocList() {
     ));
   };
 
-  return (
-    <div className="space-y-4">
-      <DataTableFilter table={table} />
-      <Table>
-        <TableBody>{table.getRowModel().rows?.length ? renderContent() : <EmptyTableContent />}</TableBody>
-      </Table>
-    </div>
-  );
-}
+  const renderHeader = () => {
+    return table.getHeaderGroups().map((headerGroup) => (
+      <TableRow key={headerGroup.id}>
+        {headerGroup.headers.map((header) => (
+          <TableHead key={header.id} colSpan={header.colSpan}>
+            {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+          </TableHead>
+        ))}
+      </TableRow>
+    ));
+  };
 
-export default DocList;
+  return (
+    <Table>
+      <TableHeader>{renderHeader()}</TableHeader>
+      <TableBody>{table.getRowModel().rows?.length ? renderContent() : <EmptyTableContent />}</TableBody>
+    </Table>
+  );
+};
