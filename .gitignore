@@ -130,5 +130,5 @@ dist
 .pnp.*
 
 # server
-./packages/server/src/extensions/
-./packages/server/types/generated/
+packages/server/src/extensions/
+packages/server/types/generated/
