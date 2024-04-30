@@ -356,6 +356,30 @@ export interface ApiBookStackBookStack extends Schema.CollectionType {
   };
 }
 
+export interface ApiOrganizationOrganization extends Schema.CollectionType {
+  collectionName: 'organizations';
+  info: {
+    singularName: 'organization';
+    pluralName: 'organizations';
+    displayName: 'Organization';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    host: Attribute.String & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+    logo: Attribute.Media;
+    user_id: Attribute.Relation<'api::organization.organization', 'oneToOne', 'plugin::users-permissions.user'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::organization.organization', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::organization.organization', 'oneToOne', 'admin::user'> & Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -670,7 +694,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
 }
 
 declare module '@strapi/types' {
-  export namespace Shared {
+  export module Shared {
     export interface ContentTypes {
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
@@ -682,6 +706,7 @@ declare module '@strapi/types' {
       'api::book.book': ApiBookBook;
       'api::book-detail.book-detail': ApiBookDetailBookDetail;
       'api::book-stack.book-stack': ApiBookStackBookStack;
+      'api::organization.organization': ApiOrganizationOrganization;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;

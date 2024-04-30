@@ -14,7 +14,7 @@ export default function App() {
       <DndProvider backend={HTML5Backend}>
         <TooltipProvider>
           <ThemeProvider>
-            <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
+            <RouterProvider router={router} />
             <Toaster richColors />
           </ThemeProvider>
         </TooltipProvider>
