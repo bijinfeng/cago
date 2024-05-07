@@ -1,7 +1,5 @@
 import { Separator } from '@pingtou/ui';
 import React from 'react';
-import { Link } from 'react-router-dom';
-import LogoIcon from '@/assets/logo.svg?react';
 import NoteIcon from '@/assets/note.svg?react';
 import StarOutlineIcon from '@/assets/star-outlined.svg?react';
 import TimeIcon from '@/assets/time.svg?react';
@@ -13,6 +11,7 @@ import type { IMenuItem } from '@/components/menu';
 import Menu from '@/components/menu';
 import Notice from '@/components/notice';
 import UserNav from '@/components/user-nav';
+import { OrganizationPopover } from '@/components/organization-popover';
 
 const pageMenu: IMenuItem[] = [
   {
@@ -64,9 +63,7 @@ function ExpandSidebar() {
     <div>
       <div className="pt-[10px]">
         <div className="px-3 flex items-center space-x-1">
-          <Link to="/dashboard">
-            <LogoIcon width={24} height={24} className="text-primary" />
-          </Link>
+          <OrganizationPopover />
           <span className="flex-1" />
           <Notice />
           <UserNav />

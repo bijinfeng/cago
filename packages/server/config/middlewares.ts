@@ -1,22 +1,22 @@
 export default [
-  "strapi::logger",
-  "strapi::errors",
+  'strapi::logger',
+  'strapi::errors',
   {
-    name: "strapi::security",
+    name: 'strapi::security',
     config: {
       contentSecurityPolicy: {
         directives: {
-          "frame-src": ["http://localhost:*", "self", "sandbox.embed.apollographql.com"],
+          'frame-src': ['http://localhost:*', 'self'],
         },
       },
     },
   },
-  "strapi::cors",
-  "strapi::poweredBy",
-  "strapi::logger",
-  "strapi::query",
-  "strapi::body",
-  "strapi::session",
-  "strapi::favicon",
-  "strapi::public",
-]
+  'strapi::cors',
+  'strapi::poweredBy',
+  'strapi::logger',
+  'strapi::query',
+  'strapi::body',
+  'strapi::session',
+  'strapi::favicon',
+  'strapi::public',
+];

@@ -2,3 +2,4 @@ pnpm-lock.yaml
 tsconfig.json
 package.json
 full_documentation.json
+packages/server/src/api

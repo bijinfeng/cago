@@ -1,41 +1,43 @@
-import { createBrowserRouter } from "react-router-dom"
+import { createBrowserRouter } from 'react-router-dom';
 
-import BlogLayout from "./layout/blog-layout"
-import ProtectedLayout from "./layout/protected-layout"
+import BlogLayout from './layout/blog-layout';
+import ProtectedLayout from './layout/protected-layout';
 
-import ErrorPage from "./views/404"
+import ErrorPage from './views/404';
 
-import Dashboard from "./views/dashboard"
-import DashboardBooks from "./views/dashboard/books"
-import DashboardCollections from "./views/dashboard/collections"
-import DashboardHome from "./views/dashboard/home"
-import DashboardNotes from "./views/dashboard/notes"
+import NewOrganization from '@/views/organization/new';
 
-import DocxSettingBasic from "./views/docx-setting/basic"
-import DocxSetting from "./views/docx-setting/index"
-import DocxDetail from "./views/docx/detail"
-import Docx from "./views/docx/home"
+import Dashboard from './views/dashboard';
+import DashboardBooks from './views/dashboard/books';
+import DashboardCollections from './views/dashboard/collections';
+import DashboardHome from './views/dashboard/home';
+import DashboardNotes from './views/dashboard/notes';
 
-import ForgetPassword from "./views/forget-password"
+import DocxSettingBasic from './views/docx-setting/basic';
+import DocxSetting from './views/docx-setting/index';
+import DocxDetail from './views/docx/detail';
+import Docx from './views/docx/home';
 
-import Setting from "./views/setting"
-import AuthorizationsSetting from "./views/setting/authorizations"
-import NotificationsSetting from "./views/setting/notifications"
-import ProfileSetting from "./views/setting/profile"
-import SafetySetting from "./views/setting/safety"
-import StatsSetting from "./views/setting/stats"
-import TokensSetting from "./views/setting/tokens"
+import ForgetPassword from './views/forget-password';
 
-import Singin from "./views/singin"
+import Setting from './views/setting';
+import AuthorizationsSetting from './views/setting/authorizations';
+import NotificationsSetting from './views/setting/notifications';
+import ProfileSetting from './views/setting/profile';
+import SafetySetting from './views/setting/safety';
+import StatsSetting from './views/setting/stats';
+import TokensSetting from './views/setting/tokens';
+
+import Singin from './views/singin';
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <ProtectedLayout />,
     loader: ProtectedLayout.loader,
     children: [
       {
-        path: "/dashboard",
+        path: '/dashboard',
         element: <Dashboard />,
         children: [
           {
@@ -43,21 +45,21 @@ export const router = createBrowserRouter([
             element: <DashboardHome />,
           },
           {
-            path: "collections",
+            path: 'collections',
             element: <DashboardCollections />,
           },
           {
-            path: "notes",
+            path: 'notes',
             element: <DashboardNotes />,
           },
           {
-            path: "books",
+            path: 'books',
             element: <DashboardBooks />,
           },
         ],
       },
       {
-        path: "/docx",
+        path: '/docx',
         element: <BlogLayout />,
         children: [
           {
@@ -65,13 +67,13 @@ export const router = createBrowserRouter([
             element: <Docx />,
           },
           {
-            path: ":id",
+            path: ':id',
             element: <DocxDetail />,
           },
         ],
       },
       {
-        path: "/docx-setting",
+        path: '/docx-setting',
         element: <DocxSetting />,
         children: [
           {
@@ -81,47 +83,51 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: "/setting",
+        path: '/setting',
         Component: Setting,
         children: [
           {
-            path: "profile",
+            path: 'profile',
             element: <ProfileSetting />,
           },
           {
-            path: "notifications",
+            path: 'notifications',
             element: <NotificationsSetting />,
           },
           {
-            path: "authorizations",
+            path: 'authorizations',
             element: <AuthorizationsSetting />,
           },
           {
-            path: "safety",
+            path: 'safety',
             element: <SafetySetting />,
           },
           {
-            path: "stats",
+            path: 'stats',
             element: <StatsSetting />,
           },
           {
-            path: "tokens",
+            path: 'tokens',
             element: <TokensSetting />,
           },
         ],
       },
+      {
+        path: '/organization/new',
+        element: <NewOrganization />,
+      },
     ],
   },
   {
-    path: "/singin",
+    path: '/singin',
     element: <Singin />,
   },
   {
-    path: "/forget-password",
+    path: '/forget-password',
     element: <ForgetPassword />,
   },
   {
-    path: "*",
+    path: '*',
     element: <ErrorPage />,
   },
-])
+]);

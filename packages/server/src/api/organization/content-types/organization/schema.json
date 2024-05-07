@@ -23,18 +23,17 @@
     "logo": {
       "type": "media",
       "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "required": true,
+      "allowedTypes": ["images"]
     },
-    "user_id": {
+    "user_ids": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "organizations"
+    },
+    "members_count": {
+      "type": "integer"
     }
   }
 }
