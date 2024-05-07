@@ -3,3 +3,9 @@ tsconfig.json
 package.json
 full_documentation.json
 packages/server/src/api
+
+*.md
+*.json
+*.yaml
+
+assets/

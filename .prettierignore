@@ -12,6 +12,8 @@ pnpm-lock.yaml
 *.png
 *.ico
 *ignore
+*.ttf
+*.snap
 
 ## Local
 .husky
