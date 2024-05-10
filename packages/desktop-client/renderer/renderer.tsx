@@ -1,12 +1,16 @@
-import './index.css';
-
 import React from "react"
 import ReactDOM from "react-dom/client"
+import { ConfigProvider } from "@pingtou/web"
+// import { RouterProvider } from "react-router-dom"
+import "@pingtou/ui/index.css"
 
-import App from "./App"
+// import { router } from "./router"
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <ConfigProvider>
+      {/* <RouterProvider router={router} /> */}
+      <div>xxxx</div>
+    </ConfigProvider>
   </React.StrictMode>,
 )

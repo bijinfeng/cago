@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import BlogLayout from './layout/blog-layout';
 import ProtectedLayout from './layout/protected-layout';
 
-import ErrorPage from './views/404';
+import { ErrorPage } from './views/404';
 
 import NewOrganization from '@/views/organization/new';
 

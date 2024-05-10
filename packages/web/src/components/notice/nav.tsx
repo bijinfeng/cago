@@ -41,7 +41,7 @@ interface NavProps {
 const Nav: React.FC<NavProps> = ({ activeTab, onTabChange }) => {
   return (
     <div className="space-y-2 w-[132px]">
-      <Menu items={tabList} activeItem={activeTab} onActiveItemChange={item => onTabChange(item.value)} />
+      <Menu items={tabList} />
     </div>
   )
 }

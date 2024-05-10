@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@pingtou/ui": "workspace:*",
+    "@pingtou/web": "workspace:*",
     "electron-squirrel-startup": "^1.0.0"
   }
 }
