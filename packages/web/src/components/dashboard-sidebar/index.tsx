@@ -1,8 +1,7 @@
 import { Separator } from '@pingtou/ui';
 import React from 'react';
-import NoteIcon from '@/assets/note.svg?react';
-import StarOutlineIcon from '@/assets/star-outlined.svg?react';
-import TimeIcon from '@/assets/time.svg?react';
+import { Star, Clock, LibraryBig } from "lucide-react"
+
 import AddDoc from '@/components/add-doc';
 import { BookAccordion } from '@/components/book-accordion';
 import GlobalSearch from '@/components/global-search';
@@ -17,18 +16,18 @@ const pageMenu: IMenuItem[] = [
   {
     label: '开始',
     value: '/dashboard',
-    icon: <TimeIcon width={16} height={16} />,
-  },
-  {
-    label: '小记',
-    value: '/dashboard/notes',
-    icon: <NoteIcon width={16} height={16} />,
+    icon: <Clock size={16} />,
   },
   {
     label: '收藏',
     value: '/dashboard/collections',
-    icon: <StarOutlineIcon width={16} height={16} />,
+    icon: <Star size={16} />,
   },
+  {
+    label: "公共区",
+    value: "/dashboard/wiki",
+    icon: <LibraryBig size={16} />,
+  }
 ];
 
 interface SidebarProps {
@@ -80,8 +79,6 @@ function ExpandSidebar() {
   );
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isCollapsed }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ isCollapsed }) => {
   return isCollapsed ? <CollapaedSidebar /> : <ExpandSidebar />;
 };
-
-export default Sidebar;

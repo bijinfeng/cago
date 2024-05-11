@@ -8,13 +8,13 @@ export default defineConfig({
   build: {
     outDir: 'lib',
     lib: {
-      entry: path.resolve(__dirname, 'index.ts'),
+      entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'MyLib',
       formats: ['es'],
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', '@pingtou/ui'],
+      external: ['react', 'react-dom', 'react-router-dom', '@pingtou/ui'],
     },
   },
   resolve: {

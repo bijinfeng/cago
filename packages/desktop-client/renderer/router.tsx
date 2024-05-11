@@ -1,11 +1,17 @@
-import { ErrorPage } from "@pingtou/web";
-import { createHashRouter } from "react-router-dom";
-import { Dashboard } from "renderer/views/dashboard"
+import { ErrorPage, ProtectedLayout, Dashboard } from "@pingtou/web";
+import { createBrowserRouter } from "react-router-dom";
 
-export const router = createHashRouter([
+export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Dashboard />,
+    element: <ProtectedLayout />,
+    loader: ProtectedLayout.loader,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      }
+    ]
   },
   {
     path: '*',

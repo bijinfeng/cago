@@ -1,5 +1,5 @@
 import { useLocalStorageState } from "ahooks"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { ThemeContext } from "./context"
 import { USER_THEME } from "@/lib/constants"
 

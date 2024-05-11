@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "main": "lib/index.es.js",
-  "typings": "index.ts",
+  "module": "lib/index.es.js",
+  "typings": "src/index.ts",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -1,34 +1,13 @@
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@pingtou/ui"
-import { useLocalStorageState } from "ahooks"
 import React from "react"
 import { Outlet } from "react-router-dom"
-import Sidebar from "./sidebar"
-import { RESIZABLE_PANELS_COLLAPSED, RESIZABLE_PANELS_LAYOUT } from "@/lib/constants"
+import { Sidebar } from "@/components/dashboard-sidebar"
+import { DashboardLayout } from "@/components/dashboard-layout"
 
-const DashboardLayout: React.FC = () => {
-  const collapsedSize = 4
-  const [layout = [33, 67], setLayout] = useLocalStorageState<number[]>(RESIZABLE_PANELS_LAYOUT)
-  const [isCollapsed = false, setIsCollapsed] = useLocalStorageState<boolean>(RESIZABLE_PANELS_COLLAPSED)
-
+export const Dashboard = () => {
   return (
-    <ResizablePanelGroup direction="horizontal" onLayout={setLayout}>
-      <ResizablePanel
-        defaultSize={layout[0]}
-        collapsedSize={collapsedSize}
-        minSize={10}
-        maxSize={20}
-        collapsible={true}
-        onCollapse={() => setIsCollapsed(true)}
-        onExpand={() => setIsCollapsed(false)}
-      >
-        <Sidebar isCollapsed={isCollapsed} />
-      </ResizablePanel>
-      <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={layout[1]} minSize={30}>
-        <Outlet />
-      </ResizablePanel>
-    </ResizablePanelGroup>
+    <DashboardLayout
+      left={({ isCollapsed }) => <Sidebar isCollapsed={isCollapsed} />}
+      right={<Outlet />}
+    />
   )
 }
-
-export default DashboardLayout

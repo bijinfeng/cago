@@ -7,7 +7,7 @@ import { ErrorPage } from './views/404';
 
 import NewOrganization from '@/views/organization/new';
 
-import Dashboard from './views/dashboard';
+import { Dashboard } from './views/dashboard';
 import DashboardBooks from './views/dashboard/books';
 import DashboardCollections from './views/dashboard/collections';
 import DashboardHome from './views/dashboard/home';

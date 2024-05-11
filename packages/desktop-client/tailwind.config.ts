@@ -6,6 +6,7 @@ const config: Config = {
   content: [
     "./renderer/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@pingtou/ui/**/*.js",
+    "./node_modules/@pingtou/web/lib/**/*.js",
     "./node_modules/@pingtou/rich-editor/**/*.js",
   ],
   theme: {},
