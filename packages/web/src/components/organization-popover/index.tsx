@@ -2,16 +2,13 @@ import React from 'react';
 import { Popover, PopoverContent, PopoverTrigger, Button } from '@pingtou/ui';
 import { Link, useNavigate } from 'react-router-dom';
 import { useGloablStore } from '@/store/global';
-import { first } from 'radash';
 import { getImageUrl } from '@/lib/utils';
 import { IconButton } from '@/components/icon-button';
 import { ChevronDown, Check, Plus } from 'lucide-react';
 
 export const OrganizationPopover: React.FC = () => {
-  const { organizations } = useGloablStore();
+  const { organizations, organization } = useGloablStore();
   const navigate = useNavigate();
-
-  const organization = first(organizations.organizations!.data)!.attributes;
 
   const addOrganization = () => {
     navigate('/organization/new');
@@ -22,7 +19,7 @@ export const OrganizationPopover: React.FC = () => {
       <PopoverTrigger asChild>
         <div className="flex items-center">
           <Link to="/dashboard">
-            <img src={getImageUrl(organization!.logo.data!.attributes!.url)} alt="logo" className="w-7 h-7 rounded" />
+            <img src={getImageUrl(organization!.logo!.url!)} alt="logo" className="w-7 h-7 rounded" />
           </Link>
           <span className="ml-1.5 text-sm max-w-40 font-medium truncate">{organization?.name}</span>
           <IconButton size="icon" className="w-[18px] h-[18px] ml-0.5">
@@ -31,21 +28,17 @@ export const OrganizationPopover: React.FC = () => {
         </div>
       </PopoverTrigger>
       <PopoverContent align="start">
-        <h4 className="my-4 text-xs">空间</h4>
+        <h4 className="mb-4 text-xs">空间</h4>
         <div className="space-y-1">
-          {organizations.organizations?.data.map((item) => (
+          {organizations.map((item) => (
             <div
               className="flex items-center px-2 py-1.5 rounded-md hover:bg-accent cursor-pointer gap-3"
               key={item.id}
             >
-              <img
-                src={getImageUrl(item.attributes!.logo.data!.attributes!.url)}
-                alt="logo"
-                className="w-8 h-8 rounded"
-              />
+              <img src={getImageUrl(item.logo!.url!)} alt="logo" className="w-8 h-8 rounded" />
               <div className="flex-1">
-                <div className="text-sm">{item.attributes?.name}</div>
-                <div className="text-xs text-muted-foreground">{item.attributes?.members_count}成员</div>
+                <div className="text-sm">{item.name}</div>
+                <div className="text-xs text-muted-foreground">{item.members_count}成员</div>
               </div>
               <Check size={14} />
             </div>

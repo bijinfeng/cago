@@ -3,9 +3,10 @@ import { ChevronRight, Ellipsis, GripVertical } from 'lucide-react';
 import React from 'react';
 import { IconButton } from '@/components/icon-button';
 import { BookIcon } from '@/components/book-icon';
-import ArrowDownIcon from '@/assets/arrow-down.svg?react';
+import ArrowDownIcon from '@/assets/review-arrow-down.svg?react';
 import { type NodeRendererProps, Tree } from 'react-arborist';
 import { useDragDropManager } from 'react-dnd';
+import { useSize } from 'ahooks';
 
 interface INodeData {
   id: string;
@@ -68,20 +69,25 @@ function RenderNode({ node, dragHandle }: NodeRendererProps<INodeData>) {
 
 export const BookAccordion: React.FC = () => {
   const dndManager = useDragDropManager();
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const size = useSize(containerRef);
 
   return (
-    <div className="p-4">
-      <Tree
-        initialData={data}
-        indent={0}
-        className="kb-scrollbar"
-        rowHeight={38}
-        width="100%"
-        dndManager={dndManager}
-        rowClassName="py-[3px]"
-      >
-        {RenderNode}
-      </Tree>
+    <div ref={containerRef} className="m-4 flex-1 overflow-hidden">
+      {size?.height && (
+        <Tree
+          initialData={data}
+          indent={0}
+          className="kb-scrollbar"
+          rowHeight={38}
+          width="100%"
+          height={size.height}
+          dndManager={dndManager}
+          rowClassName="py-[3px]"
+        >
+          {RenderNode}
+        </Tree>
+      )}
     </div>
   );
 };

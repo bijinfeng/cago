@@ -12,6 +12,7 @@ import DashboardBooks from './views/dashboard/books';
 import DashboardCollections from './views/dashboard/collections';
 import DashboardHome from './views/dashboard/home';
 import DashboardNotes from './views/dashboard/notes';
+import { DashboardRecycles } from './views/dashboard/recycles';
 
 import DocxSettingBasic from './views/docx-setting/basic';
 import DocxSetting from './views/docx-setting/index';
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
           {
             path: 'books',
             element: <DashboardBooks />,
+          },
+          {
+            path: 'recycles',
+            element: <DashboardRecycles />,
           },
         ],
       },

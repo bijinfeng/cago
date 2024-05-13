@@ -1,6 +1,6 @@
 import { Separator } from '@pingtou/ui';
 import React from 'react';
-import { Star, Clock, LibraryBig } from "lucide-react"
+import { Star, Clock, LibraryBig, Settings, Earth } from 'lucide-react';
 
 import AddDoc from '@/components/add-doc';
 import { BookAccordion } from '@/components/book-accordion';
@@ -11,6 +11,8 @@ import Menu from '@/components/menu';
 import Notice from '@/components/notice';
 import UserNav from '@/components/user-nav';
 import { OrganizationPopover } from '@/components/organization-popover';
+
+import { MoreAction } from './more-action';
 
 const pageMenu: IMenuItem[] = [
   {
@@ -24,10 +26,23 @@ const pageMenu: IMenuItem[] = [
     icon: <Star size={16} />,
   },
   {
-    label: "公共区",
-    value: "/dashboard/wiki",
+    label: '公共区',
+    value: '/dashboard/wiki',
     icon: <LibraryBig size={16} />,
-  }
+  },
+];
+
+const bottomPageMenu: IMenuItem[] = [
+  {
+    label: '空间管理',
+    value: '/organizations/dashboard',
+    icon: <Settings size={16} />,
+  },
+  {
+    label: '空间公开页',
+    value: '/organizations/wiki',
+    icon: <Earth size={16} />,
+  },
 ];
 
 interface SidebarProps {
@@ -59,7 +74,7 @@ function CollapaedSidebar() {
 
 function ExpandSidebar() {
   return (
-    <div>
+    <div className="flex flex-col h-full">
       <div className="pt-[10px]">
         <div className="px-3 flex items-center space-x-1">
           <OrganizationPopover />
@@ -75,6 +90,10 @@ function ExpandSidebar() {
       <Menu className="px-3" items={pageMenu} />
 
       <BookAccordion />
+
+      <Menu className="px-3 py-3" items={bottomPageMenu}>
+        <MoreAction />
+      </Menu>
     </div>
   );
 }

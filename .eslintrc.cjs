@@ -16,6 +16,7 @@ module.exports = {
   },
   rules: {
     // 自定义你的规则
-    "@typescript-eslint/no-require-imports": "off"
+    '@typescript-eslint/no-require-imports': 'off',
+    'react/no-unstable-nested-components': 'off',
   },
 };
