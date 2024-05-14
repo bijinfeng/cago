@@ -18,6 +18,8 @@ export type Scalars = {
   DateTime: { input: any; output: any };
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: { input: any; output: any };
+  /** The `BigInt` scalar type represents non-fractional signed whole numeric values. */
+  Long: { input: any; output: any };
   /** The `Upload` scalar type represents a file upload. */
   Upload: { input: any; output: any };
 };
@@ -199,6 +201,72 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type CommonUsed = {
+  __typename?: 'CommonUsed';
+  book?: Maybe<BookEntityResponse>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  icon?: Maybe<UploadFileEntityResponse>;
+  order_num?: Maybe<Scalars['Int']['output']>;
+  organization_id?: Maybe<OrganizationEntityResponse>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  target_id: Scalars['Long']['output'];
+  title: Scalars['String']['output'];
+  type: Enum_Commonused_Type;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  user_id?: Maybe<UsersPermissionsUserEntityResponse>;
+};
+
+export type CommonUsedEntity = {
+  __typename?: 'CommonUsedEntity';
+  attributes?: Maybe<CommonUsed>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type CommonUsedEntityResponse = {
+  __typename?: 'CommonUsedEntityResponse';
+  data?: Maybe<CommonUsedEntity>;
+};
+
+export type CommonUsedEntityResponseCollection = {
+  __typename?: 'CommonUsedEntityResponseCollection';
+  data: Array<CommonUsedEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type CommonUsedFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<CommonUsedFiltersInput>>>;
+  book?: InputMaybe<BookFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<CommonUsedFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CommonUsedFiltersInput>>>;
+  order_num?: InputMaybe<IntFilterInput>;
+  organization_id?: InputMaybe<OrganizationFiltersInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  target_id?: InputMaybe<LongFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  user_id?: InputMaybe<UsersPermissionsUserFiltersInput>;
+};
+
+export type CommonUsedInput = {
+  book?: InputMaybe<Scalars['ID']['input']>;
+  icon?: InputMaybe<Scalars['ID']['input']>;
+  order_num?: InputMaybe<Scalars['Int']['input']>;
+  organization_id?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  target_id?: InputMaybe<Scalars['Long']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Enum_Commonused_Type>;
+  user_id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type CommonUsedRelationResponseCollection = {
+  __typename?: 'CommonUsedRelationResponseCollection';
+  data: Array<CommonUsedEntity>;
+};
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
@@ -226,6 +294,11 @@ export type DateTimeFilterInput = {
 
 export enum Enum_Book_Layout {
   Book = 'Book',
+}
+
+export enum Enum_Commonused_Type {
+  Book = 'Book',
+  Group = 'Group',
 }
 
 export type FileInfoInput = {
@@ -263,6 +336,8 @@ export type GenericMorph =
   | Book
   | BookDetail
   | BookStack
+  | CommonUsed
+  | Group
   | I18NLocale
   | Organization
   | UploadFile
@@ -270,6 +345,57 @@ export type GenericMorph =
   | UsersPermissionsPermission
   | UsersPermissionsRole
   | UsersPermissionsUser;
+
+export type Group = {
+  __typename?: 'Group';
+  avatar?: Maybe<UploadFileEntityResponse>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  name: Scalars['String']['output'];
+  organization?: Maybe<OrganizationEntityResponse>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type GroupEntity = {
+  __typename?: 'GroupEntity';
+  attributes?: Maybe<Group>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type GroupEntityResponse = {
+  __typename?: 'GroupEntityResponse';
+  data?: Maybe<GroupEntity>;
+};
+
+export type GroupEntityResponseCollection = {
+  __typename?: 'GroupEntityResponseCollection';
+  data: Array<GroupEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type GroupFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<GroupFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<GroupFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<GroupFiltersInput>>>;
+  organization?: InputMaybe<OrganizationFiltersInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type GroupInput = {
+  avatar?: InputMaybe<Scalars['ID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  organization?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type GroupRelationResponseCollection = {
+  __typename?: 'GroupRelationResponseCollection';
+  data: Array<GroupEntity>;
+};
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -382,6 +508,31 @@ export type JsonFilterInput = {
   startsWith?: InputMaybe<Scalars['JSON']['input']>;
 };
 
+export type LongFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  contains?: InputMaybe<Scalars['Long']['input']>;
+  containsi?: InputMaybe<Scalars['Long']['input']>;
+  endsWith?: InputMaybe<Scalars['Long']['input']>;
+  eq?: InputMaybe<Scalars['Long']['input']>;
+  eqi?: InputMaybe<Scalars['Long']['input']>;
+  gt?: InputMaybe<Scalars['Long']['input']>;
+  gte?: InputMaybe<Scalars['Long']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  lt?: InputMaybe<Scalars['Long']['input']>;
+  lte?: InputMaybe<Scalars['Long']['input']>;
+  ne?: InputMaybe<Scalars['Long']['input']>;
+  nei?: InputMaybe<Scalars['Long']['input']>;
+  not?: InputMaybe<LongFilterInput>;
+  notContains?: InputMaybe<Scalars['Long']['input']>;
+  notContainsi?: InputMaybe<Scalars['Long']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  startsWith?: InputMaybe<Scalars['Long']['input']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
@@ -389,6 +540,8 @@ export type Mutation = {
   createBook?: Maybe<BookEntityResponse>;
   createBookDetail?: Maybe<BookDetailEntityResponse>;
   createBookStack?: Maybe<BookStackEntityResponse>;
+  createCommonUsed?: Maybe<CommonUsedEntityResponse>;
+  createGroup?: Maybe<GroupEntityResponse>;
   createOrganization?: Maybe<OrganizationEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -399,6 +552,8 @@ export type Mutation = {
   deleteBook?: Maybe<BookEntityResponse>;
   deleteBookDetail?: Maybe<BookDetailEntityResponse>;
   deleteBookStack?: Maybe<BookStackEntityResponse>;
+  deleteCommonUsed?: Maybe<CommonUsedEntityResponse>;
+  deleteGroup?: Maybe<GroupEntityResponse>;
   deleteOrganization?: Maybe<OrganizationEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -420,7 +575,9 @@ export type Mutation = {
   updateBook?: Maybe<BookEntityResponse>;
   updateBookDetail?: Maybe<BookDetailEntityResponse>;
   updateBookStack?: Maybe<BookStackEntityResponse>;
+  updateCommonUsed?: Maybe<CommonUsedEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
+  updateGroup?: Maybe<GroupEntityResponse>;
   updateOrganization?: Maybe<OrganizationEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -447,6 +604,14 @@ export type MutationCreateBookDetailArgs = {
 
 export type MutationCreateBookStackArgs = {
   data: BookStackInput;
+};
+
+export type MutationCreateCommonUsedArgs = {
+  data: CommonUsedInput;
+};
+
+export type MutationCreateGroupArgs = {
+  data: GroupInput;
 };
 
 export type MutationCreateOrganizationArgs = {
@@ -478,6 +643,14 @@ export type MutationDeleteBookDetailArgs = {
 };
 
 export type MutationDeleteBookStackArgs = {
+  id: Scalars['ID']['input'];
+};
+
+export type MutationDeleteCommonUsedArgs = {
+  id: Scalars['ID']['input'];
+};
+
+export type MutationDeleteGroupArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -549,9 +722,19 @@ export type MutationUpdateBookStackArgs = {
   id: Scalars['ID']['input'];
 };
 
+export type MutationUpdateCommonUsedArgs = {
+  data: CommonUsedInput;
+  id: Scalars['ID']['input'];
+};
+
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID']['input'];
   info?: InputMaybe<FileInfoInput>;
+};
+
+export type MutationUpdateGroupArgs = {
+  data: GroupInput;
+  id: Scalars['ID']['input'];
 };
 
 export type MutationUpdateOrganizationArgs = {
@@ -589,7 +772,9 @@ export type MutationUploadArgs = {
 
 export type Organization = {
   __typename?: 'Organization';
+  common_useds?: Maybe<CommonUsedRelationResponseCollection>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  groups?: Maybe<GroupRelationResponseCollection>;
   host: Scalars['String']['output'];
   logo: UploadFileEntityResponse;
   members_count?: Maybe<Scalars['Int']['output']>;
@@ -597,6 +782,20 @@ export type Organization = {
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   user_ids?: Maybe<UsersPermissionsUserRelationResponseCollection>;
+};
+
+export type OrganizationCommon_UsedsArgs = {
+  filters?: InputMaybe<CommonUsedFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type OrganizationGroupsArgs = {
+  filters?: InputMaybe<GroupFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type OrganizationUser_IdsArgs = {
@@ -624,7 +823,9 @@ export type OrganizationEntityResponseCollection = {
 
 export type OrganizationFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<OrganizationFiltersInput>>>;
+  common_useds?: InputMaybe<CommonUsedFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  groups?: InputMaybe<GroupFiltersInput>;
   host?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   members_count?: InputMaybe<IntFilterInput>;
@@ -637,6 +838,8 @@ export type OrganizationFiltersInput = {
 };
 
 export type OrganizationInput = {
+  common_useds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  groups?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   host?: InputMaybe<Scalars['String']['input']>;
   logo?: InputMaybe<Scalars['ID']['input']>;
   members_count?: InputMaybe<Scalars['Int']['input']>;
@@ -678,6 +881,10 @@ export type Query = {
   bookStack?: Maybe<BookStackEntityResponse>;
   bookStacks?: Maybe<BookStackEntityResponseCollection>;
   books?: Maybe<BookEntityResponseCollection>;
+  commonUsed?: Maybe<CommonUsedEntityResponse>;
+  commonUseds?: Maybe<CommonUsedEntityResponseCollection>;
+  group?: Maybe<GroupEntityResponse>;
+  groups?: Maybe<GroupEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
@@ -721,6 +928,28 @@ export type QueryBookStacksArgs = {
 
 export type QueryBooksArgs = {
   filters?: InputMaybe<BookFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type QueryCommonUsedArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type QueryCommonUsedsArgs = {
+  filters?: InputMaybe<CommonUsedFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type QueryGroupArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type QueryGroupsArgs = {
+  filters?: InputMaybe<GroupFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -1126,6 +1355,7 @@ export type UsersPermissionsUser = {
   __typename?: 'UsersPermissionsUser';
   avatar: UploadFileEntityResponse;
   blocked?: Maybe<Scalars['Boolean']['output']>;
+  common_useds?: Maybe<CommonUsedRelationResponseCollection>;
   confirmed?: Maybe<Scalars['Boolean']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   email: Scalars['String']['output'];
@@ -1134,6 +1364,13 @@ export type UsersPermissionsUser = {
   role?: Maybe<UsersPermissionsRoleEntityResponse>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   username: Scalars['String']['output'];
+};
+
+export type UsersPermissionsUserCommon_UsedsArgs = {
+  filters?: InputMaybe<CommonUsedFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type UsersPermissionsUserOrganizationsArgs = {
@@ -1163,6 +1400,7 @@ export type UsersPermissionsUserEntityResponseCollection = {
 export type UsersPermissionsUserFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
   blocked?: InputMaybe<BooleanFilterInput>;
+  common_useds?: InputMaybe<CommonUsedFiltersInput>;
   confirmationToken?: InputMaybe<StringFilterInput>;
   confirmed?: InputMaybe<BooleanFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
@@ -1182,6 +1420,7 @@ export type UsersPermissionsUserFiltersInput = {
 export type UsersPermissionsUserInput = {
   avatar?: InputMaybe<Scalars['ID']['input']>;
   blocked?: InputMaybe<Scalars['Boolean']['input']>;
+  common_useds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   confirmationToken?: InputMaybe<Scalars['String']['input']>;
   confirmed?: InputMaybe<Scalars['Boolean']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;

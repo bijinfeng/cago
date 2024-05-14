@@ -3,6 +3,7 @@ tsconfig.json
 package.json
 full_documentation.json
 packages/server/src/api
+packages/web/src/__generated__
 
 *.md
 *.json

@@ -34,6 +34,18 @@
     },
     "members_count": {
       "type": "integer"
+    },
+    "common_useds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::common-used.common-used",
+      "mappedBy": "organization_id"
+    },
+    "groups": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::group.group",
+      "mappedBy": "organization"
     }
   }
 }

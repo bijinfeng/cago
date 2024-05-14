@@ -13,6 +13,7 @@ import DashboardCollections from './views/dashboard/collections';
 import DashboardHome from './views/dashboard/home';
 import DashboardNotes from './views/dashboard/notes';
 import { DashboardRecycles } from './views/dashboard/recycles';
+import { DashboardGroups } from './views/dashboard/groups';
 
 import DocxSettingBasic from './views/docx-setting/basic';
 import DocxSetting from './views/docx-setting/index';
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
           {
             path: 'recycles',
             element: <DashboardRecycles />,
+          },
+          {
+            path: 'groups',
+            element: <DashboardGroups />,
           },
         ],
       },

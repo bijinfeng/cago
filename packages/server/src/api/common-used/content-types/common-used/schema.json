@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "common_useds",
+  "info": {
+    "singularName": "common-used",
+    "pluralName": "common-useds",
+    "displayName": "Common Used",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": ["Book", "Group"],
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "order_num": {
+      "type": "integer"
+    },
+    "organization_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::organization.organization",
+      "inversedBy": "common_useds"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "user_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "common_useds"
+    },
+    "book": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::book.book"
+    },
+    "target_id": {
+      "type": "biginteger",
+      "required": true
+    }
+  }
+}
