@@ -3,18 +3,29 @@ import { Popover, PopoverContent, PopoverTrigger, Separator } from '@pingtou/ui'
 import { MenuButton } from '@/components/menu';
 import { CircleEllipsis, Trash2, Monitor } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { IconButton } from '@/components/icon-button';
 
-export const MoreAction: React.FC = () => {
+interface MoreActionProps {
+  isCollapsed?: boolean;
+}
+
+export const MoreAction: React.FC<MoreActionProps> = ({ isCollapsed }) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <MenuButton>
-          <CircleEllipsis size={16} />
-          <span>更多</span>
-        </MenuButton>
+        {isCollapsed ? (
+          <IconButton tooltip="更多" className="w-8 h-8">
+            <CircleEllipsis size={16} />
+          </IconButton>
+        ) : (
+          <MenuButton>
+            <CircleEllipsis size={16} />
+            <span>更多</span>
+          </MenuButton>
+        )}
       </PopoverTrigger>
 
-      <PopoverContent className="p-2 w-60" side="right">
+      <PopoverContent className="p-2 w-60" side="right" align="end">
         <div className="text-sm px-[18px] font-semibold leading-10">更多</div>
 
         <Link to="/dashboard/recycles">

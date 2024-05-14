@@ -18,9 +18,10 @@ import { Plus } from 'lucide-react';
 
 interface IAddDocProps {
   children?: React.ReactNode;
+  isCollapsed?: boolean;
 }
 
-export const AddDoc: React.FC<IAddDocProps> = () => {
+export const AddDoc: React.FC<IAddDocProps> = ({ isCollapsed }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -28,7 +29,7 @@ export const AddDoc: React.FC<IAddDocProps> = () => {
           <Plus size={16} />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-40" align="start">
+      <DropdownMenuContent className="w-40" align="start" side={isCollapsed ? 'right' : 'bottom'}>
         <DropdownMenuItem className="flex items-center h-9">
           <DocTypeIcon width={18} height={18} className="mr-3" />
           <span>新建文档</span>

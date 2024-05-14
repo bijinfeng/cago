@@ -1,12 +1,17 @@
 import React from 'react';
-import { Popover, PopoverContent, PopoverTrigger, Button } from '@pingtou/ui';
+import { HoverCard, HoverCardContent, HoverCardTrigger, Button, cn } from '@pingtou/ui';
 import { Link, useNavigate } from 'react-router-dom';
 import { useGloablStore } from '@/store/global';
 import { getImageUrl } from '@/lib/utils';
 import { IconButton } from '@/components/icon-button';
 import { ChevronDown, Check, Plus } from 'lucide-react';
 
-export const OrganizationPopover: React.FC = () => {
+interface OrganizationPopoverProps {
+  isCollapsed?: boolean;
+  className?: string;
+}
+
+export const OrganizationPopover: React.FC<OrganizationPopoverProps> = ({ isCollapsed, className }) => {
   const { organizations, organization } = useGloablStore();
   const navigate = useNavigate();
 
@@ -15,19 +20,24 @@ export const OrganizationPopover: React.FC = () => {
   };
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <div className="flex items-center">
+    <HoverCard>
+      <HoverCardTrigger asChild>
+        <div className={cn('flex items-center', className)}>
           <Link to="/dashboard">
             <img src={getImageUrl(organization!.logo!.url!)} alt="logo" className="w-7 h-7 rounded" />
           </Link>
-          <span className="ml-1.5 text-sm max-w-40 font-medium truncate">{organization?.name}</span>
-          <IconButton size="icon" className="w-[18px] h-[18px] ml-0.5">
-            <ChevronDown size={16} />
-          </IconButton>
+          {!isCollapsed && (
+            <>
+              <span className="ml-1.5 text-sm max-w-40 font-medium truncate">{organization?.name}</span>
+              <IconButton size="icon" className="w-[18px] h-[18px] ml-0.5">
+                <ChevronDown size={16} />
+              </IconButton>
+            </>
+          )}
         </div>
-      </PopoverTrigger>
-      <PopoverContent align="start">
+      </HoverCardTrigger>
+
+      <HoverCardContent align="start" side={isCollapsed ? 'left' : 'bottom'}>
         <h4 className="mb-4 text-xs">空间</h4>
         <div className="space-y-1">
           {organizations.map((item) => (
@@ -54,7 +64,7 @@ export const OrganizationPopover: React.FC = () => {
             <span className="text-sm">创建空间</span>
           </div>
         </div>
-      </PopoverContent>
-    </Popover>
+      </HoverCardContent>
+    </HoverCard>
   );
 };

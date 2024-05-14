@@ -82,7 +82,10 @@ const Menu: React.FC<IMenuProps> = (props) => {
   };
 
   return (
-    <div className={cn('space-y-1', className, { 'flex flex-col items-center ': isCollapsed })} {...rest}>
+    <div
+      className={cn(isCollapsed ? 'space-y-2' : 'space-y-1', className, { 'flex flex-col items-center': isCollapsed })}
+      {...rest}
+    >
       {items.map((item) => (
         <React.Fragment key={item.value}>{renderItem(item)}</React.Fragment>
       ))}

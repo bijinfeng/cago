@@ -5,7 +5,6 @@ import { Star, Clock, LibraryBig, Settings, Earth } from 'lucide-react';
 import AddDoc from '@/components/add-doc';
 import { BookAccordion } from '@/components/book-accordion';
 import GlobalSearch from '@/components/global-search';
-import { Logo } from '@/components/logo';
 import type { IMenuItem } from '@/components/menu';
 import Menu from '@/components/menu';
 import Notice from '@/components/notice';
@@ -50,24 +49,27 @@ interface SidebarProps {
 }
 
 function CollapaedSidebar() {
-  const renderSeparator = () => (
+  const separator = (
     <div className="px-5 w-full">
       <Separator />
     </div>
   );
 
   return (
-    <div className="relative flex flex-col items-center gap-1.5 h-full">
-      <Logo size={24} className="mt-3 p-1" />
-      <AddDoc />
+    <div className="flex flex-col items-center gap-2 h-full py-3">
+      <OrganizationPopover isCollapsed className="mb-[10px]" />
+      <AddDoc isCollapsed />
       <Notice />
       <GlobalSearch isCollapsed />
-      {renderSeparator()}
+      {separator}
       <Menu items={pageMenu} isCollapsed />
+      {separator}
 
-      <div className="absolute bottom-0 pb-2">
-        <UserNav />
-      </div>
+      <div className="flex-1" />
+      <UserNav isCollapsed />
+      <Menu items={bottomPageMenu} isCollapsed>
+        <MoreAction isCollapsed />
+      </Menu>
     </div>
   );
 }
