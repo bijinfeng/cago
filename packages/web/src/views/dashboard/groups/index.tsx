@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, InputSearch } from '@pingtou/ui';
 import { Plus } from 'lucide-react';
+import { CommonlyUsed } from '@/components/commonly-used';
 
 export const DashboardGroups: React.FC = () => {
   return (
@@ -16,6 +17,8 @@ export const DashboardGroups: React.FC = () => {
           </Button>
         </div>
       </div>
+
+      <CommonlyUsed />
     </div>
   );
 };

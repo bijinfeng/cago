@@ -4,7 +4,7 @@ import { LockKeyhole, Ellipsis, GripVertical, ChevronDown, ChevronUp } from 'luc
 import { IconButton } from '@/components/icon-button';
 import { cn } from '@pingtou/ui';
 
-export const CommonBooks: React.FC = () => {
+export const CommonlyUsed: React.FC = () => {
   const [expand, setExpand] = React.useState(false);
 
   return (

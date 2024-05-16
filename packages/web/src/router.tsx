@@ -3,9 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import BlogLayout from './layout/blog-layout';
 import ProtectedLayout from './layout/protected-layout';
 
-import { ErrorPage } from './views/404';
-
-import NewOrganization from '@/views/organization/new';
+import { Team } from './views/team';
 
 import { Dashboard } from './views/dashboard';
 import DashboardBooks from './views/dashboard/books';
@@ -14,13 +12,13 @@ import DashboardHome from './views/dashboard/home';
 import DashboardNotes from './views/dashboard/notes';
 import { DashboardRecycles } from './views/dashboard/recycles';
 import { DashboardGroups } from './views/dashboard/groups';
+import { DashboardTeam } from './views/dashboard/team';
+import { DashboardTeamHome } from './views/dashboard/team/home';
 
 import DocxSettingBasic from './views/docx-setting/basic';
 import DocxSetting from './views/docx-setting/index';
 import DocxDetail from './views/docx/detail';
 import Docx from './views/docx/home';
-
-import ForgetPassword from './views/forget-password';
 
 import Setting from './views/setting';
 import AuthorizationsSetting from './views/setting/authorizations';
@@ -30,7 +28,10 @@ import SafetySetting from './views/setting/safety';
 import StatsSetting from './views/setting/stats';
 import TokensSetting from './views/setting/tokens';
 
+import NewOrganization from '@/views/organization/new';
 import Singin from './views/singin';
+import ForgetPassword from './views/forget-password';
+import { ErrorPage } from './views/404';
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +66,16 @@ export const router = createBrowserRouter([
           {
             path: 'groups',
             element: <DashboardGroups />,
+          },
+          {
+            path: 'team',
+            element: <DashboardTeam />,
+            children: [
+              {
+                index: true,
+                element: <DashboardTeamHome />,
+              },
+            ],
           },
         ],
       },
@@ -121,6 +132,10 @@ export const router = createBrowserRouter([
             element: <TokensSetting />,
           },
         ],
+      },
+      {
+        path: '/team',
+        element: <Team />,
       },
       {
         path: '/organization/new',
