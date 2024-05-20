@@ -63,7 +63,9 @@
           }
         }
       },
-      "tags": ["Common-used"],
+      "tags": [
+        "Common-used"
+      ],
       "parameters": [
         {
           "name": "sort",
@@ -232,7 +234,9 @@
           }
         }
       },
-      "tags": ["Common-used"],
+      "tags": [
+        "Common-used"
+      ],
       "parameters": [],
       "operationId": "post/common-useds",
       "requestBody": {
@@ -311,7 +315,9 @@
           }
         }
       },
-      "tags": ["Common-used"],
+      "tags": [
+        "Common-used"
+      ],
       "parameters": [
         {
           "name": "id",
@@ -389,7 +395,9 @@
           }
         }
       },
-      "tags": ["Common-used"],
+      "tags": [
+        "Common-used"
+      ],
       "parameters": [
         {
           "name": "id",
@@ -478,7 +486,9 @@
           }
         }
       },
-      "tags": ["Common-used"],
+      "tags": [
+        "Common-used"
+      ],
       "parameters": [
         {
           "name": "id",
