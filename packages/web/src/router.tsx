@@ -4,6 +4,7 @@ import BlogLayout from './layout/blog-layout';
 import ProtectedLayout from './layout/protected-layout';
 
 import { Team } from './views/team';
+import { TeamBasic } from './views/team/basic';
 
 import { Dashboard } from './views/dashboard';
 import DashboardBooks from './views/dashboard/books';
@@ -105,7 +106,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/setting',
-        Component: Setting,
+        element: <Setting />,
         children: [
           {
             path: 'profile',
@@ -136,6 +137,12 @@ export const router = createBrowserRouter([
       {
         path: '/team',
         element: <Team />,
+        children: [
+          {
+            path: 'basic',
+            element: <TeamBasic />,
+          },
+        ],
       },
       {
         path: '/organization/new',
