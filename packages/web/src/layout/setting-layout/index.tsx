@@ -98,13 +98,9 @@ export const SettingLayout: React.FC<SettingProps> = (props) => {
       </div>
       <Separator orientation="vertical" />
       <div className="flex-1 kb-scrollbar">
-        <div className={cn('pb-16, max-w-[1080px] mx-auto', !withTitle && 'pt-16')}>
+        <div className={cn('py-16 max-w-[1080px] mx-auto')}>
           <div style={{ maxWidth }}>
-            {withTitle && (
-              <div className="pt-16 pb-7 text-xl sticky top-0 bg-background z-10">
-                {matchNav?.title}
-              </div>
-            )}
+            {withTitle && <div className="pb-7 text-xl bg-background z-10">{matchNav?.title}</div>}
             <Outlet />
           </div>
         </div>

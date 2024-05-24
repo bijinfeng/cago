@@ -20,11 +20,14 @@ export const BookIconPopover = forwardRef<HTMLButtonElement, IBookIconPopoverPro
     const iconSize = size === 'large' ? 38 : 24;
 
     const renderTab = (label: string, value: typeof tabType) => {
+      const isActive = tabType === value;
+
       return (
         <span
           className={cn('relative cursor-pointer', {
             'after:absolute after:h-0.5 after:bg-foreground after:w-full after:left-0 after:bottom-0 after:rounded-[1px]':
-              tabType === value,
+              isActive,
+            'font-medium': isActive,
           })}
           onClick={() => setTabType(value)}
         >
@@ -46,7 +49,7 @@ export const BookIconPopover = forwardRef<HTMLButtonElement, IBookIconPopoverPro
           </Button>
         </PopoverTrigger>
         <PopoverContent className="p-0 w-80" align="start">
-          <div className="pl-4 border-b font-bold text-xs leading-10 h-10 flex items-center gap-4">
+          <div className="pl-4 border-b text-sm leading-10 h-10 flex items-center gap-4">
             {renderTab('图标', 'icon')}
             {renderTab('自定义', 'custom')}
           </div>

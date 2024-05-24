@@ -5,6 +5,8 @@ import ProtectedLayout from './layout/protected-layout';
 
 import { Team } from './views/team';
 import { TeamBasic } from './views/team/basic';
+import { TeamPermission } from './views/team/permission';
+import { TeamAdvanced } from './views/team/advanced';
 
 import { Dashboard } from './views/dashboard';
 import DashboardBooks from './views/dashboard/books';
@@ -141,6 +143,14 @@ export const router = createBrowserRouter([
           {
             path: 'basic',
             element: <TeamBasic />,
+          },
+          {
+            path: 'permission',
+            element: <TeamPermission />,
+          },
+          {
+            path: 'advanced',
+            element: <TeamAdvanced />,
           },
         ],
       },
