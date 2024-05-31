@@ -3,8 +3,19 @@ import path from 'node:path';
 import { defineConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
 
+const ReactCompilerConfig = {
+  /* ... */
+};
+
 export default defineConfig({
-  plugins: [react(), svgr()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [['babel-plugin-react-compiler', ReactCompilerConfig]],
+      },
+    }),
+    svgr(),
+  ],
   build: {
     outDir: 'lib',
     lib: {
