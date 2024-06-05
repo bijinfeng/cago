@@ -34,5 +34,19 @@ export const GET_ORGANIZATION = gql(/* GraphQL */ `
         }
       }
     }
+    commonUseds {
+      data {
+        attributes {
+          type
+          title
+          order_num
+          target_id
+          createdAt
+          updatedAt
+          publishedAt
+        }
+        id
+      }
+    }
   }
 `);

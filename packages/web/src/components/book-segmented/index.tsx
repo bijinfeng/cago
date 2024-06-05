@@ -34,7 +34,7 @@ export const BookSegmented = React.forwardRef<HTMLDivElement, BookSegmentedProps
         {widthFilter ? (
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList>
-              <TabsTrigger value="person">我个人的</TabsTrigger>
+              <TabsTrigger value="person">来自团队的</TabsTrigger>
               <TabsTrigger value="invite">邀请协作的</TabsTrigger>
             </TabsList>
           </Tabs>

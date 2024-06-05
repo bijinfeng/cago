@@ -1,5 +1,9 @@
 /* eslint-disable */
-import { ResultOf, DocumentTypeDecoration, TypedDocumentNode } from '@graphql-typed-document-node/core';
+import {
+  ResultOf,
+  DocumentTypeDecoration,
+  TypedDocumentNode,
+} from '@graphql-typed-document-node/core';
 import { FragmentDefinitionNode } from 'graphql';
 import { Incremental } from './graphql';
 
@@ -43,10 +47,10 @@ export function useFragment<TType>(
   return fragmentType as any;
 }
 
-export function makeFragmentData<F extends DocumentTypeDecoration<any, any>, FT extends ResultOf<F>>(
-  data: FT,
-  _fragment: F,
-): FragmentType<F> {
+export function makeFragmentData<
+  F extends DocumentTypeDecoration<any, any>,
+  FT extends ResultOf<F>,
+>(data: FT, _fragment: F): FragmentType<F> {
   return data as FragmentType<F>;
 }
 export function isFragmentReady<TQuery, TFrag>(
@@ -54,8 +58,9 @@ export function isFragmentReady<TQuery, TFrag>(
   fragmentNode: TypedDocumentNode<TFrag>,
   data: FragmentType<TypedDocumentNode<Incremental<TFrag>, any>> | null | undefined,
 ): data is FragmentType<typeof fragmentNode> {
-  const deferredFields = (queryNode as { __meta__?: { deferredFields: Record<string, (keyof TFrag)[]> } }).__meta__
-    ?.deferredFields;
+  const deferredFields = (
+    queryNode as { __meta__?: { deferredFields: Record<string, (keyof TFrag)[]> } }
+  ).__meta__?.deferredFields;
 
   if (!deferredFields) return true;
 

@@ -11,14 +11,19 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-import { columns } from '@/components/table/columns';
+import {
+  bookTitleColumn,
+  ascriptionColumn,
+  updatedColumn,
+  pinAction,
+} from '@/components/table/columns';
 import { EmptyTableContent } from '@/components/table/empty-content';
 import { mockData } from '@/mock';
 
 export const BookList = () => {
   const table = useReactTable<KB.RecentDataItem>({
     data: mockData,
-    columns,
+    columns: [bookTitleColumn, ascriptionColumn, updatedColumn, pinAction],
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -31,7 +36,9 @@ export const BookList = () => {
     return table.getRowModel().rows.map((row) => (
       <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
         {row.getVisibleCells().map((cell) => (
-          <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+          <TableCell key={cell.id}>
+            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+          </TableCell>
         ))}
       </TableRow>
     ));
@@ -42,7 +49,9 @@ export const BookList = () => {
       <TableRow key={headerGroup.id}>
         {headerGroup.headers.map((header) => (
           <TableHead key={header.id} colSpan={header.colSpan}>
-            {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+            {header.isPlaceholder
+              ? null
+              : flexRender(header.column.columnDef.header, header.getContext())}
           </TableHead>
         ))}
       </TableRow>
@@ -52,7 +61,9 @@ export const BookList = () => {
   return (
     <Table>
       <TableHeader>{renderHeader()}</TableHeader>
-      <TableBody>{table.getRowModel().rows?.length ? renderContent() : <EmptyTableContent />}</TableBody>
+      <TableBody>
+        {table.getRowModel().rows?.length ? renderContent() : <EmptyTableContent />}
+      </TableBody>
     </Table>
   );
 };

@@ -5,8 +5,12 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = {
+  [_ in K]?: never;
+};
+export type Incremental<T> =
+  | T
+  | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string };
@@ -1468,6 +1472,23 @@ export type OrganizationsQuery = {
       } | null;
     }>;
   } | null;
+  commonUseds?: {
+    __typename?: 'CommonUsedEntityResponseCollection';
+    data: Array<{
+      __typename?: 'CommonUsedEntity';
+      id?: string | null;
+      attributes?: {
+        __typename?: 'CommonUsed';
+        type: Enum_Commonused_Type;
+        title: string;
+        order_num?: number | null;
+        target_id: any;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+    }>;
+  } | null;
 };
 
 export const OrganizationsDocument = {
@@ -1521,10 +1542,22 @@ export const OrganizationsDocument = {
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
-                                              { kind: 'Field', name: { kind: 'Name', value: 'width' } },
-                                              { kind: 'Field', name: { kind: 'Name', value: 'height' } },
-                                              { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                                              { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'width' },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'height' },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'size' },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'url' },
+                                              },
                                             ],
                                           },
                                         },
@@ -1537,6 +1570,41 @@ export const OrganizationsDocument = {
                           ],
                         },
                       },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'commonUseds' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'data' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'attributes' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'type' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'order_num' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'target_id' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+                          ],
+                        },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                     ],
                   },
                 },

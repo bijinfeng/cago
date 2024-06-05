@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-  '\n  query Organizations {\n    organizations {\n      data {\n        id\n        attributes {\n          host\n          name\n          members_count\n          logo {\n            data {\n              id\n              attributes {\n                width\n                height\n                size\n                url\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n':
+  '\n  query Organizations {\n    organizations {\n      data {\n        id\n        attributes {\n          host\n          name\n          members_count\n          logo {\n            data {\n              id\n              attributes {\n                width\n                height\n                size\n                url\n              }\n            }\n          }\n        }\n      }\n    }\n    commonUseds {\n      data {\n        attributes {\n          type\n          title\n          order_num\n          target_id\n          createdAt\n          updatedAt\n          publishedAt\n        }\n        id\n      }\n    }\n  }\n':
     types.OrganizationsDocument,
 };
 
@@ -35,8 +35,8 @@ export function gql(source: string): unknown;
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
-  source: '\n  query Organizations {\n    organizations {\n      data {\n        id\n        attributes {\n          host\n          name\n          members_count\n          logo {\n            data {\n              id\n              attributes {\n                width\n                height\n                size\n                url\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n',
-): (typeof documents)['\n  query Organizations {\n    organizations {\n      data {\n        id\n        attributes {\n          host\n          name\n          members_count\n          logo {\n            data {\n              id\n              attributes {\n                width\n                height\n                size\n                url\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n'];
+  source: '\n  query Organizations {\n    organizations {\n      data {\n        id\n        attributes {\n          host\n          name\n          members_count\n          logo {\n            data {\n              id\n              attributes {\n                width\n                height\n                size\n                url\n              }\n            }\n          }\n        }\n      }\n    }\n    commonUseds {\n      data {\n        attributes {\n          type\n          title\n          order_num\n          target_id\n          createdAt\n          updatedAt\n          publishedAt\n        }\n        id\n      }\n    }\n  }\n',
+): (typeof documents)['\n  query Organizations {\n    organizations {\n      data {\n        id\n        attributes {\n          host\n          name\n          members_count\n          logo {\n            data {\n              id\n              attributes {\n                width\n                height\n                size\n                url\n              }\n            }\n          }\n        }\n      }\n    }\n    commonUseds {\n      data {\n        attributes {\n          type\n          title\n          order_num\n          target_id\n          createdAt\n          updatedAt\n          publishedAt\n        }\n        id\n      }\n    }\n  }\n'];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};
