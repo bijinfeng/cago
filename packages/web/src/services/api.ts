@@ -4,8 +4,13 @@ import { get } from 'radash';
 import { USER_TOKEN } from '@/lib/constants';
 
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_STRAPI_URL,
+  baseURL: import.meta.env.VITE_STRAPI_URL + '/api',
 });
+
+export interface ResponseData<T> {
+  data: T;
+  meta: { pagination: { page: number; pageCount: number; pageSize: number; total: number } };
+}
 
 api.interceptors.request.use(
   (config) => {

@@ -5,13 +5,16 @@ import { IconButton } from '@/components/icon-button';
 import { cn } from '@pingtou/ui';
 
 export const CommonlyUsed: React.FC = () => {
-  const [expand, setExpand] = React.useState(false);
+  const [expand, setExpand] = React.useState(true);
 
   return (
     <div className="mt-4 p-4 bg-gray-100 rounded-md">
       <div className={cn('text-sm flex items-center justify-between', { 'mb-2.5': expand })}>
         常用
-        <IconButton className="w-auto h-auto px-1.5 hover:bg-gray-200" onClick={() => setExpand(!expand)}>
+        <IconButton
+          className="w-auto h-auto px-1.5 hover:bg-gray-200"
+          onClick={() => setExpand(!expand)}
+        >
           {expand ? (
             <>
               收起

@@ -9,7 +9,12 @@ import { getImageUrl } from '@/lib/utils';
 export const Dashboard = () => {
   const { organization } = useGloablStore();
 
-  useFavicon(getImageUrl(organization!.logo!.url!));
+  useFavicon(getImageUrl(organization.logo.url!));
 
-  return <DashboardLayout left={({ isCollapsed }) => <Sidebar isCollapsed={isCollapsed} />} right={<Outlet />} />;
+  return (
+    <DashboardLayout
+      left={({ isCollapsed }) => <Sidebar isCollapsed={isCollapsed} />}
+      right={<Outlet />}
+    />
+  );
 };

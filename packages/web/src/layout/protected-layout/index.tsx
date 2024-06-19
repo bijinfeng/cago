@@ -1,15 +1,15 @@
 import React from 'react';
 import { Outlet, useLoaderData } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useRequest } from 'ahooks';
 
-import { GET_ORGANIZATION } from '@/services/graphql';
 import { initUserStore } from '@/store/user';
 import { initGloablStore } from '@/store/global';
 import { protectedLoader } from './loader';
+import { getGlobalData } from '@/services';
 
 const ProtectedLayout: React.FC = () => {
   const user = useLoaderData() as KB.UserInfo;
-  const { loading, data } = useQuery(GET_ORGANIZATION);
+  const { data, loading } = useRequest(getGlobalData);
 
   if (loading || !data) return null;
 

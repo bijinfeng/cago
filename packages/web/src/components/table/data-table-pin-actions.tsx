@@ -51,7 +51,10 @@ export function DataTablePinActions<TData>({ row }: DataTablePinActionsProps<TDa
       </Tooltip>
 
       <Dropdown menu={{ items }} align="end">
-        <Button variant="ghost" className="flex h-7 w-7 p-0 data-[state=open]:bg-muted">
+        <Button
+          variant="ghost"
+          className="flex h-7 w-7 p-0 invisible group-hover:visible data-[state=open]:bg-muted"
+        >
           <Ellipsis className="h-4 w-4" />
           <span className="sr-only">Open menu</span>
         </Button>

@@ -34,7 +34,7 @@ export const BookList = () => {
 
   const renderContent = () => {
     return table.getRowModel().rows.map((row) => (
-      <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+      <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'} className="group">
         {row.getVisibleCells().map((cell) => (
           <TableCell key={cell.id}>
             {flexRender(cell.column.columnDef.cell, cell.getContext())}

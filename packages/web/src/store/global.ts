@@ -1,26 +1,21 @@
 import type { StoreApi, UseBoundStore } from 'zustand';
 import { create } from 'zustand';
-import { flattenEntityResponseCollection } from 'strapi-flatten-graphql';
 import { first } from 'radash';
-
-import type { OrganizationsQuery } from '@/__generated__/graphql';
-
-type Organizations = ReturnType<
-  typeof flattenEntityResponseCollection<NonNullable<OrganizationsQuery['organizations']>>
->;
+import type { ResponseData } from '@/services/api';
 
 interface GlobalState {
-  organizations: Organizations;
-  organization: Organizations[0];
+  organizations: KB.Organization[];
+  organization: KB.Organization;
 }
 
 export let useGloablStore: UseBoundStore<StoreApi<GlobalState>>;
 
-export function initGloablStore(data: OrganizationsQuery) {
-  const organizations = flattenEntityResponseCollection(data!.organizations!);
-
+export function initGloablStore(data: {
+  commonUsed: ResponseData<KB.CommonUsed[]>;
+  organization: ResponseData<KB.Organization[]>;
+}) {
   useGloablStore = create<GlobalState>(() => ({
-    organizations,
-    organization: first(organizations)!,
+    organizations: data.organization.data,
+    organization: first(data.organization.data)!,
   }));
 }
