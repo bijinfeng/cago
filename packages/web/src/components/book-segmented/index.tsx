@@ -18,13 +18,15 @@ import { IconButton } from '@/components/icon-button';
 
 import { BookList } from './list';
 import { BookGrid } from './grid';
+import { ListSkeleton } from './skeleton';
 
 type BookSegmentedProps = React.HTMLAttributes<HTMLDivElement> & {
   widthFilter?: boolean;
+  loading?: boolean;
 };
 
 export const BookSegmented = React.forwardRef<HTMLDivElement, BookSegmentedProps>((props, ref) => {
-  const { className, widthFilter } = props;
+  const { className, widthFilter, loading } = props;
   const [activeTab, setActiveTab] = React.useState('person');
   const [layout, setLayout] = React.useState('grid');
 
@@ -89,7 +91,13 @@ export const BookSegmented = React.forwardRef<HTMLDivElement, BookSegmentedProps
           </div>
         </div>
       </div>
-      <div className="mt-4">{layout === 'grid' ? <BookGrid /> : <BookList />}</div>
+      {loading ? (
+        <div className="mt-4">
+          <ListSkeleton />
+        </div>
+      ) : (
+        <div className="mt-4">{layout === 'grid' ? <BookGrid /> : <BookList />}</div>
+      )}
     </div>
   );
 });

@@ -46,7 +46,7 @@ export const BookGroup: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props)
           </span>
         )}
         <Separator className={cn("flex-1 group-hover:visible", showAction ? "visible" : "invisible")} />
-        <button className={cn("h-8 border rounded-md px-1 flex items-center gap-1 group-hover:visible", showAction ? "visible" : "invisible")}>
+        <div className={cn("h-8 border rounded-md px-1 flex items-center gap-1 group-hover:visible", showAction ? "visible" : "invisible")}>
           <AddBookGroup open={state.isAddOpen} onOpenChange={(open) => state.isAddOpen = open} />
           <IconButton className="w-6 h-6">
             <ChevronUp size={16} />
@@ -60,7 +60,7 @@ export const BookGroup: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props)
           <IconButton className="w-6 h-6">
             <Trash2 size={16} />
           </IconButton>
-        </button>
+        </div>
       </div>
 
       <div className='grid grid-cols-3 gap-4'>

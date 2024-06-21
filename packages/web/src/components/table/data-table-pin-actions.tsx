@@ -6,6 +6,7 @@ import { IconButton } from '@/components/icon-button';
 import { Dropdown, type MenuProps } from '@/components/dropdown';
 import RenameIcon from '@/assets/rename.svg?react';
 import PermissionIcon from '@/assets/permission.svg?react';
+import { addCommonUsed } from "@/services";
 
 interface DataTablePinActionsProps<TData> {
   row: Row<TData>;
@@ -39,11 +40,15 @@ export function DataTablePinActions<TData>({ row }: DataTablePinActionsProps<TDa
     },
   ];
 
+  const handleAdd = () => {
+    addCommonUsed({ type: "Book", target_id: 324 })
+  }
+
   return (
     <div className="flex items-center gap-[10px]">
       <Tooltip>
         <TooltipTrigger asChild>
-          <IconButton className="w-7 h-7">
+          <IconButton className="w-7 h-7" onClick={handleAdd}>
             <PinIcon width={16} height={16} />
           </IconButton>
         </TooltipTrigger>

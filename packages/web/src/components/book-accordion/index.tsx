@@ -1,90 +1,73 @@
-import { buttonVariants, cn } from '@pingtou/ui';
-import { ChevronRight, Ellipsis, GripVertical } from 'lucide-react';
+import { Skeleton } from '@pingtou/ui';
 import React from 'react';
-import { IconButton } from '@/components/icon-button';
-import { BookIcon } from '@/components/book-icon';
-import ArrowDownIcon from '@/assets/review-arrow-down.svg?react';
 import { type NodeRendererProps, Tree } from 'react-arborist';
 import { useDragDropManager } from 'react-dnd';
 import { useSize } from 'ahooks';
-import { Link } from 'react-router-dom';
+
+import { GroupTitle } from './group-title';
+import { GroupLeaf } from './group-leaf';
+
+type SkeletonNode = { id: string; type: 'skeleton' };
 
 interface INodeData {
   id: string;
   name: string;
   link: string;
-  children?: INodeData[];
+  children?: Array<INodeData | SkeletonNode>;
 }
 
-const data: INodeData[] = [
+const isSkeleton = (node: INodeData | SkeletonNode): node is SkeletonNode => {
+  return (node as SkeletonNode).type === 'skeleton';
+};
+
+export const DEFAULT_DATA: INodeData[] = [
   {
-    id: '3',
+    id: '1',
     name: '知识库',
     link: '/dashboard/books',
     children: [
-      { id: 'c1', name: '面试', link: 'xx' },
-      { id: 'c2', name: 'Javascript', link: 'aa' },
-      { id: 'c3', name: '个人博客', link: 'cc' },
+      { id: '11', type: 'skeleton' },
+      { id: '12', type: 'skeleton' },
+      { id: '13', type: 'skeleton' },
+    ],
+  },
+  {
+    id: '2',
+    name: '团队',
+    link: '/dashboard/groups',
+    children: [
+      { id: '21', type: 'skeleton' },
+      { id: '22', type: 'skeleton' },
+      { id: '23', type: 'skeleton' },
     ],
   },
 ];
 
 function RenderNode({ node, dragHandle }: NodeRendererProps<INodeData>) {
+  if (isSkeleton(node.data)) {
+    return <Skeleton className="h-4 my-2 w-9/12 mx-auto" />;
+  }
+
   if (node.isLeaf) {
-    return (
-      <Link
-        to={node.data.link}
-        className={cn(buttonVariants({ variant: 'ghost' }), 'flex px-1 py-0 h-8 group')}
-      >
-        <div
-          ref={dragHandle}
-          className={cn(
-            buttonVariants({ variant: 'ghost' }),
-            'w-5 h-6 p-0 cursor-pointer hover:bg-gray-200 transition-all mx-0.5 invisible group-hover:visible',
-          )}
-        >
-          <GripVertical size={16} />
-        </div>
-        <div className="flex-1 flex items-center">
-          <BookIcon size={18} />
-          <span className="ml-1.5">{node.data.name}</span>
-        </div>
-        <IconButton
-          className={cn(
-            'w-5 h-6 hover:bg-gray-200 transition-all mx-0.5 invisible group-hover:visible',
-          )}
-        >
-          <Ellipsis size={16} />
-        </IconButton>
-      </Link>
-    );
+    return <GroupLeaf link={node.data.link} name={node.data.name} dragHandleRef={dragHandle} />;
   }
 
   return (
-    <Link
-      to={node.data.link}
-      className={cn(buttonVariants({ variant: 'secondary' }), 'flex px-1 py-0 h-8')}
-    >
-      <IconButton
-        className={cn('w-6 h-6 hover:bg-gray-200')}
-        onClick={(e) => {
-          e.stopPropagation();
-          node.toggle();
-        }}
-      >
-        <ArrowDownIcon
-          width={20}
-          height={20}
-          className={cn('transition-all', { '-rotate-90': !node.isOpen })}
-        />
-      </IconButton>
-      <span className="flex-1 ml-1.5">{node.data.name}</span>
-      <ChevronRight size={16} className="mr-1.5" />
-    </Link>
+    <GroupTitle
+      link={node.data.link}
+      isOpen={node.isOpen}
+      name={node.data.name}
+      onToggle={node.toggle}
+    />
   );
 }
 
-export const BookAccordion: React.FC = () => {
+interface BookAccordionProps {
+  data?: INodeData[];
+}
+
+export const BookAccordion: React.FC<BookAccordionProps> = (props) => {
+  const { data = DEFAULT_DATA } = props;
   const dndManager = useDragDropManager();
   const containerRef = React.useRef<HTMLDivElement>(null);
   const size = useSize(containerRef);

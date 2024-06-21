@@ -10,6 +10,7 @@ import Menu from '@/components/menu';
 import Notice from '@/components/notice';
 import UserNav from '@/components/user-nav';
 import { OrganizationPopover } from '@/components/organization-popover';
+import { useGloablStore } from "@/store/global";
 
 import { MoreAction } from './more-action';
 
@@ -101,5 +102,9 @@ function ExpandSidebar() {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ isCollapsed }) => {
+  const { commonUsed } = useGloablStore();
+
+  console.log(commonUsed);
+
   return isCollapsed ? <CollapaedSidebar /> : <ExpandSidebar />;
 };

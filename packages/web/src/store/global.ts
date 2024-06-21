@@ -6,6 +6,7 @@ import type { ResponseData } from '@/services/api';
 interface GlobalState {
   organizations: KB.Organization[];
   organization: KB.Organization;
+  commonUsed: KB.CommonUsed[];
 }
 
 export let useGloablStore: UseBoundStore<StoreApi<GlobalState>>;
@@ -17,5 +18,6 @@ export function initGloablStore(data: {
   useGloablStore = create<GlobalState>(() => ({
     organizations: data.organization.data,
     organization: first(data.organization.data)!,
+    commonUsed: data.commonUsed.data,
   }));
 }

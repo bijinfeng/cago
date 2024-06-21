@@ -14,11 +14,10 @@
   "attributes": {
     "type": {
       "type": "enumeration",
-      "enum": ["Book", "Group"],
-      "required": true
-    },
-    "title": {
-      "type": "string",
+      "enum": [
+        "Book",
+        "Group"
+      ],
       "required": true
     },
     "order_num": {
@@ -30,22 +29,11 @@
       "target": "api::organization.organization",
       "inversedBy": "common_useds"
     },
-    "icon": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": ["images"]
-    },
     "user_id": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "common_useds"
-    },
-    "book": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::book.book"
     },
     "target_id": {
       "type": "biginteger",
