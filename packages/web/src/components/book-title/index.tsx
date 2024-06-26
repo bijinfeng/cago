@@ -1,4 +1,4 @@
-import { Input } from '@pingtou/ui';
+import { Input, cn } from '@pingtou/ui';
 import React from 'react';
 
 import { BookIconPopover } from '@/components/book-icon-popover';
@@ -9,11 +9,15 @@ interface Value {
 }
 
 interface IBookTitleProps {
+  placeholder?: string;
+  inputClassName?: string;
   value?: Value;
   onChange?: (value: Value) => void;
 }
 
 export const BookTitle = React.forwardRef<HTMLDivElement, IBookTitleProps>((props, ref) => {
+  const { placeholder = '如：产品文档', inputClassName } = props;
+
   const handleTitleChange = (title: string) => {
     props.onChange?.({ ...props.value, title });
   };
@@ -27,8 +31,8 @@ export const BookTitle = React.forwardRef<HTMLDivElement, IBookTitleProps>((prop
       <BookIconPopover value={props.value?.icon} onChange={handleIconChange} />
       <Input
         value={props.value?.title}
-        className="h-10 w-80"
-        placeholder="如：产品文档"
+        className={cn('h-10 w-80', inputClassName)}
+        placeholder={placeholder}
         onChange={(e) => handleTitleChange(e.target.value)}
       />
     </div>

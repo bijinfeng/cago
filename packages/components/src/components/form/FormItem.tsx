@@ -1,14 +1,13 @@
 'use client';
 
-import type { PropsWithChildren } from 'react';
 import React, { useMemo } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 
 import type { FormItemProps } from './type';
 import { Label } from '@/components/ui/label';
-import { cn, isNullish } from '@/lib/utils';
+import { cn, isNullish, isFunction } from '@/lib/utils';
 
-const FormItem: React.FC<PropsWithChildren<FormItemProps>> = (props) => {
+const FormItem: React.FC<FormItemProps> = (props) => {
   const {
     name,
     children,
@@ -45,6 +44,7 @@ const FormItem: React.FC<PropsWithChildren<FormItemProps>> = (props) => {
   const errorMessage = fieldState.error?.message;
 
   const renderChildren = () => {
+    if (isFunction(children)) return children(field);
     if (!React.isValidElement(children)) return children;
 
     // 判断是不是原生组件
@@ -63,16 +63,18 @@ const FormItem: React.FC<PropsWithChildren<FormItemProps>> = (props) => {
 
   return (
     <div className={cn('space-y-2', className)} style={style}>
-      <Label className={cn('flex items-center', labelClassName)}>
-        <span
-          className={cn({
-            "after:content-['*'] after:ml-0.5 after:text-red-500": isRequired,
-          })}
-        >
-          {label}
-        </span>
-        {labelSuffix && <span className="form-label-description">{labelSuffix}</span>}
-      </Label>
+      {label && (
+        <Label className={cn('flex items-center', labelClassName)}>
+          <span
+            className={cn({
+              "after:content-['*'] after:ml-0.5 after:text-red-500": isRequired,
+            })}
+          >
+            {label}
+          </span>
+          {labelSuffix && <span className="form-label-description">{labelSuffix}</span>}
+        </Label>
+      )}
       {subTitle && <p className="text-[0.8rem] text-muted-foreground">{subTitle}</p>}
       {renderChildren()}
       {description && <p className="text-[0.8rem] text-muted-foreground">{description}</p>}

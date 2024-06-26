@@ -12,9 +12,10 @@ import DocTypeIcon from '@/assets/doc-type/default.svg?react';
 import SheetTypeIcon from '@/assets/doc-type/sheet.svg?react';
 import TableTypeIcon from '@/assets/doc-type/table.svg?react';
 import ImportIcon from '@/assets/import.svg?react';
-import NewbookIcon from '@/assets/newbook.svg?react';
 import TemplateIcon from '@/assets/template.svg?react';
 import { Plus } from 'lucide-react';
+import { formEvent } from '@/components/form-dialog/events';
+import { BookIcon } from '@/components/book-icon';
 
 interface IAddDocProps {
   children?: React.ReactNode;
@@ -47,9 +48,19 @@ export const AddDoc: React.FC<IAddDocProps> = ({ isCollapsed }) => {
           <span>新建数据表</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="flex items-center h-9">
-          <NewbookIcon width={18} height={18} className="mr-3" />
+        <DropdownMenuItem
+          className="flex items-center h-9"
+          onClick={() => formEvent.emit('create-book-stack')}
+        >
+          <BookIcon size={18} className="mr-3" />
           <span>知识库</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          className="flex items-center h-9"
+          onClick={() => formEvent.emit('create-team')}
+        >
+          <BookIcon iconType="group" size={18} className="mr-3" />
+          <span>团队</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="flex items-center h-9">
