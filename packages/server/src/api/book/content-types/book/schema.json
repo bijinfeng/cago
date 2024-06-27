@@ -4,38 +4,38 @@
   "info": {
     "singularName": "book",
     "pluralName": "books",
-    "displayName": "Book"
+    "displayName": "Book",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "cover": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": false
-    },
     "description": {
       "type": "text"
     },
-    "name": {
+    "title": {
       "type": "string",
       "required": true
     },
     "layout": {
       "type": "enumeration",
-      "enum": [
-        "Book"
-      ],
-      "required": true
+      "enum": ["Book"],
+      "required": false
     },
     "stack_id": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::book-stack.book-stack"
+    },
+    "group_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::group.group"
+    },
+    "icon": {
+      "type": "string"
     }
   }
 }

@@ -1,23 +1,28 @@
 import { Dialog, DialogContent, Form, Textarea, Button, DialogHeader } from '@pingtou/ui';
-import { BookTitle } from '@/components/book-title';
 import { useMount, useBoolean } from 'ahooks';
-import { formEvent } from '@/components/form-dialog/events';
 import type { FormInstance } from '@pingtou/ui';
 import { useRef } from 'react';
+import { omit, tryit } from 'radash';
+
 import { Select } from '@/components/select';
+import { formEvent } from '@/components/form-dialog/events';
+import { BookTitle } from '@/components/book-title';
+import { addBook } from '@/services';
 
 interface FormValue {
   name?: { title: string; icon: string };
   description?: string;
   public: '1' | '2';
+  group_id?: string;
 }
 
 const DEFAULT_FORM_VALUE: FormValue = {
   public: '2',
+  name: { title: '', icon: 'default' },
 };
 
 export const BookStackDialog = () => {
-  const [open, { set, setTrue }] = useBoolean(false);
+  const [open, { set, setTrue, setFalse }] = useBoolean(false);
   const [submitDisabled, submitAction] = useBoolean(true);
   const formRef = useRef<FormInstance<FormValue>>(null);
 
@@ -30,7 +35,9 @@ export const BookStackDialog = () => {
     if (!validated) return;
 
     const values = formRef.current!.getValues();
-    console.log(values);
+    const rest = omit(values, ['name']);
+    const [err] = await tryit(addBook)(Object.assign(rest, values.name));
+    !err && setFalse();
   };
 
   const handleValueChange = (value: FormValue) => {
@@ -55,11 +62,11 @@ export const BookStackDialog = () => {
             <Textarea maxLength={255} rows={6} placeholder="知识库简介（选填）" />
           </Form.Item>
 
-          <Form.Item label="新建至" name="desc">
+          <Form.Item label="新建至" name="group_id">
             <Select
               options={[
-                { label: '空间所有成员可访问', value: '2' },
-                { label: '仅协作者可访问', value: '1' },
+                { label: '公开区', value: '2' },
+                { label: 'kebai', value: '1' },
               ]}
             />
           </Form.Item>

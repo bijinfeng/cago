@@ -50,7 +50,7 @@ export const getGlobalData = async () => {
   return { commonUsed, organization };
 };
 
-export const addCommonUsed = async (data: Pick<KB.CommonUsed, "type" | "target_id">) => {
+export const addCommonUsed = async (data: Pick<KB.CommonUsed, 'type' | 'target_id'>) => {
   const res = await api.post<ResponseData<KB.CommonUsed>>('/common-useds', { data });
   return res.data;
 };
@@ -58,4 +58,8 @@ export const addCommonUsed = async (data: Pick<KB.CommonUsed, "type" | "target_i
 export const getBook = async () => {
   const res = await api.get<ResponseData<KB.BookInfo[]>>('/books');
   return res.data;
-}
+};
+
+export const addBook = <T>(data: T) => {
+  return api.post<ResponseData<KB.CommonUsed>>('/books', { data });
+};
